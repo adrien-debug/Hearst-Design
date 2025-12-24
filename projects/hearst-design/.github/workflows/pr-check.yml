@@ -1,0 +1,149 @@
+name: 🔍 PR Quality Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  # ============================================
+  # PR Size Check
+  # ============================================
+  pr-size:
+    name: 📏 Check PR Size
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: 📊 Analyze PR Size
+        run: |
+          files_changed=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | wc -l)
+          lines_changed=$(git diff --stat origin/${{ github.base_ref }}...HEAD | tail -1 | awk '{print $4+$6}')
+          
+          echo "📁 Files changed: $files_changed"
+          echo "📝 Lines changed: $lines_changed"
+          
+          if [ $files_changed -gt 50 ]; then
+            echo "⚠️ Warning: Large PR ($files_changed files)"
+            echo "Consider splitting into smaller PRs"
+          fi
+          
+          if [ $lines_changed -gt 1000 ]; then
+            echo "⚠️ Warning: Large PR ($lines_changed lines)"
+            echo "Consider splitting into smaller PRs"
+          fi
+  
+  # ============================================
+  # PR Title Check
+  # ============================================
+  pr-title:
+    name: 📝 Check PR Title
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: ✅ Validate PR Title
+        uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: |
+            feat
+            fix
+            docs
+            style
+            refactor
+            test
+            chore
+          requireScope: false
+  
+  # ============================================
+  # Code Review Checklist
+  # ============================================
+  checklist:
+    name: ✅ Review Checklist
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: 📋 Post Checklist Comment
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const comment = `
+            ## 📋 PR Review Checklist
+            
+            Merci pour votre contribution ! Veuillez vérifier :
+            
+            ### Code Quality
+            - [ ] Le code suit les conventions du projet
+            - [ ] Pas de code commenté ou de console.log
+            - [ ] Variables et fonctions bien nommées
+            - [ ] Pas de duplication de code
+            
+            ### Tests
+            - [ ] Tests unitaires ajoutés/mis à jour
+            - [ ] Tests passent localement
+            - [ ] Coverage maintenu ou amélioré
+            
+            ### Documentation
+            - [ ] README mis à jour si nécessaire
+            - [ ] Commentaires ajoutés pour code complexe
+            - [ ] API docs mises à jour
+            
+            ### Security
+            - [ ] Pas de secrets hardcodés
+            - [ ] Validation des entrées utilisateur
+            - [ ] Gestion appropriée des erreurs
+            
+            ### Performance
+            - [ ] Pas de requêtes N+1
+            - [ ] Images optimisées
+            - [ ] Pas de boucles inutiles
+            
+            ---
+            
+            *Cette checklist est générée automatiquement. Cochez les items au fur et à mesure.*
+            `;
+            
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('PR Review Checklist')
+            );
+            
+            if (!botComment) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: comment
+              });
+            }
+  
+  # ============================================
+  # Dependency Review
+  # ============================================
+  dependency-review:
+    name: 🔍 Dependency Review
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: 🔍 Review Dependencies
+        uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: moderate
+

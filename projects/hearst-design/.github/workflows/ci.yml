@@ -1,0 +1,152 @@
+name: 🔄 CI Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  # ============================================
+  # Backend Tests & Linting
+  # ============================================
+  backend:
+    name: 🔧 Backend CI
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: 🟢 Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: backend/package-lock.json
+      
+      - name: 📦 Install Dependencies
+        working-directory: ./backend
+        run: npm ci
+      
+      - name: 🔍 Run Linter
+        working-directory: ./backend
+        run: npm run lint --if-present
+      
+      - name: 🧪 Run Tests
+        working-directory: ./backend
+        run: npm test --if-present
+        env:
+          NODE_ENV: test
+      
+      - name: 📊 Upload Coverage
+        if: matrix.node-version == '20.x'
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./backend/coverage/lcov.info
+          flags: backend
+  
+  # ============================================
+  # Frontend Tests & Linting
+  # ============================================
+  frontend:
+    name: ⚛️ Frontend CI
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: 🟢 Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+      
+      - name: 📦 Install Dependencies
+        working-directory: ./frontend
+        run: npm ci
+      
+      - name: 🔍 Run Linter
+        working-directory: ./frontend
+        run: npm run lint --if-present
+      
+      - name: 🏗️ Build Application
+        working-directory: ./frontend
+        run: npm run build
+        env:
+          NEXT_PUBLIC_API_URL: http://localhost:4000/api/design
+      
+      - name: 🧪 Run Tests
+        working-directory: ./frontend
+        run: npm test --if-present
+      
+      - name: 📊 Upload Coverage
+        if: matrix.node-version == '20.x'
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./frontend/coverage/lcov.info
+          flags: frontend
+  
+  # ============================================
+  # Security Audit
+  # ============================================
+  security:
+    name: 🔒 Security Audit
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+      
+      - name: 🔐 Backend Security Audit
+        working-directory: ./backend
+        run: |
+          npm audit --audit-level=moderate
+        continue-on-error: true
+      
+      - name: 🔐 Frontend Security Audit
+        working-directory: ./frontend
+        run: |
+          npm audit --audit-level=moderate
+        continue-on-error: true
+  
+  # ============================================
+  # Code Quality
+  # ============================================
+  code-quality:
+    name: ✨ Code Quality
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+      
+      - name: 📊 SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        continue-on-error: true
+
