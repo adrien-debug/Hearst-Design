@@ -1,0 +1,330 @@
+/**
+ * ============================================
+ * MODERN TOKENS - Variables CSS Étendues
+ * ============================================
+ * Version: 2.0.0
+ * Focus: Ultra-moderne, Glassmorphism, Animations
+ * ============================================
+ */
+
+:root {
+  /* ========================================
+     GLASSMORPHISM TOKENS
+     ======================================== */
+  
+  /* Blur Levels */
+  --modern-blur-xs: blur(4px);
+  --modern-blur-sm: blur(8px);
+  --modern-blur-md: blur(16px);
+  --modern-blur-lg: blur(24px);
+  --modern-blur-xl: blur(32px);
+  --modern-blur-2xl: blur(48px);
+  
+  /* Glass Backgrounds */
+  --modern-glass-light: rgba(255, 255, 255, 0.05);
+  --modern-glass-medium: rgba(255, 255, 255, 0.08);
+  --modern-glass-strong: rgba(255, 255, 255, 0.12);
+  --modern-glass-dark: rgba(0, 0, 0, 0.2);
+  --modern-glass-green: rgba(138, 253, 129, 0.08);
+  --modern-glass-green-strong: rgba(138, 253, 129, 0.15);
+  
+  /* Glass Borders */
+  --modern-glass-border-light: rgba(255, 255, 255, 0.1);
+  --modern-glass-border-medium: rgba(255, 255, 255, 0.15);
+  --modern-glass-border-strong: rgba(255, 255, 255, 0.25);
+  --modern-glass-border-green: rgba(138, 253, 129, 0.3);
+  --modern-glass-border-green-glow: rgba(138, 253, 129, 0.5);
+  
+  /* ========================================
+     GLOW & NEON EFFECTS
+     ======================================== */
+  
+  /* Green Glows */
+  --modern-glow-green-subtle: 0 0 10px rgba(138, 253, 129, 0.2);
+  --modern-glow-green-soft: 0 0 20px rgba(138, 253, 129, 0.3);
+  --modern-glow-green-medium: 0 0 30px rgba(138, 253, 129, 0.4);
+  --modern-glow-green-strong: 0 0 40px rgba(138, 253, 129, 0.5);
+  --modern-glow-green-intense: 0 0 60px rgba(138, 253, 129, 0.6);
+  --modern-glow-green-neon: 
+    0 0 5px rgba(138, 253, 129, 0.8),
+    0 0 10px rgba(138, 253, 129, 0.6),
+    0 0 20px rgba(138, 253, 129, 0.4),
+    0 0 40px rgba(138, 253, 129, 0.2);
+  
+  /* Multi-color Glows */
+  --modern-glow-blue: 0 0 30px rgba(59, 130, 246, 0.4);
+  --modern-glow-purple: 0 0 30px rgba(139, 92, 246, 0.4);
+  --modern-glow-pink: 0 0 30px rgba(236, 72, 153, 0.4);
+  --modern-glow-orange: 0 0 30px rgba(249, 115, 22, 0.4);
+  --modern-glow-cyan: 0 0 30px rgba(6, 182, 212, 0.4);
+  
+  /* Text Glows */
+  --modern-text-glow-green: 0 0 10px rgba(138, 253, 129, 0.5);
+  --modern-text-glow-white: 0 0 10px rgba(255, 255, 255, 0.3);
+  
+  /* ========================================
+     SHADOWS - ELEVATED DESIGN
+     ======================================== */
+  
+  /* Soft Shadows */
+  --modern-shadow-soft-xs: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --modern-shadow-soft-sm: 0 4px 8px rgba(0, 0, 0, 0.15);
+  --modern-shadow-soft-md: 0 8px 16px rgba(0, 0, 0, 0.2);
+  --modern-shadow-soft-lg: 0 16px 32px rgba(0, 0, 0, 0.25);
+  --modern-shadow-soft-xl: 0 24px 48px rgba(0, 0, 0, 0.3);
+  
+  /* Dramatic Shadows */
+  --modern-shadow-dramatic: 
+    0 4px 6px rgba(0, 0, 0, 0.3),
+    0 12px 24px rgba(0, 0, 0, 0.4);
+  
+  /* Inset/Neumorphism */
+  --modern-shadow-inset-light: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  --modern-shadow-inset-medium: inset 0 4px 8px rgba(0, 0, 0, 0.15);
+  --modern-shadow-neumorphism: 
+    4px 4px 8px rgba(0, 0, 0, 0.3),
+    -4px -4px 8px rgba(255, 255, 255, 0.03);
+  --modern-shadow-neumorphism-pressed:
+    inset 4px 4px 8px rgba(0, 0, 0, 0.3),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.03);
+  
+  /* Float Effect */
+  --modern-shadow-float: 
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  
+  /* ========================================
+     GRADIENTS - PREMIUM
+     ======================================== */
+  
+  /* Green Gradients */
+  --modern-gradient-green: linear-gradient(135deg, #8AFD81 0%, #6ADD61 100%);
+  --modern-gradient-green-dark: linear-gradient(135deg, #6ADD61 0%, #4AC750 100%);
+  --modern-gradient-green-glow: linear-gradient(135deg, rgba(138, 253, 129, 0.3) 0%, rgba(106, 221, 97, 0.1) 100%);
+  
+  /* Dark Gradients */
+  --modern-gradient-dark: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  --modern-gradient-dark-radial: radial-gradient(ellipse at top, #1e293b 0%, #0f172a 50%, #020617 100%);
+  
+  /* Holographic */
+  --modern-gradient-holographic: linear-gradient(
+    135deg,
+    rgba(255, 0, 128, 0.1) 0%,
+    rgba(0, 255, 255, 0.1) 25%,
+    rgba(255, 255, 0, 0.1) 50%,
+    rgba(0, 255, 128, 0.1) 75%,
+    rgba(128, 0, 255, 0.1) 100%
+  );
+  
+  /* Aurora */
+  --modern-gradient-aurora: linear-gradient(
+    135deg,
+    rgba(138, 253, 129, 0.2) 0%,
+    rgba(59, 130, 246, 0.15) 33%,
+    rgba(139, 92, 246, 0.15) 66%,
+    rgba(236, 72, 153, 0.1) 100%
+  );
+  
+  /* Mesh Gradient */
+  --modern-gradient-mesh: 
+    radial-gradient(at 40% 20%, rgba(138, 253, 129, 0.15) 0%, transparent 50%),
+    radial-gradient(at 80% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(at 0% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(at 80% 50%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(236, 72, 153, 0.08) 0%, transparent 50%);
+  
+  /* Conic for Borders */
+  --modern-gradient-conic-rainbow: conic-gradient(
+    from 0deg,
+    #8AFD81,
+    #3B82F6,
+    #8B5CF6,
+    #EC4899,
+    #F97316,
+    #8AFD81
+  );
+  
+  /* ========================================
+     ANIMATIONS - TIMING
+     ======================================== */
+  
+  /* Durations */
+  --modern-duration-instant: 50ms;
+  --modern-duration-fast: 150ms;
+  --modern-duration-normal: 250ms;
+  --modern-duration-slow: 400ms;
+  --modern-duration-slower: 600ms;
+  --modern-duration-slowest: 800ms;
+  
+  /* Easings */
+  --modern-ease-linear: linear;
+  --modern-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --modern-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --modern-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --modern-ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --modern-ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --modern-ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --modern-ease-emphasized: cubic-bezier(0.2, 0.0, 0.0, 1.2);
+  --modern-ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* ========================================
+     BORDER RADIUS - MODERN
+     ======================================== */
+  
+  --modern-radius-xs: 4px;
+  --modern-radius-sm: 6px;
+  --modern-radius-md: 10px;
+  --modern-radius-lg: 14px;
+  --modern-radius-xl: 20px;
+  --modern-radius-2xl: 28px;
+  --modern-radius-3xl: 40px;
+  --modern-radius-full: 9999px;
+  
+  /* Blob/Organic Shapes */
+  --modern-radius-blob-1: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  --modern-radius-blob-2: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  --modern-radius-blob-3: 40% 60% 60% 40% / 70% 30% 70% 30%;
+  
+  /* ========================================
+     SPACING - EXTENDED
+     ======================================== */
+  
+  --modern-space-px: 1px;
+  --modern-space-0: 0;
+  --modern-space-0-5: 2px;
+  --modern-space-1: 4px;
+  --modern-space-1-5: 6px;
+  --modern-space-2: 8px;
+  --modern-space-2-5: 10px;
+  --modern-space-3: 12px;
+  --modern-space-3-5: 14px;
+  --modern-space-4: 16px;
+  --modern-space-5: 20px;
+  --modern-space-6: 24px;
+  --modern-space-7: 28px;
+  --modern-space-8: 32px;
+  --modern-space-9: 36px;
+  --modern-space-10: 40px;
+  --modern-space-12: 48px;
+  --modern-space-14: 56px;
+  --modern-space-16: 64px;
+  --modern-space-20: 80px;
+  --modern-space-24: 96px;
+  --modern-space-32: 128px;
+  
+  /* ========================================
+     Z-INDEX SCALE
+     ======================================== */
+  
+  --modern-z-below: -1;
+  --modern-z-base: 0;
+  --modern-z-dropdown: 100;
+  --modern-z-sticky: 200;
+  --modern-z-fixed: 300;
+  --modern-z-modal-backdrop: 400;
+  --modern-z-modal: 500;
+  --modern-z-popover: 600;
+  --modern-z-tooltip: 700;
+  --modern-z-toast: 800;
+  --modern-z-max: 9999;
+  
+  /* ========================================
+     FILTERS
+     ======================================== */
+  
+  --modern-filter-brightness-dim: brightness(0.8);
+  --modern-filter-brightness-normal: brightness(1);
+  --modern-filter-brightness-bright: brightness(1.1);
+  --modern-filter-brightness-highlight: brightness(1.2);
+  
+  --modern-filter-saturate-muted: saturate(0.5);
+  --modern-filter-saturate-normal: saturate(1);
+  --modern-filter-saturate-vivid: saturate(1.25);
+  --modern-filter-saturate-intense: saturate(1.5);
+  
+  --modern-filter-contrast-low: contrast(0.9);
+  --modern-filter-contrast-normal: contrast(1);
+  --modern-filter-contrast-high: contrast(1.1);
+  
+  /* ========================================
+     TRANSFORMS
+     ======================================== */
+  
+  --modern-scale-down-sm: scale(0.95);
+  --modern-scale-down-md: scale(0.9);
+  --modern-scale-up-sm: scale(1.02);
+  --modern-scale-up-md: scale(1.05);
+  --modern-scale-up-lg: scale(1.1);
+  
+  --modern-rotate-slight: rotate(2deg);
+  --modern-rotate-medium: rotate(5deg);
+  --modern-rotate-more: rotate(10deg);
+  
+  /* ========================================
+     NOISE & TEXTURES
+     ======================================== */
+  
+  --modern-noise-subtle: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  
+  /* ========================================
+     SCROLL BEHAVIOR
+     ======================================== */
+  
+  --modern-scroll-behavior: smooth;
+  --modern-scroll-padding: 80px;
+  
+  /* ========================================
+     ASPECT RATIOS
+     ======================================== */
+  
+  --modern-aspect-square: 1 / 1;
+  --modern-aspect-video: 16 / 9;
+  --modern-aspect-portrait: 3 / 4;
+  --modern-aspect-wide: 21 / 9;
+  --modern-aspect-golden: 1.618 / 1;
+}
+
+/* ========================================
+   ACCESSIBILITY - Reduced Motion
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --modern-duration-instant: 0ms;
+    --modern-duration-fast: 0ms;
+    --modern-duration-normal: 0ms;
+    --modern-duration-slow: 0ms;
+    --modern-duration-slower: 0ms;
+    --modern-duration-slowest: 0ms;
+    --modern-scroll-behavior: auto;
+  }
+}
+
+/* ========================================
+   @PROPERTY DEFINITIONS (CSS Houdini)
+   ======================================== */
+
+@property --modern-gradient-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --modern-glow-opacity {
+  syntax: '<number>';
+  initial-value: 0;
+  inherits: false;
+}
+
+@property --modern-border-progress {
+  syntax: '<percentage>';
+  initial-value: 0%;
+  inherits: false;
+}
+
+@property --modern-scale-value {
+  syntax: '<number>';
+  initial-value: 1;
+  inherits: false;
+}
+

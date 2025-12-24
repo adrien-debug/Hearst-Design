@@ -1,0 +1,502 @@
+/**
+ * BASE.CSS - Styles de Base & Reset
+ * Hearst Design System v2.0.0
+ * 
+ * Reset CSS + Styles de base pour tous les éléments HTML
+ */
+
+/* Import des variables */
+@import './variables.css';
+
+/* ========================================
+   🔄 RESET CSS
+   ======================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--ds-font-sans);
+  font-size: var(--ds-font-size-base);
+  font-weight: var(--ds-font-weight-normal);
+  line-height: var(--ds-line-height-normal);
+  color: var(--ds-text-primary);
+  background: var(--ds-bg-canvas);
+  overflow-x: hidden;
+}
+
+/* ========================================
+   📝 TYPOGRAPHIE
+   ======================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: var(--ds-font-weight-bold);
+  line-height: var(--ds-line-height-tight);
+  color: var(--ds-text-primary);
+}
+
+h1 {
+  font-size: var(--ds-font-size-4xl);
+  letter-spacing: var(--ds-letter-spacing-tight);
+}
+
+h2 {
+  font-size: var(--ds-font-size-3xl);
+  letter-spacing: var(--ds-letter-spacing-tight);
+}
+
+h3 {
+  font-size: var(--ds-font-size-2xl);
+}
+
+h4 {
+  font-size: var(--ds-font-size-xl);
+}
+
+h5 {
+  font-size: var(--ds-font-size-lg);
+}
+
+h6 {
+  font-size: var(--ds-font-size-base);
+  font-weight: var(--ds-font-weight-semibold);
+}
+
+p {
+  margin: 0;
+  line-height: var(--ds-line-height-normal);
+}
+
+a {
+  color: var(--ds-green-400);
+  text-decoration: none;
+  transition: color var(--ds-dur-fast) var(--ds-ease-standard);
+}
+
+a:hover {
+  color: var(--ds-green-500);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--ds-focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--ds-radius-1);
+}
+
+strong, b {
+  font-weight: var(--ds-font-weight-semibold);
+}
+
+em, i {
+  font-style: italic;
+}
+
+code {
+  font-family: var(--ds-font-mono);
+  font-size: 0.9em;
+  padding: 2px 6px;
+  background: var(--ds-bg-surface-2);
+  border-radius: var(--ds-radius-1);
+  color: var(--ds-text-primary);
+}
+
+pre {
+  font-family: var(--ds-font-mono);
+  font-size: var(--ds-font-size-sm);
+  padding: var(--ds-space-4);
+  background: var(--ds-bg-surface-2);
+  border-radius: var(--ds-radius-2);
+  overflow-x: auto;
+  line-height: 1.6;
+}
+
+pre code {
+  padding: 0;
+  background: transparent;
+}
+
+/* ========================================
+   📋 LISTES
+   ======================================== */
+
+ul, ol {
+  margin: 0;
+  padding-left: var(--ds-space-6);
+}
+
+li {
+  margin-bottom: var(--ds-space-2);
+}
+
+/* ========================================
+   🖼️ IMAGES & MEDIA
+   ======================================== */
+
+img, video, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ========================================
+   📊 TABLEAUX
+   ======================================== */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th, td {
+  padding: var(--ds-space-3);
+  text-align: left;
+  border-bottom: 1px solid var(--ds-border-subtle);
+}
+
+th {
+  font-weight: var(--ds-font-weight-semibold);
+  color: var(--ds-text-primary);
+  background: var(--ds-bg-surface-1);
+}
+
+tr:hover {
+  background: var(--ds-bg-surface-1);
+}
+
+/* ========================================
+   📝 FORMULAIRES
+   ======================================== */
+
+input, textarea, select, button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid var(--ds-focus-ring);
+  outline-offset: 2px;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ========================================
+   🎯 FOCUS STATES
+   ======================================== */
+
+:focus-visible {
+  outline: 2px solid var(--ds-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   📱 SCROLLBAR STYLING
+   ======================================== */
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ds-bg-surface-3) var(--ds-bg-surface-1);
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--ds-bg-surface-1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--ds-bg-surface-3);
+  border-radius: var(--ds-radius-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ds-text-disabled);
+}
+
+/* ========================================
+   🔲 SÉLECTION
+   ======================================== */
+
+::selection {
+  background: var(--ds-green-400);
+  color: var(--ds-bg-canvas);
+}
+
+::-moz-selection {
+  background: var(--ds-green-400);
+  color: var(--ds-bg-canvas);
+}
+
+/* ========================================
+   🎨 UTILITY CLASSES
+   ======================================== */
+
+/* Text Alignment */
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+/* Display */
+.hidden { display: none !important; }
+.block { display: block; }
+.inline-block { display: inline-block; }
+.flex { display: flex; }
+.inline-flex { display: inline-flex; }
+.grid { display: grid; }
+
+/* Visibility */
+.invisible { visibility: hidden; }
+.visible { visibility: visible; }
+
+/* Position */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.sticky { position: sticky; }
+
+/* Overflow */
+.overflow-hidden { overflow: hidden; }
+.overflow-auto { overflow: auto; }
+.overflow-scroll { overflow: scroll; }
+
+/* Cursor */
+.cursor-pointer { cursor: pointer; }
+.cursor-not-allowed { cursor: not-allowed; }
+
+/* User Select */
+.select-none { user-select: none; }
+.select-text { user-select: text; }
+.select-all { user-select: all; }
+
+/* Pointer Events */
+.pointer-events-none { pointer-events: none; }
+.pointer-events-auto { pointer-events: auto; }
+
+/* ========================================
+   🎭 ANIMATIONS
+   ======================================== */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Animation Utilities */
+.animate-fadeIn { animation: fadeIn var(--ds-dur-base) var(--ds-ease-standard); }
+.animate-fadeOut { animation: fadeOut var(--ds-dur-base) var(--ds-ease-standard); }
+.animate-slideInUp { animation: slideInUp var(--ds-dur-base) var(--ds-ease-standard); }
+.animate-slideInDown { animation: slideInDown var(--ds-dur-base) var(--ds-ease-standard); }
+.animate-slideInLeft { animation: slideInLeft var(--ds-dur-base) var(--ds-ease-standard); }
+.animate-slideInRight { animation: slideInRight var(--ds-dur-base) var(--ds-ease-standard); }
+.animate-spin { animation: spin 1s linear infinite; }
+.animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+
+/* ========================================
+   📱 RESPONSIVE HELPERS
+   ======================================== */
+
+/* Mobile Only */
+@media (max-width: 767px) {
+  .hide-mobile { display: none !important; }
+}
+
+/* Tablet and Up */
+@media (min-width: 768px) {
+  .show-mobile { display: none !important; }
+}
+
+/* Desktop and Up */
+@media (min-width: 1024px) {
+  .hide-desktop { display: none !important; }
+}
+
+/* ========================================
+   ♿ ACCESSIBILITY
+   ======================================== */
+
+/* Screen Reader Only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Skip Links */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--ds-bg-surface-1);
+  color: var(--ds-text-primary);
+  padding: var(--ds-space-3) var(--ds-space-4);
+  text-decoration: none;
+  z-index: var(--z-tooltip);
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ========================================
+   🎯 PRINT STYLES
+   ======================================== */
+
+@media print {
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  a, a:visited {
+    text-decoration: underline;
+  }
+  
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+  
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+  
+  pre, blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  
+  thead {
+    display: table-header-group;
+  }
+  
+  tr, img {
+    page-break-inside: avoid;
+  }
+  
+  img {
+    max-width: 100% !important;
+  }
+  
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  
+  h2, h3 {
+    page-break-after: avoid;
+  }
+}
+

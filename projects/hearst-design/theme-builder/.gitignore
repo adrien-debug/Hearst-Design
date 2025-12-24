@@ -1,0 +1,36 @@
+# Gros fichiers 3D
+*.glb
+*.gltf
+*.fbx
+*.obj
+*.stl
+
+# Node modules
+node_modules/
+.next/
+out/
+build/
+dist/
+
+# Environnement
+.env
+.env.local
+.env.production
+.vercel
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+
+

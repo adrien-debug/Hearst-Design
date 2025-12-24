@@ -1,0 +1,554 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/draft/",
+  "meta": {
+    "system": "btc-mining-corp-design-system",
+    "release": "1.0.0-ipo-ready",
+    "status": "production",
+    "defaultTheme": "dark",
+    "units": {
+      "space": "px",
+      "font": "px",
+      "time": "ms"
+    }
+  },
+  "color": {
+    "palette": {
+      "black": {
+        "0": { "value": "#0B0D0E", "description": "Noir profond canvas" }
+      },
+      "white": {
+        "0": { "value": "#F6F7F8", "description": "Blanc cassé texte" }
+      },
+      "slate": {
+        "950": { "value": "#121518", "description": "Surface 1 dark" },
+        "900": { "value": "#171B1F", "description": "Surface 2 dark" },
+        "800": { "value": "#1F2429", "description": "Surface 3 dark" },
+        "700": { "value": "#2B2F33", "description": "Texte secondaire sur fond clair" },
+        "600": { "value": "#3A3F44", "description": "Bordure strong dark" },
+        "500": { "value": "#52585E", "description": "Texte tertiaire" },
+        "400": { "value": "#6B727A", "description": "Texte disabled" },
+        "300": { "value": "#8A929B", "description": "Bordure strong light" },
+        "200": { "value": "#B5BCC4", "description": "Texte secondaire sur fond sombre" },
+        "150": { "value": "#CDD3DA", "description": "Bordure subtle light" },
+        "100": { "value": "#E1E5EA", "description": "Surface 2 light" }
+      },
+      "green": {
+        "900": { "value": "#044021", "description": "Vert très sombre" },
+        "800": { "value": "#05512A", "description": "Vert liens sur fond clair (WCAG AAA)" },
+        "700": { "value": "#0B6B3A", "description": "Vert action primaire" },
+        "600": { "value": "#0F8447", "description": "Vert hover" },
+        "500": { "value": "#18A957", "description": "Vert accent sur fond sombre" },
+        "400": { "value": "#38C172", "description": "Vert focus ring" },
+        "300": { "value": "#6FE3A5", "description": "Vert clair accent stats" }
+      },
+      "amber": {
+        "700": { "value": "#8A5A00", "description": "Ambre texte warn" },
+        "500": { "value": "#C78400", "description": "Ambre warn" },
+        "200": { "value": "#FFD58A", "description": "Ambre subtle" }
+      },
+      "red": {
+        "800": { "value": "#7A1B1B", "description": "Rouge sombre" },
+        "600": { "value": "#B42828", "description": "Rouge critique" },
+        "400": { "value": "#E15B5B", "description": "Rouge subtle" }
+      }
+    },
+    "semantic": {
+      "bg": {
+        "canvas": { "value": "{color.palette.black.0.value}", "description": "Canvas principal dark" },
+        "canvas-light": { "value": "{color.palette.white.0.value}", "description": "Canvas principal light (mode clair)" },
+        "surface-1": { "value": "{color.palette.slate.950.value}", "description": "Surface niveau 1" },
+        "surface-2": { "value": "{color.palette.slate.900.value}", "description": "Surface niveau 2" },
+        "surface-3": { "value": "{color.palette.slate.800.value}", "description": "Surface niveau 3" },
+        "surface-1-light": { "value": "#FFFFFF", "description": "Surface 1 mode clair" },
+        "surface-2-light": { "value": "{color.palette.slate.100.value}", "description": "Surface 2 mode clair" }
+      },
+      "text": {
+        "primary": { "value": "{color.palette.white.0.value}", "description": "Texte principal dark" },
+        "secondary": { "value": "{color.palette.slate.200.value}", "description": "Texte secondaire dark" },
+        "tertiary": { "value": "{color.palette.slate.500.value}", "description": "Texte tertiaire dark" },
+        "primary-light": { "value": "{color.palette.black.0.value}", "description": "Texte principal light" },
+        "secondary-light": { "value": "{color.palette.slate.700.value}", "description": "Texte secondaire light" },
+        "link": { "value": "{color.palette.green.500.value}", "description": "Liens sur fond sombre" },
+        "link-light": { "value": "{color.palette.green.800.value}", "description": "Liens sur fond clair (WCAG AAA)" }
+      },
+      "border": {
+        "subtle": { "value": "rgba(246,247,248,0.10)", "description": "Bordure subtile dark" },
+        "default": { "value": "rgba(246,247,248,0.16)", "description": "Bordure default dark" },
+        "strong": { "value": "rgba(246,247,248,0.24)", "description": "Bordure forte dark" },
+        "subtle-light": { "value": "{color.palette.slate.150.value}", "description": "Bordure subtile light" },
+        "default-light": { "value": "{color.palette.slate.200.value}", "description": "Bordure default light" }
+      },
+      "action": {
+        "primary-bg": { "value": "{color.palette.green.700.value}", "description": "Fond bouton primaire" },
+        "primary-bg-hover": { "value": "{color.palette.green.600.value}", "description": "Fond bouton primaire hover" },
+        "primary-bg-active": { "value": "{color.palette.green.800.value}", "description": "Fond bouton primaire active" },
+        "primary-fg": { "value": "{color.palette.white.0.value}", "description": "Texte bouton primaire" },
+        "secondary-bg": { "value": "rgba(18,21,24,0.40)", "description": "Fond bouton secondaire dark" },
+        "secondary-bg-hover": { "value": "rgba(18,21,24,0.55)", "description": "Fond bouton secondaire hover" },
+        "secondary-border": { "value": "{color.semantic.border.subtle.value}", "description": "Bordure bouton secondaire" },
+        "disabled-bg": { "value": "{color.palette.slate.800.value}", "description": "Fond désactivé" },
+        "disabled-fg": { "value": "{color.palette.slate.400.value}", "description": "Texte désactivé" },
+        "focus-ring": { "value": "{color.palette.green.400.value}", "description": "Anneau focus" }
+      },
+      "status": {
+        "ok": { "value": "{color.palette.green.700.value}", "description": "État OK" },
+        "warn": { "value": "{color.palette.amber.500.value}", "description": "État warning" },
+        "crit": { "value": "{color.palette.red.600.value}", "description": "État critique" },
+        "ok-bg": { "value": "rgba(24,169,87,0.12)", "description": "Fond OK subtle" },
+        "warn-bg": { "value": "rgba(199,132,0,0.12)", "description": "Fond warn subtle" },
+        "crit-bg": { "value": "rgba(180,40,40,0.12)", "description": "Fond crit subtle" }
+      },
+      "dataviz": {
+        "gridline": { "value": "rgba(246,247,248,0.10)", "description": "Ligne de grille graphique" },
+        "axis": { "value": "{color.palette.slate.300.value}", "description": "Axe graphique" },
+        "series-1": { "value": "{color.palette.green.700.value}", "description": "Série 1" },
+        "series-2": { "value": "{color.palette.slate.600.value}", "description": "Série 2" },
+        "series-3": { "value": "{color.palette.amber.700.value}", "description": "Série 3" },
+        "series-4": { "value": "{color.palette.red.600.value}", "description": "Série 4" }
+      }
+    },
+    "hero": {
+      "gradient-white-rose": {
+        "value": "linear-gradient(90deg, #F6F7F8 0%, #F6F7F8 35%, #C77C8D 100%)",
+        "description": "Dégradé titre hero ligne 1 (optionnel)"
+      },
+      "gradient-green-cyan": {
+        "value": "linear-gradient(90deg, #18A957 0%, #6FE3A5 55%, #A9F0FF 100%)",
+        "description": "Dégradé titre hero ligne 2 (optionnel)"
+      }
+    },
+    "accessibility": {
+      "contrast": {
+        "textOnCanvas": { "pair": ["#F6F7F8", "#0B0D0E"], "ratio": 18.17, "grade": "AAA" },
+        "textSecondaryOnCanvas": { "pair": ["#B5BCC4", "#0B0D0E"], "ratio": 12.56, "grade": "AAA" },
+        "linkOnDark": { "pair": ["#18A957", "#0B0D0E"], "ratio": 6.36, "grade": "AA" },
+        "linkOnLight": { "pair": ["#05512A", "#F6F7F8"], "ratio": 8.84, "grade": "AAA" }
+      },
+      "wcagTargets": {
+        "normalText": 4.5,
+        "largeText": 3.0,
+        "aaaNormalText": 7.0
+      },
+      "forbidden": [
+        "Vert green-500 (#18A957) comme texte sur fond clair (ratio 2.86 insuffisant)",
+        "Dégradés décoratifs hors hero H1/H2",
+        "Ombres multiples floues (max 2 niveaux élévation)"
+      ]
+    }
+  },
+  "font": {
+    "family": {
+      "sans": {
+        "value": "Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif",
+        "description": "Police sans-serif principale"
+      },
+      "mono": {
+        "value": "\"IBM Plex Mono\", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+        "description": "Police monospace données financières"
+      }
+    },
+    "weight": {
+      "regular": { "value": 400 },
+      "medium": { "value": 500 },
+      "semibold": { "value": 600 },
+      "bold": { "value": 700 },
+      "extrabold": { "value": 800 }
+    },
+    "size": {
+      "10": { "value": 10 },
+      "11": { "value": 11 },
+      "12": { "value": 12 },
+      "13": { "value": 13 },
+      "14": { "value": 14 },
+      "16": { "value": 16 },
+      "18": { "value": 18 },
+      "20": { "value": 20 },
+      "24": { "value": 24 },
+      "28": { "value": 28 },
+      "32": { "value": 32 },
+      "40": { "value": 40 },
+      "48": { "value": 48 },
+      "56": { "value": 56 },
+      "64": { "value": 64 },
+      "88": { "value": 88 }
+    },
+    "lineHeight": {
+      "tight": { "value": 0.98 },
+      "snug": { "value": 1.15 },
+      "base": { "value": 1.25 },
+      "normal": { "value": 1.45 },
+      "relaxed": { "value": 1.55 },
+      "loose": { "value": 1.65 }
+    },
+    "letterSpacing": {
+      "tight": { "value": "-0.02em" },
+      "snug": { "value": "-0.01em" },
+      "normal": { "value": "0em" },
+      "wide": { "value": "0.02em" },
+      "wider": { "value": "0.06em" },
+      "widest": { "value": "0.18em" }
+    },
+    "styles": {
+      "hero": {
+        "size": { "value": "clamp(44px, 6.2vw, 88px)", "description": "Responsive hero size" },
+        "weight": { "value": 800 },
+        "lineHeight": { "value": 0.98 },
+        "letterSpacing": { "value": "-0.02em" }
+      },
+      "h1": {
+        "size": { "value": 40 },
+        "weight": { "value": 700 },
+        "lineHeight": { "value": 1.15 },
+        "letterSpacing": { "value": "-0.01em" }
+      },
+      "h2": {
+        "size": { "value": 32 },
+        "weight": { "value": 700 },
+        "lineHeight": { "value": 1.15 },
+        "letterSpacing": { "value": "-0.01em" }
+      },
+      "h3": {
+        "size": { "value": 28 },
+        "weight": { "value": 600 },
+        "lineHeight": { "value": 1.25 },
+        "letterSpacing": { "value": "-0.01em" }
+      },
+      "h4": {
+        "size": { "value": 24 },
+        "weight": { "value": 600 },
+        "lineHeight": { "value": 1.25 },
+        "letterSpacing": { "value": "0em" }
+      },
+      "h5": {
+        "size": { "value": 20 },
+        "weight": { "value": 600 },
+        "lineHeight": { "value": 1.25 },
+        "letterSpacing": { "value": "0em" }
+      },
+      "h6": {
+        "size": { "value": 16 },
+        "weight": { "value": 600 },
+        "lineHeight": { "value": 1.25 },
+        "letterSpacing": { "value": "0.02em" }
+      },
+      "body": {
+        "size": { "value": 16 },
+        "weight": { "value": 400 },
+        "lineHeight": { "value": 1.45 },
+        "letterSpacing": { "value": "0em" }
+      },
+      "bodySmall": {
+        "size": { "value": 14 },
+        "weight": { "value": 400 },
+        "lineHeight": { "value": 1.45 },
+        "letterSpacing": { "value": "0em" }
+      },
+      "ui": {
+        "size": { "value": 14 },
+        "weight": { "value": 500 },
+        "lineHeight": { "value": 1.25 },
+        "letterSpacing": { "value": "0em" }
+      },
+      "uiSmall": {
+        "size": { "value": 13 },
+        "weight": { "value": 500 },
+        "lineHeight": { "value": 1.25 },
+        "letterSpacing": { "value": "0em" }
+      },
+      "data": {
+        "size": { "value": 13 },
+        "weight": { "value": 400 },
+        "lineHeight": { "value": 1.25 },
+        "letterSpacing": { "value": "0em" }
+      },
+      "dataStrong": {
+        "size": { "value": 13 },
+        "weight": { "value": 600 },
+        "lineHeight": { "value": 1.25 },
+        "letterSpacing": { "value": "0em" }
+      },
+      "label": {
+        "size": { "value": 12 },
+        "weight": { "value": 600 },
+        "lineHeight": { "value": 1.2 },
+        "letterSpacing": { "value": "0.06em" },
+        "transform": "uppercase"
+      },
+      "labelSmall": {
+        "size": { "value": 11 },
+        "weight": { "value": 700 },
+        "lineHeight": { "value": 1.2 },
+        "letterSpacing": { "value": "0.14em" },
+        "transform": "uppercase"
+      },
+      "micro": {
+        "size": { "value": 10 },
+        "weight": { "value": 700 },
+        "lineHeight": { "value": 1 },
+        "letterSpacing": { "value": "0.18em" },
+        "transform": "uppercase"
+      }
+    }
+  },
+  "space": {
+    "0": { "value": 0 },
+    "1": { "value": 4 },
+    "2": { "value": 8 },
+    "3": { "value": 12 },
+    "4": { "value": 16 },
+    "5": { "value": 20 },
+    "6": { "value": 24 },
+    "7": { "value": 32 },
+    "8": { "value": 40 },
+    "9": { "value": 48 },
+    "10": { "value": 64 },
+    "11": { "value": 80 },
+    "12": { "value": 96 }
+  },
+  "radius": {
+    "0": { "value": 0 },
+    "1": { "value": 4 },
+    "2": { "value": 6 },
+    "3": { "value": 10 },
+    "4": { "value": 14 },
+    "pill": { "value": 999 }
+  },
+  "stroke": {
+    "1": { "value": 1 },
+    "2": { "value": 2 },
+    "3": { "value": 3 }
+  },
+  "elevation": {
+    "0": { "value": "none" },
+    "1": {
+      "value": "0 1px 0 rgba(11,13,14,0.06), 0 8px 16px rgba(11,13,14,0.06)",
+      "description": "Élévation subtile (cards light)"
+    },
+    "2": {
+      "value": "0 1px 0 rgba(11,13,14,0.08), 0 16px 32px rgba(11,13,14,0.10)",
+      "description": "Élévation forte (modals light)"
+    },
+    "1-dark": {
+      "value": "0 1px 0 rgba(11,13,14,0.35), 0 16px 48px rgba(11,13,14,0.55)",
+      "description": "Élévation dark mode"
+    }
+  },
+  "grid": {
+    "breakpoint": {
+      "mobile": { "value": 480 },
+      "tablet": { "value": 768 },
+      "desktop": { "value": 1200 },
+      "wide": { "value": 1440 }
+    },
+    "container": {
+      "mobile": { "value": "100%" },
+      "tablet": { "value": "100%" },
+      "desktop": { "value": 1200 },
+      "wide": { "value": 1360 }
+    },
+    "columns": {
+      "mobile": { "value": 4 },
+      "tablet": { "value": 8 },
+      "desktop": { "value": 12 }
+    },
+    "gutter": {
+      "mobile": { "value": 16 },
+      "tablet": { "value": 20 },
+      "desktop": { "value": 24 }
+    },
+    "margin": {
+      "mobile": { "value": 16 },
+      "tablet": { "value": 24 },
+      "desktop": { "value": 32 }
+    }
+  },
+  "motion": {
+    "duration": {
+      "instant": { "value": 0 },
+      "fast": { "value": 140 },
+      "base": { "value": 220 },
+      "slow": { "value": 360 },
+      "panel": { "value": 480 }
+    },
+    "easing": {
+      "standard": {
+        "value": "cubic-bezier(0.2, 0.0, 0.0, 1.0)",
+        "description": "Easing standard (matériel)"
+      },
+      "emphasized": {
+        "value": "cubic-bezier(0.2, 0.0, 0.0, 1.2)",
+        "description": "Easing emphasized (overshoot léger)"
+      },
+      "linear": {
+        "value": "linear",
+        "description": "Linéaire (loading, progress)"
+      }
+    }
+  },
+  "video": {
+    "safeArea": {
+      "titleSafe": {
+        "x": 0.10,
+        "y": 0.10,
+        "w": 0.80,
+        "h": 0.80,
+        "description": "Zone safe titre (10% marges)"
+      },
+      "actionSafe": {
+        "x": 0.05,
+        "y": 0.05,
+        "w": 0.90,
+        "h": 0.90,
+        "description": "Zone safe action (5% marges)"
+      }
+    },
+    "overlay": {
+      "scrimBg": {
+        "value": "rgba(11,13,14,0.72)",
+        "description": "Scrim overlay dark fort"
+      },
+      "scrimBgLight": {
+        "value": "rgba(11,13,14,0.54)",
+        "description": "Scrim overlay dark léger"
+      },
+      "hairline": {
+        "value": "rgba(246,247,248,0.16)",
+        "description": "Ligne hairline overlay"
+      }
+    }
+  },
+  "render3d": {
+    "colorManagement": {
+      "workflow": { "value": "ACEScg/Filmic" },
+      "whitePoint": { "value": "D65" }
+    },
+    "materialsPBR": {
+      "paintedMetal_dark": {
+        "baseColor": "#1F2429",
+        "metallic": 0.0,
+        "roughness": 0.55,
+        "description": "Métal peint sombre (containers)"
+      },
+      "paintedMetal_mid": {
+        "baseColor": "#3A3F44",
+        "metallic": 0.0,
+        "roughness": 0.60,
+        "description": "Métal peint gris moyen"
+      },
+      "anodizedAluminum": {
+        "baseColor": "#6B727A",
+        "metallic": 0.8,
+        "roughness": 0.35,
+        "description": "Aluminium anodisé"
+      },
+      "rubber": {
+        "baseColor": "#121518",
+        "metallic": 0.0,
+        "roughness": 0.90,
+        "description": "Caoutchouc/joints"
+      },
+      "glass_UI": {
+        "baseColor": "#F6F7F8",
+        "metallic": 0.0,
+        "roughness": 0.08,
+        "transmission": 0.90,
+        "ior": 1.45,
+        "description": "Verre UI panels"
+      },
+      "emissive_green": {
+        "emissive": "#18A957",
+        "intensity": 2.0,
+        "description": "Émissif vert accent (LEDs, indicateurs)"
+      }
+    },
+    "lighting": {
+      "key": {
+        "kelvin": 5600,
+        "intensity": 1.0,
+        "description": "Lumière clé principale"
+      },
+      "fill": {
+        "kelvin": 5600,
+        "intensity": 0.35,
+        "description": "Lumière de remplissage"
+      },
+      "rim": {
+        "kelvin": 6500,
+        "intensity": 0.55,
+        "description": "Lumière de contour (séparation)"
+      },
+      "ambient": {
+        "intensity": 0.12,
+        "description": "Lumière ambiante (HDRI)"
+      }
+    }
+  },
+  "rules": {
+    "colorUsage": {
+      "allowed": [
+        "Texte principal: white-0 (#F6F7F8) sur black-0 (#0B0D0E)",
+        "Texte secondaire: slate-200 (#B5BCC4) sur black-0",
+        "Liens sur fond sombre: green-500 (#18A957)",
+        "Liens sur fond clair: green-800 (#05512A) uniquement",
+        "CTA primaire: fond green-700, texte white-0",
+        "Accents data/stats: green-300 (#6FE3A5) sur fond sombre",
+        "Dégradés: hero H1/H2 uniquement (optionnel)"
+      ],
+      "forbidden": [
+        "Texte green-500 sur fond clair (ratio insuffisant)",
+        "Dégradés décoratifs hors hero",
+        "Saturation élevée hors tokens définis",
+        "Ombres floues multiples (max 2 niveaux)",
+        "Icônes décoratives non informatives"
+      ]
+    },
+    "tableRules": {
+      "alignment": [
+        "Libellés: align-left",
+        "Valeurs numériques: align-right",
+        "Décimales: tabular-nums + alignement colonne",
+        "Négatifs: signe visible, couleur uniquement en badge/icône"
+      ],
+      "density": [
+        "Mode standard: 44px row height",
+        "Mode dense: 36px row height (dashboards uniquement)",
+        "Padding cellule: 12px (standard), 8px (dense)"
+      ]
+    },
+    "heroRules": {
+      "outline": {
+        "styleA": {
+          "description": "Contour plein: remplissage texte + stroke 2px",
+          "fillColor": "white-0",
+          "strokeWidth": "2px",
+          "strokeColor": "rgba(246,247,248,0.95)",
+          "shadow": "0 2px 0 rgba(11,13,14,0.40), 0 14px 50px rgba(11,13,14,0.60)"
+        },
+        "styleB": {
+          "description": "Contour creux: transparent + stroke 2.5px",
+          "fillColor": "transparent",
+          "strokeWidth": "2.5px",
+          "strokeColor": "rgba(246,247,248,0.95)",
+          "shadow": "0 1px 0 rgba(11,13,14,0.35), 0 10px 40px rgba(11,13,14,0.60)"
+        }
+      },
+      "gradients": {
+        "whiteToPink": {
+          "usage": "Ligne 1 hero (optionnel)",
+          "token": "hero.gradient-white-rose"
+        },
+        "greenToCyan": {
+          "usage": "Ligne 2 hero (recommandé pour accent techno)",
+          "token": "hero.gradient-green-cyan"
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+

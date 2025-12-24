@@ -1,0 +1,749 @@
+/**
+ * ============================================
+ * HEARST QATAR - CHARTE GRAPHIQUE COMPLÈTE
+ * ============================================
+ * Version: 1.0.0
+ * Thème: Dark Premium avec Glassmorphism
+ * Couleur Principale: Vert Hearst #8AFD81
+ * Style: Modern • Professional • Premium
+ * ============================================
+ */
+
+
+/* ============================================
+   1. VARIABLES CSS - DESIGN TOKENS
+   ============================================ */
+
+:root {
+  /* === COULEURS PRINCIPALES === */
+  
+  /* Vert Hearst (Couleur signature) */
+  --hearst-green-primary: #8AFD81;
+  --hearst-green-hover: #7AED71;
+  --hearst-green-active: #6ADD61;
+  --hearst-green-light: #A0FE97;
+  --hearst-green-dark: #5FCC56;
+  
+  /* Surfaces & Backgrounds */
+  --hearst-bg-canvas: #0f172a;        /* Fond principal ultra dark */
+  --hearst-bg-surface-1: #1e293b;     /* Cartes niveau 1 */
+  --hearst-bg-surface-2: #334155;     /* Cartes niveau 2 */
+  --hearst-bg-surface-3: #475569;     /* Cartes niveau 3 */
+  --hearst-bg-overlay: rgba(15, 23, 42, 0.95);
+  
+  /* Glassmorphism */
+  --hearst-glass-bg: rgba(30, 41, 59, 0.65);
+  --hearst-glass-border: rgba(138, 253, 129, 0.25);
+  --hearst-glass-blur: blur(16px);
+  --hearst-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  
+  /* Texte */
+  --hearst-text-primary: #F8FAFC;     /* Blanc principal */
+  --hearst-text-secondary: #CBD5E1;   /* Gris clair */
+  --hearst-text-tertiary: #94A3B8;    /* Gris moyen */
+  --hearst-text-disabled: #64748B;    /* Gris désactivé */
+  --hearst-text-on-green: #0f172a;    /* Texte sur fond vert */
+  
+  /* Bordures */
+  --hearst-border-subtle: rgba(203, 213, 225, 0.08);
+  --hearst-border-default: rgba(203, 213, 225, 0.15);
+  --hearst-border-strong: rgba(203, 213, 225, 0.25);
+  --hearst-border-green: rgba(138, 253, 129, 0.4);
+  
+  /* === COULEURS SECONDAIRES === */
+  
+  /* Status Colors */
+  --hearst-success: #8AFD81;
+  --hearst-warning: #FBB13C;
+  --hearst-error: #EF4444;
+  --hearst-info: #3B82F6;
+  
+  /* Accents */
+  --hearst-accent-blue: #60A5FA;
+  --hearst-accent-purple: #A78BFA;
+  --hearst-accent-pink: #F472B6;
+  
+  /* === TYPOGRAPHIE === */
+  
+  /* Familles de police */
+  --hearst-font-sans: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --hearst-font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --hearst-font-display: Inter, system-ui, -apple-system, sans-serif;
+  
+  /* Tailles de police */
+  --hearst-text-xs: 11px;
+  --hearst-text-sm: 13px;
+  --hearst-text-base: 15px;
+  --hearst-text-lg: 17px;
+  --hearst-text-xl: 20px;
+  --hearst-text-2xl: 24px;
+  --hearst-text-3xl: 32px;
+  --hearst-text-4xl: 40px;
+  --hearst-text-5xl: 56px;
+  
+  /* Poids de police */
+  --hearst-font-light: 300;
+  --hearst-font-normal: 400;
+  --hearst-font-medium: 500;
+  --hearst-font-semibold: 600;
+  --hearst-font-bold: 700;
+  --hearst-font-extrabold: 800;
+  
+  /* Hauteurs de ligne */
+  --hearst-leading-tight: 1.2;
+  --hearst-leading-normal: 1.45;
+  --hearst-leading-relaxed: 1.6;
+  
+  /* === ESPACEMENTS === */
+  
+  --hearst-space-0: 0;
+  --hearst-space-1: 4px;
+  --hearst-space-2: 8px;
+  --hearst-space-3: 12px;
+  --hearst-space-4: 16px;
+  --hearst-space-5: 20px;
+  --hearst-space-6: 24px;
+  --hearst-space-7: 32px;
+  --hearst-space-8: 40px;
+  --hearst-space-9: 48px;
+  --hearst-space-10: 64px;
+  --hearst-space-12: 80px;
+  --hearst-space-16: 128px;
+  
+  /* === RADIUS === */
+  
+  --hearst-radius-sm: 6px;
+  --hearst-radius-md: 10px;
+  --hearst-radius-lg: 14px;
+  --hearst-radius-xl: 20px;
+  --hearst-radius-2xl: 28px;
+  --hearst-radius-full: 9999px;
+  
+  /* === OMBRES === */
+  
+  --hearst-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --hearst-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --hearst-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --hearst-shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.6);
+  --hearst-shadow-green: 0 8px 24px rgba(138, 253, 129, 0.25);
+  --hearst-shadow-green-strong: 0 12px 32px rgba(138, 253, 129, 0.35);
+  
+  /* === ANIMATIONS === */
+  
+  --hearst-duration-fast: 150ms;
+  --hearst-duration-base: 250ms;
+  --hearst-duration-slow: 400ms;
+  --hearst-duration-slower: 600ms;
+  
+  --hearst-ease-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --hearst-ease-emphasized: cubic-bezier(0.4, 0.0, 0.0, 1.2);
+  --hearst-ease-smooth: cubic-bezier(0.4, 0.0, 0.6, 1);
+  
+  /* === EFFETS SPÉCIAUX === */
+  
+  /* Glow Effect */
+  --hearst-glow-green: 0 0 20px rgba(138, 253, 129, 0.4);
+  --hearst-glow-green-strong: 0 0 40px rgba(138, 253, 129, 0.6);
+  
+  /* Gradients */
+  --hearst-gradient-primary: linear-gradient(135deg, #8AFD81 0%, #6ADD61 100%);
+  --hearst-gradient-dark: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  --hearst-gradient-glass: linear-gradient(135deg, rgba(138, 253, 129, 0.1) 0%, rgba(138, 253, 129, 0.05) 100%);
+  --hearst-gradient-overlay: linear-gradient(180deg, transparent 0%, rgba(15, 23, 42, 0.8) 100%);
+  
+  /* Backdrop Filters */
+  --hearst-backdrop-blur-sm: blur(8px);
+  --hearst-backdrop-blur-md: blur(16px);
+  --hearst-backdrop-blur-lg: blur(24px);
+}
+
+
+/* ============================================
+   2. RESET & BASE
+   ============================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--hearst-font-sans);
+  font-size: var(--hearst-text-base);
+  line-height: var(--hearst-leading-normal);
+  color: var(--hearst-text-primary);
+  background: var(--hearst-bg-canvas);
+  overflow-x: hidden;
+}
+
+
+/* ============================================
+   3. TYPOGRAPHIE
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--hearst-font-display);
+  font-weight: var(--hearst-font-bold);
+  line-height: var(--hearst-leading-tight);
+  letter-spacing: -0.02em;
+  color: var(--hearst-text-primary);
+}
+
+h1 {
+  font-size: var(--hearst-text-5xl);
+  font-weight: var(--hearst-font-extrabold);
+}
+
+h2 {
+  font-size: var(--hearst-text-4xl);
+}
+
+h3 {
+  font-size: var(--hearst-text-3xl);
+  font-weight: var(--hearst-font-semibold);
+}
+
+h4 {
+  font-size: var(--hearst-text-2xl);
+  font-weight: var(--hearst-font-semibold);
+}
+
+h5 {
+  font-size: var(--hearst-text-xl);
+  font-weight: var(--hearst-font-semibold);
+}
+
+h6 {
+  font-size: var(--hearst-text-lg);
+  font-weight: var(--hearst-font-semibold);
+  letter-spacing: 0;
+}
+
+p {
+  margin-bottom: var(--hearst-space-4);
+  color: var(--hearst-text-secondary);
+}
+
+a {
+  color: var(--hearst-green-primary);
+  text-decoration: none;
+  transition: color var(--hearst-duration-fast) var(--hearst-ease-standard);
+}
+
+a:hover {
+  color: var(--hearst-green-hover);
+  text-decoration: underline;
+}
+
+strong {
+  font-weight: var(--hearst-font-bold);
+  color: var(--hearst-text-primary);
+}
+
+code {
+  font-family: var(--hearst-font-mono);
+  font-size: 0.9em;
+  padding: 2px 6px;
+  background: var(--hearst-bg-surface-2);
+  border: 1px solid var(--hearst-border-subtle);
+  border-radius: 4px;
+  color: var(--hearst-green-primary);
+}
+
+pre {
+  font-family: var(--hearst-font-mono);
+  padding: var(--hearst-space-4);
+  background: var(--hearst-bg-surface-1);
+  border: 1px solid var(--hearst-border-default);
+  border-radius: var(--hearst-radius-md);
+  overflow-x: auto;
+}
+
+
+/* ============================================
+   4. BOUTONS
+   ============================================ */
+
+.hearst-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--hearst-space-2);
+  padding: var(--hearst-space-3) var(--hearst-space-6);
+  font-family: var(--hearst-font-sans);
+  font-size: var(--hearst-text-base);
+  font-weight: var(--hearst-font-semibold);
+  line-height: 1;
+  border-radius: var(--hearst-radius-md);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--hearst-duration-base) var(--hearst-ease-standard);
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+/* Bouton Principal (Vert Hearst) */
+.hearst-btn--primary {
+  background: var(--hearst-gradient-primary);
+  color: var(--hearst-text-on-green);
+  border-color: var(--hearst-green-primary);
+  box-shadow: var(--hearst-shadow-green);
+}
+
+.hearst-btn--primary:hover {
+  background: var(--hearst-green-hover);
+  box-shadow: var(--hearst-shadow-green-strong);
+  transform: translateY(-2px);
+}
+
+.hearst-btn--primary:active {
+  background: var(--hearst-green-active);
+  transform: translateY(0);
+}
+
+/* Bouton Secondaire */
+.hearst-btn--secondary {
+  background: var(--hearst-bg-surface-2);
+  color: var(--hearst-text-primary);
+  border-color: var(--hearst-border-default);
+}
+
+.hearst-btn--secondary:hover {
+  background: var(--hearst-bg-surface-3);
+  border-color: var(--hearst-green-primary);
+  box-shadow: var(--hearst-shadow-md);
+}
+
+/* Bouton Ghost */
+.hearst-btn--ghost {
+  background: transparent;
+  color: var(--hearst-green-primary);
+  border-color: var(--hearst-green-primary);
+}
+
+.hearst-btn--ghost:hover {
+  background: rgba(138, 253, 129, 0.1);
+  box-shadow: var(--hearst-glow-green);
+}
+
+/* Bouton Désactivé */
+.hearst-btn:disabled {
+  background: var(--hearst-bg-surface-3);
+  color: var(--hearst-text-disabled);
+  border-color: var(--hearst-border-subtle);
+  cursor: not-allowed;
+  opacity: 0.5;
+  transform: none !important;
+}
+
+/* Tailles de boutons */
+.hearst-btn--sm {
+  padding: var(--hearst-space-2) var(--hearst-space-4);
+  font-size: var(--hearst-text-sm);
+}
+
+.hearst-btn--lg {
+  padding: var(--hearst-space-4) var(--hearst-space-8);
+  font-size: var(--hearst-text-lg);
+}
+
+
+/* ============================================
+   5. CARTES (GLASSMORPHISM)
+   ============================================ */
+
+.hearst-card {
+  background: var(--hearst-glass-bg);
+  backdrop-filter: var(--hearst-glass-blur);
+  -webkit-backdrop-filter: var(--hearst-glass-blur);
+  border: 1px solid var(--hearst-glass-border);
+  border-radius: var(--hearst-radius-xl);
+  padding: var(--hearst-space-6);
+  box-shadow: var(--hearst-glass-shadow);
+  transition: all var(--hearst-duration-base) var(--hearst-ease-standard);
+}
+
+.hearst-card:hover {
+  border-color: var(--hearst-green-primary);
+  box-shadow: var(--hearst-shadow-green-strong);
+  transform: translateY(-4px);
+}
+
+/* Carte Premium avec Glow */
+.hearst-card--glow {
+  border-color: var(--hearst-green-primary);
+  box-shadow: var(--hearst-glow-green-strong);
+  position: relative;
+}
+
+.hearst-card--glow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: var(--hearst-gradient-primary);
+  border-radius: var(--hearst-radius-xl);
+  opacity: 0.3;
+  filter: blur(20px);
+  z-index: -1;
+}
+
+/* Carte Compacte */
+.hearst-card--compact {
+  padding: var(--hearst-space-4);
+  border-radius: var(--hearst-radius-md);
+}
+
+/* Carte avec Header */
+.hearst-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--hearst-space-4);
+  margin-bottom: var(--hearst-space-4);
+  border-bottom: 2px solid var(--hearst-border-default);
+}
+
+.hearst-card__title {
+  font-size: var(--hearst-text-xl);
+  font-weight: var(--hearst-font-bold);
+  color: var(--hearst-text-primary);
+}
+
+
+/* ============================================
+   6. FORMULAIRES
+   ============================================ */
+
+.hearst-input,
+.hearst-textarea,
+.hearst-select {
+  width: 100%;
+  padding: var(--hearst-space-3) var(--hearst-space-4);
+  font-family: var(--hearst-font-sans);
+  font-size: var(--hearst-text-base);
+  color: var(--hearst-text-primary);
+  background: var(--hearst-bg-surface-2);
+  border: 2px solid var(--hearst-border-default);
+  border-radius: var(--hearst-radius-md);
+  transition: all var(--hearst-duration-base) var(--hearst-ease-standard);
+}
+
+.hearst-input:focus,
+.hearst-textarea:focus,
+.hearst-select:focus {
+  outline: none;
+  border-color: var(--hearst-green-primary);
+  box-shadow: 0 0 0 4px rgba(138, 253, 129, 0.15);
+  background: var(--hearst-bg-surface-1);
+}
+
+.hearst-input::placeholder,
+.hearst-textarea::placeholder {
+  color: var(--hearst-text-tertiary);
+}
+
+.hearst-label {
+  display: block;
+  margin-bottom: var(--hearst-space-2);
+  font-size: var(--hearst-text-sm);
+  font-weight: var(--hearst-font-semibold);
+  color: var(--hearst-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.hearst-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+
+/* ============================================
+   7. NAVIGATION
+   ============================================ */
+
+.hearst-nav {
+  display: flex;
+  gap: var(--hearst-space-2);
+  padding: var(--hearst-space-4);
+  background: var(--hearst-glass-bg);
+  backdrop-filter: var(--hearst-backdrop-blur-md);
+  border-radius: var(--hearst-radius-lg);
+  border: 1px solid var(--hearst-border-subtle);
+}
+
+.hearst-nav__item {
+  padding: var(--hearst-space-3) var(--hearst-space-5);
+  font-size: var(--hearst-text-base);
+  font-weight: var(--hearst-font-medium);
+  color: var(--hearst-text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: var(--hearst-radius-md);
+  cursor: pointer;
+  transition: all var(--hearst-duration-fast) var(--hearst-ease-standard);
+}
+
+.hearst-nav__item:hover {
+  color: var(--hearst-text-primary);
+  background: var(--hearst-bg-surface-2);
+}
+
+.hearst-nav__item--active {
+  color: var(--hearst-text-on-green);
+  background: var(--hearst-gradient-primary);
+  font-weight: var(--hearst-font-bold);
+  box-shadow: var(--hearst-shadow-green);
+}
+
+
+/* ============================================
+   8. BADGES & PILLS
+   ============================================ */
+
+.hearst-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--hearst-space-2);
+  padding: var(--hearst-space-2) var(--hearst-space-3);
+  font-size: var(--hearst-text-xs);
+  font-weight: var(--hearst-font-bold);
+  line-height: 1;
+  border-radius: var(--hearst-radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.hearst-badge--success {
+  background: rgba(138, 253, 129, 0.2);
+  color: var(--hearst-green-primary);
+  border: 1px solid var(--hearst-green-primary);
+}
+
+.hearst-badge--warning {
+  background: rgba(251, 177, 60, 0.2);
+  color: var(--hearst-warning);
+  border: 1px solid var(--hearst-warning);
+}
+
+.hearst-badge--error {
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--hearst-error);
+  border: 1px solid var(--hearst-error);
+}
+
+.hearst-badge--info {
+  background: rgba(59, 130, 246, 0.2);
+  color: var(--hearst-info);
+  border: 1px solid var(--hearst-info);
+}
+
+
+/* ============================================
+   9. ALERTS & NOTIFICATIONS
+   ============================================ */
+
+.hearst-alert {
+  display: flex;
+  gap: var(--hearst-space-4);
+  padding: var(--hearst-space-4) var(--hearst-space-5);
+  border-left: 4px solid;
+  border-radius: var(--hearst-radius-md);
+  background: var(--hearst-bg-surface-2);
+}
+
+.hearst-alert--success {
+  border-color: var(--hearst-green-primary);
+  background: rgba(138, 253, 129, 0.1);
+}
+
+.hearst-alert--warning {
+  border-color: var(--hearst-warning);
+  background: rgba(251, 177, 60, 0.1);
+}
+
+.hearst-alert--error {
+  border-color: var(--hearst-error);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+
+/* ============================================
+   10. TABLEAUX
+   ============================================ */
+
+.hearst-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--hearst-bg-surface-1);
+  border: 1px solid var(--hearst-border-default);
+  border-radius: var(--hearst-radius-lg);
+  overflow: hidden;
+}
+
+.hearst-table th {
+  padding: var(--hearst-space-4) var(--hearst-space-5);
+  text-align: left;
+  font-size: var(--hearst-text-sm);
+  font-weight: var(--hearst-font-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--hearst-text-secondary);
+  background: var(--hearst-bg-surface-2);
+  border-bottom: 2px solid var(--hearst-green-primary);
+}
+
+.hearst-table td {
+  padding: var(--hearst-space-4) var(--hearst-space-5);
+  font-family: var(--hearst-font-mono);
+  font-size: var(--hearst-text-sm);
+  color: var(--hearst-text-primary);
+  border-bottom: 1px solid var(--hearst-border-subtle);
+}
+
+.hearst-table tr:hover td {
+  background: var(--hearst-bg-surface-2);
+}
+
+.hearst-table tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* ============================================
+   11. UTILITAIRES
+   ============================================ */
+
+/* Texte */
+.hearst-text-primary { color: var(--hearst-text-primary); }
+.hearst-text-secondary { color: var(--hearst-text-secondary); }
+.hearst-text-tertiary { color: var(--hearst-text-tertiary); }
+.hearst-text-green { color: var(--hearst-green-primary); }
+
+/* Backgrounds */
+.hearst-bg-canvas { background: var(--hearst-bg-canvas); }
+.hearst-bg-surface-1 { background: var(--hearst-bg-surface-1); }
+.hearst-bg-surface-2 { background: var(--hearst-bg-surface-2); }
+.hearst-bg-surface-3 { background: var(--hearst-bg-surface-3); }
+
+/* Espacements */
+.hearst-p-0 { padding: var(--hearst-space-0); }
+.hearst-p-4 { padding: var(--hearst-space-4); }
+.hearst-p-6 { padding: var(--hearst-space-6); }
+.hearst-p-8 { padding: var(--hearst-space-8); }
+
+.hearst-m-0 { margin: var(--hearst-space-0); }
+.hearst-m-4 { margin: var(--hearst-space-4); }
+.hearst-m-6 { margin: var(--hearst-space-6); }
+.hearst-m-8 { margin: var(--hearst-space-8); }
+
+/* Flex */
+.hearst-flex { display: flex; }
+.hearst-flex-col { flex-direction: column; }
+.hearst-items-center { align-items: center; }
+.hearst-justify-center { justify-content: center; }
+.hearst-justify-between { justify-content: space-between; }
+.hearst-gap-4 { gap: var(--hearst-space-4); }
+.hearst-gap-6 { gap: var(--hearst-space-6); }
+
+/* Grid */
+.hearst-grid { display: grid; }
+.hearst-grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.hearst-grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.hearst-grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+
+/* ============================================
+   12. ANIMATIONS
+   ============================================ */
+
+@keyframes hearst-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hearst-slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes hearst-glow {
+  0%, 100% {
+    box-shadow: var(--hearst-glow-green);
+  }
+  50% {
+    box-shadow: var(--hearst-glow-green-strong);
+  }
+}
+
+.hearst-animate-fadeIn {
+  animation: hearst-fadeIn var(--hearst-duration-base) var(--hearst-ease-standard);
+}
+
+.hearst-animate-slideIn {
+  animation: hearst-slideIn var(--hearst-duration-slow) var(--hearst-ease-emphasized);
+}
+
+.hearst-animate-glow {
+  animation: hearst-glow 2s ease-in-out infinite;
+}
+
+
+/* ============================================
+   13. RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+  :root {
+    --hearst-text-5xl: 48px;
+    --hearst-text-4xl: 36px;
+    --hearst-text-3xl: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --hearst-text-5xl: 40px;
+    --hearst-text-4xl: 32px;
+    --hearst-text-3xl: 24px;
+  }
+  
+  .hearst-card {
+    padding: var(--hearst-space-4);
+  }
+}
+
+
+/* ============================================
+   14. DARK MODE (Par défaut activé)
+   ============================================ */
+
+/* Le thème Hearst Qatar est Dark by default */
+/* Pour un mode light, redéfinir les variables dans un contexte [data-theme="light"] */
+
+
+/* ============================================
+   FIN DE LA CHARTE GRAPHIQUE HEARST QATAR
+   ============================================ */
+

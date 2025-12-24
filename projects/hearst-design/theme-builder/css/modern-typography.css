@@ -1,0 +1,577 @@
+/**
+ * ============================================
+ * MODERN TYPOGRAPHY - 10 Enrichissements
+ * Hero Titles & Text Effects
+ * ============================================
+ */
+
+/* ========================================
+   1. TEXT GRADIENT ANIMATION
+   ======================================== */
+
+.modern-text-gradient {
+  background: linear-gradient(
+    90deg,
+    #8AFD81 0%,
+    #6ADD61 25%,
+    #3B82F6 50%,
+    #8B5CF6 75%,
+    #8AFD81 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientFlow 4s linear infinite;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Static gradient variants */
+.modern-text-gradient--green {
+  background: linear-gradient(135deg, #8AFD81 0%, #6ADD61 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.modern-text-gradient--aurora {
+  background: linear-gradient(
+    135deg,
+    #8AFD81 0%,
+    #3B82F6 50%,
+    #EC4899 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ========================================
+   2. SPLIT-TEXT REVEAL ANIMATION
+   ======================================== */
+
+.modern-text-reveal {
+  overflow: hidden;
+}
+
+.modern-text-reveal__char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100%);
+  animation: charReveal 0.5s var(--modern-ease-smooth) forwards;
+}
+
+/* Staggered delays via JS or CSS custom property */
+.modern-text-reveal__char {
+  animation-delay: calc(var(--char-index, 0) * 30ms);
+}
+
+@keyframes charReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Word-by-word reveal */
+.modern-text-reveal--words .modern-text-reveal__word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: wordReveal 0.6s var(--modern-ease-smooth) forwards;
+  animation-delay: calc(var(--word-index, 0) * 100ms);
+}
+
+@keyframes wordReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================
+   3. GLITCH EFFECT ON HOVER
+   ======================================== */
+
+.modern-text-glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.modern-text-glitch::before,
+.modern-text-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.modern-text-glitch:hover::before,
+.modern-text-glitch:hover::after {
+  opacity: 1;
+}
+
+.modern-text-glitch::before {
+  color: #ff00ff;
+  animation: glitchLeft 0.3s linear infinite;
+}
+
+.modern-text-glitch::after {
+  color: #00ffff;
+  animation: glitchRight 0.3s linear infinite;
+}
+
+@keyframes glitchLeft {
+  0%, 100% { clip-path: inset(0 0 0 0); transform: translate(-2px, 0); }
+  20% { clip-path: inset(20% 0 60% 0); transform: translate(2px, 2px); }
+  40% { clip-path: inset(40% 0 30% 0); transform: translate(-2px, -1px); }
+  60% { clip-path: inset(60% 0 10% 0); transform: translate(0, 2px); }
+  80% { clip-path: inset(10% 0 80% 0); transform: translate(-1px, 0); }
+}
+
+@keyframes glitchRight {
+  0%, 100% { clip-path: inset(0 0 0 0); transform: translate(2px, 0); }
+  20% { clip-path: inset(60% 0 20% 0); transform: translate(-2px, -2px); }
+  40% { clip-path: inset(30% 0 40% 0); transform: translate(2px, 1px); }
+  60% { clip-path: inset(10% 0 60% 0); transform: translate(0, -2px); }
+  80% { clip-path: inset(80% 0 10% 0); transform: translate(1px, 0); }
+}
+
+/* ========================================
+   4. 3D TEXT AVEC DEPTH SHADOW
+   ======================================== */
+
+.modern-text-3d {
+  color: #fff;
+  text-shadow:
+    1px 1px 0 #8AFD81,
+    2px 2px 0 #7AED71,
+    3px 3px 0 #6ADD61,
+    4px 4px 0 #5ACD51,
+    5px 5px 0 #4ABD41,
+    6px 6px 10px rgba(0, 0, 0, 0.3);
+  transition: text-shadow var(--modern-duration-fast);
+}
+
+.modern-text-3d:hover {
+  text-shadow:
+    1px 1px 0 #8AFD81,
+    2px 2px 0 #7AED71,
+    3px 3px 0 #6ADD61,
+    4px 4px 0 #5ACD51,
+    5px 5px 0 #4ABD41,
+    6px 6px 0 #3AAD31,
+    7px 7px 0 #2A9D21,
+    8px 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Subtle 3D */
+.modern-text-3d--subtle {
+  text-shadow:
+    1px 1px 0 rgba(138, 253, 129, 0.5),
+    2px 2px 0 rgba(138, 253, 129, 0.3),
+    3px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================================
+   5. LIQUID TEXT MORPHING
+   ======================================== */
+
+.modern-text-liquid {
+  font-weight: 800;
+  animation: liquidMorphText 8s ease-in-out infinite;
+}
+
+@keyframes liquidMorphText {
+  0%, 100% {
+    font-variation-settings: 'wght' 800;
+    letter-spacing: -0.02em;
+  }
+  25% {
+    font-variation-settings: 'wght' 600;
+    letter-spacing: 0.02em;
+  }
+  50% {
+    font-variation-settings: 'wght' 400;
+    letter-spacing: 0.05em;
+  }
+  75% {
+    font-variation-settings: 'wght' 600;
+    letter-spacing: 0em;
+  }
+}
+
+/* ========================================
+   6. HOLOGRAPHIC TEXT SHIMMER
+   ======================================== */
+
+.modern-text-holo {
+  position: relative;
+  color: var(--ds-text-primary);
+}
+
+.modern-text-holo::before {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  background: var(--modern-gradient-holographic);
+  background-size: 400% 400%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: holoShimmer 6s ease infinite;
+  opacity: 0.6;
+}
+
+@keyframes holoShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ========================================
+   7. TEXT AVEC STROKE ANIMATION (SVG)
+   ======================================== */
+
+.modern-text-stroke {
+  stroke: #8AFD81;
+  stroke-width: 2;
+  fill: transparent;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: strokeDraw 3s ease forwards;
+}
+
+@keyframes strokeDraw {
+  to {
+    stroke-dashoffset: 0;
+    fill: #8AFD81;
+  }
+}
+
+/* CSS stroke (limited browser support) */
+.modern-text-outline {
+  -webkit-text-stroke: 2px #8AFD81;
+  color: transparent;
+  transition: all var(--modern-duration-normal);
+}
+
+.modern-text-outline:hover {
+  color: #8AFD81;
+  -webkit-text-stroke: 2px transparent;
+  text-shadow: var(--modern-glow-green-soft);
+}
+
+/* ========================================
+   8. PERSPECTIVE TEXT ON SCROLL
+   ======================================== */
+
+.modern-text-perspective {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.modern-text-perspective__inner {
+  transform: rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg));
+  transition: transform var(--modern-duration-fast);
+}
+
+/* Fixed perspective values */
+.modern-text-perspective--tilt-up {
+  transform: perspective(1000px) rotateX(-10deg);
+}
+
+.modern-text-perspective--tilt-down {
+  transform: perspective(1000px) rotateX(10deg);
+}
+
+/* ========================================
+   9. TEXT AVEC PARTICLE DISPERSION
+   ======================================== */
+
+.modern-text-particles {
+  position: relative;
+  display: inline-block;
+  transition: opacity var(--modern-duration-fast);
+}
+
+.modern-text-particles.is-dispersing {
+  opacity: 0;
+}
+
+.modern-text-particles__particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #8AFD81;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.modern-text-particles.is-dispersing .modern-text-particles__particle {
+  animation: particleDisperse 1s var(--modern-ease-out) forwards;
+  animation-delay: var(--particle-delay, 0ms);
+}
+
+@keyframes particleDisperse {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) scale(0);
+  }
+}
+
+/* ========================================
+   10. CHROMATIC ABERRATION EFFECT
+   ======================================== */
+
+.modern-text-chromatic {
+  position: relative;
+  color: var(--ds-text-primary);
+}
+
+.modern-text-chromatic::before,
+.modern-text-chromatic::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.modern-text-chromatic::before {
+  color: #ff0000;
+  transform: translate(-2px, 0);
+  mix-blend-mode: screen;
+}
+
+.modern-text-chromatic::after {
+  color: #00ffff;
+  transform: translate(2px, 0);
+  mix-blend-mode: screen;
+}
+
+.modern-text-chromatic:hover::before,
+.modern-text-chromatic:hover::after {
+  animation: chromaticWave 0.3s ease infinite;
+}
+
+@keyframes chromaticWave {
+  0%, 100% { transform: translate(-2px, 0); }
+  50% { transform: translate(2px, 0); }
+}
+
+/* ========================================
+   HERO TITLES
+   ======================================== */
+
+.modern-hero-title {
+  font-size: clamp(40px, 8vw, 96px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.modern-hero-title--glow {
+  text-shadow: var(--modern-glow-green-strong);
+}
+
+.modern-hero-subtitle {
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 500;
+  color: var(--ds-text-secondary);
+  margin-top: var(--modern-space-4);
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+/* ========================================
+   HEADING STYLES
+   ======================================== */
+
+.modern-h1 {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.modern-h2 {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.modern-h3 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.modern-h4 {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.modern-h5 {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.modern-h6 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+/* ========================================
+   BODY TEXT
+   ======================================== */
+
+.modern-body {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ds-text-secondary);
+}
+
+.modern-body--lg {
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.modern-body--sm {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ========================================
+   LABELS & CAPTIONS
+   ======================================== */
+
+.modern-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ds-text-tertiary);
+}
+
+.modern-label--green {
+  color: #8AFD81;
+}
+
+.modern-caption {
+  font-size: 13px;
+  color: var(--ds-text-tertiary);
+  line-height: 1.4;
+}
+
+/* ========================================
+   MONOSPACE / CODE
+   ======================================== */
+
+.modern-mono {
+  font-family: var(--ds-font-mono);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.modern-code {
+  padding: var(--modern-space-1) var(--modern-space-2);
+  background: var(--modern-glass-light);
+  border: 1px solid var(--modern-glass-border-light);
+  border-radius: var(--modern-radius-sm);
+  font-family: var(--ds-font-mono);
+  font-size: 0.9em;
+  color: #8AFD81;
+}
+
+/* ========================================
+   LINKS
+   ======================================== */
+
+.modern-link {
+  color: #8AFD81;
+  text-decoration: none;
+  position: relative;
+  transition: color var(--modern-duration-fast);
+}
+
+.modern-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #8AFD81;
+  transition: width var(--modern-duration-fast) var(--modern-ease-smooth);
+}
+
+.modern-link:hover::after {
+  width: 100%;
+}
+
+.modern-link:hover {
+  color: #6ADD61;
+}
+
+/* ========================================
+   TEXT UTILITIES
+   ======================================== */
+
+.modern-text-center { text-align: center; }
+.modern-text-left { text-align: left; }
+.modern-text-right { text-align: right; }
+
+.modern-text-primary { color: var(--ds-text-primary); }
+.modern-text-secondary { color: var(--ds-text-secondary); }
+.modern-text-tertiary { color: var(--ds-text-tertiary); }
+.modern-text-green { color: #8AFD81; }
+.modern-text-muted { color: var(--ds-text-tertiary); opacity: 0.7; }
+
+.modern-text-uppercase { text-transform: uppercase; }
+.modern-text-capitalize { text-transform: capitalize; }
+
+.modern-text-bold { font-weight: 700; }
+.modern-text-semibold { font-weight: 600; }
+.modern-text-medium { font-weight: 500; }
+.modern-text-normal { font-weight: 400; }
+
+.modern-text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.modern-text-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.modern-text-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+

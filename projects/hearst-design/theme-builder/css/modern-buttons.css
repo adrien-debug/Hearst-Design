@@ -1,0 +1,534 @@
+/**
+ * ============================================
+ * MODERN BUTTONS - 10 Enrichissements
+ * ============================================
+ */
+
+/* ========================================
+   1. LIQUID BUTTON EFFECT
+   ======================================== */
+
+.modern-btn-liquid {
+  position: relative;
+  overflow: hidden;
+  transition: all var(--modern-duration-normal) var(--modern-ease-smooth);
+}
+
+.modern-btn-liquid::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s var(--modern-ease-elastic), height 0.6s var(--modern-ease-elastic);
+}
+
+.modern-btn-liquid:hover::before {
+  width: 300%;
+  height: 300%;
+}
+
+.modern-btn-liquid:hover {
+  border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%;
+}
+
+/* ========================================
+   2. SHIMMER LOADING STATE
+   ======================================== */
+
+.modern-btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.modern-btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  animation: shimmerSweep 2s infinite;
+}
+
+@keyframes shimmerSweep {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+.modern-btn-shimmer--paused::after {
+  animation-play-state: paused;
+}
+
+/* ========================================
+   3. RIPPLE EFFECT AVANCÉ
+   ======================================== */
+
+.modern-btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.modern-btn-ripple .ripple-wave {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(0);
+  animation: rippleExpand 0.6s var(--modern-ease-out);
+  pointer-events: none;
+}
+
+@keyframes rippleExpand {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Multi-layer ripple */
+.modern-btn-ripple--multi .ripple-wave:nth-child(2) {
+  animation-delay: 0.1s;
+  background: rgba(138, 253, 129, 0.3);
+}
+
+.modern-btn-ripple--multi .ripple-wave:nth-child(3) {
+  animation-delay: 0.2s;
+  background: rgba(138, 253, 129, 0.2);
+}
+
+/* ========================================
+   4. 3D TILT ON HOVER
+   ======================================== */
+
+.modern-btn-3d-tilt {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform var(--modern-duration-fast) var(--modern-ease-smooth);
+}
+
+.modern-btn-3d-tilt:hover {
+  transform: perspective(1000px) rotateX(-5deg) rotateY(5deg) translateZ(10px);
+  box-shadow: 
+    -5px 5px 15px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(138, 253, 129, 0.2);
+}
+
+.modern-btn-3d-tilt:active {
+  transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateZ(5px);
+}
+
+/* ========================================
+   5. GOOEY EFFECT (Adjacent buttons)
+   ======================================== */
+
+.modern-btn-gooey-container {
+  display: flex;
+  gap: 0;
+  filter: url('#gooey-filter');
+}
+
+.modern-btn-gooey {
+  position: relative;
+  z-index: 1;
+  transition: all var(--modern-duration-normal) var(--modern-ease-smooth);
+}
+
+.modern-btn-gooey:hover {
+  transform: scale(1.15);
+  z-index: 2;
+}
+
+/* SVG Filter for gooey effect - add to HTML */
+/* 
+<svg style="display:none">
+  <defs>
+    <filter id="gooey-filter">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="gooey" />
+    </filter>
+  </defs>
+</svg>
+*/
+
+/* ========================================
+   6. NEON GLOW PULSING
+   ======================================== */
+
+.modern-btn-neon {
+  background: transparent;
+  border: 2px solid #8AFD81;
+  color: #8AFD81;
+  text-shadow: var(--modern-text-glow-green);
+  box-shadow: var(--modern-glow-green-soft);
+  animation: neonPulse 2s ease-in-out infinite;
+}
+
+@keyframes neonPulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 5px rgba(138, 253, 129, 0.5),
+      0 0 10px rgba(138, 253, 129, 0.3),
+      0 0 20px rgba(138, 253, 129, 0.2),
+      inset 0 0 10px rgba(138, 253, 129, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 10px rgba(138, 253, 129, 0.8),
+      0 0 20px rgba(138, 253, 129, 0.5),
+      0 0 40px rgba(138, 253, 129, 0.3),
+      inset 0 0 20px rgba(138, 253, 129, 0.2);
+  }
+}
+
+.modern-btn-neon:hover {
+  background: rgba(138, 253, 129, 0.1);
+  animation: neonPulseIntense 0.5s ease-in-out infinite;
+}
+
+@keyframes neonPulseIntense {
+  0%, 100% {
+    box-shadow: var(--modern-glow-green-neon);
+  }
+  50% {
+    box-shadow: 
+      0 0 10px rgba(138, 253, 129, 1),
+      0 0 20px rgba(138, 253, 129, 0.8),
+      0 0 40px rgba(138, 253, 129, 0.5),
+      0 0 60px rgba(138, 253, 129, 0.3);
+  }
+}
+
+/* ========================================
+   7. SPLIT COLOR TRANSITION
+   ======================================== */
+
+.modern-btn-split {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.modern-btn-split::before,
+.modern-btn-split::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: #8AFD81;
+  transition: transform var(--modern-duration-normal) var(--modern-ease-smooth);
+  z-index: -1;
+}
+
+.modern-btn-split::before {
+  left: 0;
+  transform: translateY(-100%);
+}
+
+.modern-btn-split::after {
+  right: 0;
+  transform: translateY(100%);
+}
+
+.modern-btn-split:hover::before,
+.modern-btn-split:hover::after {
+  transform: translateY(0);
+}
+
+.modern-btn-split:hover {
+  color: #0f172a;
+}
+
+/* ========================================
+   8. PARTICLE BURST ON CLICK
+   ======================================== */
+
+.modern-btn-particles {
+  position: relative;
+  overflow: visible;
+}
+
+.modern-btn-particles .particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #8AFD81;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.modern-btn-particles.is-bursting .particle {
+  animation: particleBurst 0.8s var(--modern-ease-out) forwards;
+}
+
+@keyframes particleBurst {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx, 50px), var(--ty, -50px)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Pre-defined particle positions */
+.particle:nth-child(1) { --tx: 60px; --ty: -40px; }
+.particle:nth-child(2) { --tx: -50px; --ty: -60px; }
+.particle:nth-child(3) { --tx: 40px; --ty: 50px; }
+.particle:nth-child(4) { --tx: -60px; --ty: 30px; }
+.particle:nth-child(5) { --tx: 20px; --ty: -70px; }
+.particle:nth-child(6) { --tx: -30px; --ty: 60px; }
+
+/* ========================================
+   9. MORPHING ICON INSIDE BUTTON
+   ======================================== */
+
+.modern-btn-morph-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--modern-space-2);
+}
+
+.modern-btn-morph-icon .icon {
+  transition: transform var(--modern-duration-normal) var(--modern-ease-spring);
+}
+
+.modern-btn-morph-icon:hover .icon {
+  transform: rotate(360deg) scale(1.2);
+}
+
+.modern-btn-morph-icon .icon-arrow {
+  display: inline-block;
+  transition: all var(--modern-duration-normal) var(--modern-ease-spring);
+}
+
+.modern-btn-morph-icon:hover .icon-arrow {
+  transform: translateX(4px);
+}
+
+/* Arrow to Checkmark morph */
+.modern-btn-morph-icon.is-success .icon-arrow {
+  animation: arrowToCheck 0.5s var(--modern-ease-spring) forwards;
+}
+
+@keyframes arrowToCheck {
+  50% { transform: scale(0); }
+  100% { transform: scale(1) rotate(-45deg); }
+}
+
+/* ========================================
+   10. GLASS REFLECTION SWEEP
+   ======================================== */
+
+.modern-btn-glass-sweep {
+  position: relative;
+  overflow: hidden;
+  background: var(--modern-glass-medium);
+  backdrop-filter: var(--modern-blur-sm);
+  border: 1px solid var(--modern-glass-border-light);
+}
+
+.modern-btn-glass-sweep::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  transition: left var(--modern-duration-slow) var(--modern-ease-smooth);
+}
+
+.modern-btn-glass-sweep:hover::before {
+  left: 150%;
+}
+
+.modern-btn-glass-sweep:hover {
+  border-color: var(--modern-glass-border-green);
+  box-shadow: var(--modern-glow-green-subtle);
+}
+
+/* ========================================
+   COMBINED BUTTON VARIANTS
+   ======================================== */
+
+/* Primary Modern */
+.modern-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--modern-space-2);
+  padding: var(--modern-space-3) var(--modern-space-6);
+  background: var(--modern-gradient-green);
+  color: #0f172a;
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  border-radius: var(--modern-radius-md);
+  cursor: pointer;
+  transition: all var(--modern-duration-normal) var(--modern-ease-smooth);
+  box-shadow: var(--modern-glow-green-soft);
+}
+
+.modern-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--modern-glow-green-strong);
+}
+
+.modern-btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary Modern */
+.modern-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--modern-space-2);
+  padding: var(--modern-space-3) var(--modern-space-6);
+  background: var(--modern-glass-medium);
+  backdrop-filter: var(--modern-blur-sm);
+  color: var(--ds-text-primary);
+  font-weight: 600;
+  font-size: 15px;
+  border: 1px solid var(--modern-glass-border-medium);
+  border-radius: var(--modern-radius-md);
+  cursor: pointer;
+  transition: all var(--modern-duration-normal) var(--modern-ease-smooth);
+}
+
+.modern-btn-secondary:hover {
+  background: var(--modern-glass-strong);
+  border-color: var(--modern-glass-border-green);
+  box-shadow: var(--modern-glow-green-subtle);
+}
+
+/* Ghost Modern */
+.modern-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--modern-space-2);
+  padding: var(--modern-space-3) var(--modern-space-6);
+  background: transparent;
+  color: #8AFD81;
+  font-weight: 600;
+  font-size: 15px;
+  border: 2px solid #8AFD81;
+  border-radius: var(--modern-radius-md);
+  cursor: pointer;
+  transition: all var(--modern-duration-normal) var(--modern-ease-smooth);
+}
+
+.modern-btn-ghost:hover {
+  background: rgba(138, 253, 129, 0.1);
+  box-shadow: var(--modern-glow-green-soft);
+}
+
+/* ========================================
+   SIZE VARIANTS
+   ======================================== */
+
+.modern-btn--sm {
+  padding: var(--modern-space-2) var(--modern-space-4);
+  font-size: 13px;
+}
+
+.modern-btn--lg {
+  padding: var(--modern-space-4) var(--modern-space-8);
+  font-size: 17px;
+}
+
+.modern-btn--xl {
+  padding: var(--modern-space-5) var(--modern-space-10);
+  font-size: 18px;
+}
+
+/* ========================================
+   ICON ONLY BUTTONS
+   ======================================== */
+
+.modern-btn-icon {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--modern-radius-md);
+  font-size: 20px;
+}
+
+.modern-btn-icon--circle {
+  border-radius: var(--modern-radius-full);
+}
+
+/* ========================================
+   LOADING STATE
+   ======================================== */
+
+.modern-btn--loading {
+  position: relative;
+  pointer-events: none;
+  color: transparent !important;
+}
+
+.modern-btn--loading::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: btnSpin 0.8s linear infinite;
+}
+
+.modern-btn-primary.modern-btn--loading::after {
+  border-top-color: #0f172a;
+}
+
+@keyframes btnSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ========================================
+   DISABLED STATE
+   ======================================== */
+
+.modern-btn:disabled,
+.modern-btn--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  filter: grayscale(0.5);
+}
+
+/* ========================================
+   FOCUS STATES
+   ======================================== */
+
+.modern-btn:focus-visible {
+  outline: none;
+  box-shadow: 
+    0 0 0 3px rgba(138, 253, 129, 0.4),
+    var(--modern-glow-green-soft);
+}
+

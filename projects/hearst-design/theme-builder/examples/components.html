@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo CSS Enrichissements Ultra-Modernes</title>
+  <link rel="stylesheet" href="ds.css">
+  <link rel="stylesheet" href="css/modern-master.css">
+  <style>
+    body {
+      background: var(--ds-bg-canvas);
+      color: var(--ds-text-primary);
+      font-family: var(--ds-font-sans);
+      margin: 0;
+      padding: 0;
+    }
+    
+    .demo-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: var(--modern-space-8);
+    }
+    
+    .demo-header {
+      text-align: center;
+      padding: var(--modern-space-16) 0;
+      margin-bottom: var(--modern-space-12);
+    }
+    
+    .demo-section {
+      margin-bottom: var(--modern-space-16);
+    }
+    
+    .demo-section__title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: var(--modern-space-6);
+      padding-bottom: var(--modern-space-4);
+      border-bottom: 2px solid var(--modern-glass-border-green);
+      display: flex;
+      align-items: center;
+      gap: var(--modern-space-3);
+    }
+    
+    .demo-section__title::before {
+      content: '';
+      width: 4px;
+      height: 32px;
+      background: var(--modern-gradient-green);
+      border-radius: 2px;
+    }
+    
+    .demo-grid {
+      display: grid;
+      gap: var(--modern-space-6);
+    }
+    
+    .demo-grid--2 { grid-template-columns: repeat(2, 1fr); }
+    .demo-grid--3 { grid-template-columns: repeat(3, 1fr); }
+    .demo-grid--4 { grid-template-columns: repeat(4, 1fr); }
+    .demo-grid--auto { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    
+    @media (max-width: 768px) {
+      .demo-grid--2, .demo-grid--3, .demo-grid--4 {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .demo-item {
+      background: var(--modern-glass-light);
+      border: 1px solid var(--modern-glass-border-light);
+      border-radius: var(--modern-radius-xl);
+      padding: var(--modern-space-6);
+    }
+    
+    .demo-item__label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ds-text-tertiary);
+      margin-bottom: var(--modern-space-4);
+    }
+    
+    .demo-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--modern-space-4);
+      align-items: center;
+    }
+    
+    .demo-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--modern-space-3);
+      margin-bottom: var(--modern-space-4);
+    }
+    
+    .code-snippet {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--modern-glass-border-light);
+      border-radius: var(--modern-radius-md);
+      padding: var(--modern-space-3);
+      font-family: var(--ds-font-mono);
+      font-size: 12px;
+      color: #8AFD81;
+      overflow-x: auto;
+      margin-top: var(--modern-space-4);
+    }
+    
+    /* SVG Filters */
+    .svg-filters {
+      position: absolute;
+      width: 0;
+      height: 0;
+    }
+  </style>
+</head>
+<body class="modern-scrollbar">
+  <!-- SVG Filters for advanced effects -->
+  <svg class="svg-filters">
+    <defs>
+      <filter id="gooey-filter">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="gooey" />
+      </filter>
+    </defs>
+  </svg>
+
+  <div class="demo-container">
+    <!-- Header -->
+    <header class="demo-header">
+      <h1 class="modern-hero-title modern-text-gradient">
+        CSS Enrichissements
+      </h1>
+      <p class="modern-hero-subtitle modern-text-center" style="margin: var(--modern-space-6) auto 0;">
+        150+ styles ultra-modernes • Glassmorphism • Animations • Effets visuels
+      </p>
+      <div class="demo-flex" style="justify-content: center; margin-top: var(--modern-space-8);">
+        <span class="modern-badge modern-badge--success">v2.0.0</span>
+        <span class="modern-badge modern-badge--glass">15 Catégories</span>
+        <span class="modern-badge-shimmer">150+ Styles</span>
+      </div>
+    </header>
+
+    <!-- ========== BOUTONS ========== -->
+    <section class="demo-section">
+      <h2 class="demo-section__title">Boutons</h2>
+      
+      <div class="demo-grid demo-grid--2">
+        <!-- Primary Buttons -->
+        <div class="demo-item">
+          <div class="demo-item__label">Primary Variants</div>
+          <div class="demo-flex">
+            <button class="modern-btn-primary">Primary</button>
+            <button class="modern-btn-primary modern-btn-liquid">Liquid</button>
+            <button class="modern-btn-primary modern-btn-shimmer">Shimmer</button>
+          </div>
+        </div>
+        
+        <!-- 3D & Neon -->
+        <div class="demo-item">
+          <div class="demo-item__label">3D & Neon</div>
+          <div class="demo-flex">
+            <button class="modern-btn-primary modern-btn-3d-tilt">3D Tilt</button>
+            <button class="modern-btn-neon">Neon Glow</button>
+          </div>
+        </div>
+        
+        <!-- Secondary -->
+        <div class="demo-item">
+          <div class="demo-item__label">Secondary & Ghost</div>
+          <div class="demo-flex">
+            <button class="modern-btn-secondary">Secondary</button>
+            <button class="modern-btn-ghost">Ghost</button>
+            <button class="modern-btn-secondary modern-btn-split">Split</button>
+          </div>
+        </div>
+        
+        <!-- Glass -->
+        <div class="demo-item">
+          <div class="demo-item__label">Glass Effects</div>
+          <div class="demo-flex">
+            <button class="modern-btn-glass-sweep">Glass Sweep</button>
+          </div>
+        </div>
+        
+        <!-- Sizes -->
+        <div class="demo-item">
+          <div class="demo-item__label">Tailles</div>
+          <div class="demo-flex">
+            <button class="modern-btn-primary modern-btn--sm">Small</button>
+            <button class="modern-btn-primary">Normal</button>
+            <button class="modern-btn-primary modern-btn--lg">Large</button>
+          </div>
+        </div>
+        
+        <!-- States -->
+        <div class="demo-item">
+          <div class="demo-item__label">États</div>
+          <div class="demo-flex">
+            <button class="modern-btn-primary modern-btn--loading">Loading</button>
+            <button class="modern-btn-primary" disabled>Disabled</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CARTES ========== -->
+    <section class="demo-section">
+      <h2 class="demo-section__title">Cartes & Glassmorphism</h2>
+      
+      <div class="demo-grid demo-grid--3">
+        <!-- Float Card -->
+        <div class="modern-card modern-card-float">
+          <div class="modern-card__header">
+            <div>
+              <h3 class="modern-card__title">Floating Card</h3>
+              <p class="modern-card__subtitle">Ombre dynamique</p>
+            </div>
+          </div>
+          <div class="modern-card__body">
+            Survolez pour voir l'effet d'ombre flottante.
+          </div>
+        </div>
+        
+        <!-- Frost Card -->
+        <div class="modern-card-frost" style="padding: var(--modern-space-6);">
+          <h3 style="margin: 0 0 var(--modern-space-3) 0;">Frosted Glass</h3>
+          <p class="modern-body--sm" style="margin: 0; opacity: 0.8;">
+            Multi-couches de verre avec réflexion.
+          </p>
+        </div>
+        
+        <!-- Border Trace -->
+        <div class="modern-card-border-trace">
+          <div class="modern-card-border-trace__inner">
+            <h3 style="margin: 0 0 var(--modern-space-3) 0;">Border Trace</h3>
+            <p class="modern-body--sm" style="margin: 0; opacity: 0.8;">
+              Bordure lumineuse animée en rotation.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Glow Card -->
+        <div class="modern-card modern-card--glow">
+          <h3 style="margin: 0 0 var(--modern-space-3) 0;">Glow Effect</h3>
+          <p class="modern-body--sm" style="margin: 0; opacity: 0.8;">
+            Lueur verte permanente avec intensification au hover.
+          </p>
+        </div>
+        
+        <!-- Holo Card -->
+        <div class="modern-card modern-card-holo" data-text="">
+          <h3 style="margin: 0 0 var(--modern-space-3) 0;">Holographic</h3>
+          <p class="modern-body--sm" style="margin: 0; opacity: 0.8;">
+            Effet holographique iridescent au survol.
+          </p>
+        </div>
+        
+        <!-- Morph Card -->
+        <div class="modern-card modern-card-morph">
+          <h3 style="margin: 0 0 var(--modern-space-3) 0;">Morphing</h3>
+          <p class="modern-body--sm" style="margin: 0; opacity: 0.8;">
+            Coins qui se déforment organiquement.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== KPIs ========== -->
+    <section class="demo-section">
+      <h2 class="demo-section__title">KPIs & Stats</h2>
+      
+      <div class="demo-grid demo-grid--4">
+        <div class="modern-kpi">
+          <div class="modern-kpi__label">Hashrate</div>
+          <div class="modern-kpi__value modern-kpi__value--accent">5.98 EH/s</div>
+          <div class="modern-kpi__trend modern-kpi__trend--up">
+            <span class="modern-kpi__trend-icon">↑</span>
+            +12.5%
+          </div>
+        </div>
+        
+        <div class="modern-kpi">
+          <div class="modern-kpi__label">Revenus</div>
+          <div class="modern-kpi__value">$2.4M</div>
+          <div class="modern-kpi__trend modern-kpi__trend--up">
+            <span class="modern-kpi__trend-icon">↑</span>
+            +8.2%
+          </div>
+        </div>
+        
+        <div class="modern-kpi">
+          <div class="modern-kpi__label">Efficacité</div>
+          <div class="modern-kpi__value">24.5 J/TH</div>
+          <div class="modern-kpi__trend modern-kpi__trend--down">
+            <span class="modern-kpi__trend-icon">↓</span>
+            -3.1%
+          </div>
+        </div>
+        
+        <div class="modern-kpi">
+          <div class="modern-kpi__label">Uptime</div>
+          <div class="modern-kpi__value modern-kpi__value--accent">99.8%</div>
+          <span class="modern-badge-status" style="margin-top: var(--modern-space-2);">
+            <span class="modern-badge-status__dot"></span>
+            Live
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== BADGES ========== -->
+    <section class="demo-section">
+      <h2 class="demo-section__title">Badges & Pills</h2>
+      
+      <div class="demo-item">
+        <div class="demo-row">
+          <span class="modern-badge modern-badge--success">Success</span>
+          <span class="modern-badge modern-badge--warning">Warning</span>
+          <span class="modern-badge modern-badge--error">Error</span>
+          <span class="modern-badge modern-badge--info">Info</span>
+          <span class="modern-badge modern-badge--glass">Glass</span>
+        </div>
+        
+        <div class="demo-row">
+          <span class="modern-badge-shimmer">Shimmer</span>
+          <span class="modern-badge-gradient">Gradient</span>
+          <span class="modern-badge-count">12</span>
+          <span class="modern-badge-pulse"></span>
+          <span class="modern-badge-status">
+            <span class="modern-badge-status__dot"></span>
+            Status
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ALERTS ========== -->
+    <section class="demo-section">
+      <h2 class="demo-section__title">Alerts & Notifications</h2>
+      
+      <div class="demo-grid demo-grid--2">
+        <div class="modern-alert modern-alert--success">
+          <span class="modern-alert__icon">✓</span>
+          <div class="modern-alert__content">
+            <div class="modern-alert__title">Succès</div>
+            <div class="modern-alert__message">L'opération a été effectuée avec succès.</div>
+          </div>
+        </div>
+        
+        <div class="modern-alert modern-alert--warning">
+          <span class="modern-alert__icon">⚠</span>
+          <div class="modern-alert__content">
+            <div class="modern-alert__title">Attention</div>
+            <div class="modern-alert__message">Vérification supplémentaire requise.</div>
+          </div>
+        </div>
+        
+        <div class="modern-alert modern-alert--error">
+          <span class="modern-alert__icon">✕</span>
+          <div class="modern-alert__content">
+            <div class="modern-alert__title">Erreur</div>
+            <div class="modern-alert__message">Impossible de se connecter au serveur.</div>
+          </div>
+        </div>
+        
+        <div class="modern-alert modern-alert--info">
+          <span class="modern-alert__icon">ℹ</span>
+          <div class="modern-alert__content">
+            <div class="modern-alert__title">Information</div>
+            <div class="modern-alert__message">Nouvelle mise à jour disponible.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FORMULAIRES ========== -->
+    <section class="demo-section">
+      <h2 class="demo-section__title">Formulaires</h2>
+      
+      <div class="demo-grid demo-grid--2">
+        <!-- Floating Label -->
+        <div class="demo-item">
+          <div class="demo-item__label">Floating Label</div>
+          <div class="modern-input-float">
+            <input class="modern-input-float__input" placeholder=" " type="email">
+            <label class="modern-input-float__label">Email</label>
+          </div>
+        </div>
+        
+        <!-- Glass Input -->
+        <div class="demo-item">
+          <div class="demo-item__label">Glassmorphism Input</div>
+          <input class="modern-input-glass" type="text" placeholder="Glass input">
+        </div>
+        
+        <!-- Wave Input -->
+        <div class="demo-item">
+          <div class="demo-item__label">Wave Animation</div>
+          <div class="modern-input-wave">
+            <input class="modern-input-wave__input" type="text" placeholder="Focus pour voir l'effet">
+          </div>
+        </div>
+        
+        <!-- Checkbox & Toggle -->
+        <div class="demo-item">
+          <div class="demo-item__label">Checkbox & Toggle</div>
+          <div class="demo-flex">
+            <label class="modern-checkbox">
+              <input class="modern-checkbox__input" type="checkbox" checked>
+              <span>Option 1</span>
+            </label>
+            <label class="modern-toggle">
+              <input class="modern-toggle__input" type="checkbox" checked>
+              <div class="modern-toggle__track">
+                <div class="modern-toggle__thumb"></div>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PROGRESS ========== -->
+    <section class="demo-section">
+      <h2 class="demo-section__title">Progress & Loaders</h2>
+      
+      <div class="demo-grid demo-grid--2">
+        <!-- Linear Progress -->
+        <div class="demo-item">
+          <div class="demo-item__label">Linear Progress</div>
+          <div class="modern-progress" style="margin-bottom: var(--modern-space-3);">
+            <div class="modern-progress__bar" style="width: 75%"></div>
+          </div>
+          <div class="modern-progress">
+            <div class="modern-progress__bar" style="width: 45%"></div>
+          </div>
+        </div>
+        
+        <!-- Loaders -->
+        <div class="demo-item">
+          <div class="demo-item__label">Loaders</div>
+          <div class="demo-flex">
+            <div class="modern-loader-ring"></div>
+            <div class="modern-loader-dots">
+              <div class="modern-loader-dots__dot"></div>
+              <div class="modern-loader-dots__dot"></div>
+              <div class="modern-loader-dots__dot"></div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Skeleton -->
+        <div class="demo-item" style="grid-column: span 2;">
+          <div class="demo-item__label">Skeleton Loader</div>
+          <div style="display: flex; gap: var(--modern-space-4);">
+            <div class="modern-skeleton modern-skeleton--avatar"></div>
+            <div style="flex: 1;">
+              <div class="modern-skeleton modern-skeleton--title"></div>
+              <div class="modern-skeleton modern-skeleton--text"></div>
+              <div class="modern-skeleton modern-skeleton--text" style="width: 80%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== TYPOGRAPHIE ========== -->
+    <section class="demo-section">
+      <h2 class="demo-section__title">Typographie & Effets</h2>
+      
+      <div class="demo-grid demo-grid--2">
+        <div class="demo-item">
+          <div class="demo-item__label">Gradient Text</div>
+          <h2 class="modern-text-gradient" style="font-size: 32px; margin: 0;">
+            Gradient Animé
+          </h2>
+        </div>
+        
+        <div class="demo-item">
+          <div class="demo-item__label">Glitch Effect</div>
+          <h2 class="modern-text-glitch" data-text="GLITCH" style="font-size: 32px; margin: 0;">
+            GLITCH
+          </h2>
+        </div>
+        
+        <div class="demo-item">
+          <div class="demo-item__label">3D Text</div>
+          <h2 class="modern-text-3d" style="font-size: 32px; margin: 0;">
+            3D Effect
+          </h2>
+        </div>
+        
+        <div class="demo-item">
+          <div class="demo-item__label">Outline Text</div>
+          <h2 class="modern-text-outline" style="font-size: 32px; margin: 0;">
+            Outline
+          </h2>
+        </div>
+        
+        <div class="demo-item">
+          <div class="demo-item__label">Chromatic Aberration</div>
+          <h2 class="modern-text-chromatic" data-text="RGB SPLIT" style="font-size: 32px; margin: 0;">
+            RGB SPLIT
+          </h2>
+        </div>
+        
+        <div class="demo-item">
+          <div class="demo-item__label">Holographic</div>
+          <h2 class="modern-text-holo" data-text="Holographic" style="font-size: 32px; margin: 0;">
+            Holographic
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ANIMATIONS ========== -->
+    <section class="demo-section">
+      <h2 class="demo-section__title">Animations</h2>
+      
+      <div class="demo-grid demo-grid--4">
+        <div class="demo-item modern-text-center">
+          <div class="demo-item__label">Pulse</div>
+          <div class="animate-pulse" style="width: 60px; height: 60px; background: var(--modern-gradient-green); border-radius: var(--modern-radius-md); margin: 0 auto;"></div>
+        </div>
+        
+        <div class="demo-item modern-text-center">
+          <div class="demo-item__label">Float</div>
+          <div class="animate-float" style="width: 60px; height: 60px; background: var(--modern-gradient-green); border-radius: var(--modern-radius-md); margin: 0 auto;"></div>
+        </div>
+        
+        <div class="demo-item modern-text-center">
+          <div class="demo-item__label">Glow Pulse</div>
+          <div class="animate-glowPulse" style="width: 60px; height: 60px; background: var(--modern-glass-green); border: 2px solid #8AFD81; border-radius: var(--modern-radius-md); margin: 0 auto;"></div>
+        </div>
+        
+        <div class="demo-item modern-text-center">
+          <div class="demo-item__label">Spin</div>
+          <div class="animate-spin" style="width: 60px; height: 60px; border: 4px solid var(--modern-glass-border-light); border-top-color: #8AFD81; border-radius: 50%; margin: 0 auto;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: var(--modern-space-12) 0; border-top: 1px solid var(--modern-glass-border-light); margin-top: var(--modern-space-16);">
+      <p class="modern-body" style="margin: 0;">
+        <strong>150+ Enrichissements CSS Ultra-Modernes</strong><br>
+        <span class="modern-text-secondary">Design System Hearst Qatar v2.0.0</span>
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    // Interactive demo scripts
+    
+    // Ripple effect for buttons
+    document.querySelectorAll('.modern-btn-ripple').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const rect = this.getBoundingClientRect();
+        const ripple = document.createElement('span');
+        ripple.className = 'ripple-wave';
+        ripple.style.left = (e.clientX - rect.left) + 'px';
+        ripple.style.top = (e.clientY - rect.top) + 'px';
+        this.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+    
+    // Ambient light effect for cards
+    document.querySelectorAll('.modern-card-ambient').forEach(card => {
+      card.classList.add('modern-card-ambient--active');
+      card.addEventListener('mousemove', function(e) {
+        const rect = this.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        this.style.setProperty('--mouse-x', x + '%');
+        this.style.setProperty('--mouse-y', y + '%');
+      });
+    });
+    
+    // Badge count animation
+    let count = 12;
+    setInterval(() => {
+      const badge = document.querySelector('.modern-badge-count');
+      if (badge) {
+        count = Math.floor(Math.random() * 20) + 1;
+        badge.textContent = count;
+        badge.classList.add('is-updated');
+        setTimeout(() => badge.classList.remove('is-updated'), 400);
+      }
+    }, 3000);
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,524 @@
+/**
+ * ============================================
+ * MODERN NAVIGATION - 10 Enrichissements
+ * ============================================
+ */
+
+/* ========================================
+   1. GLASSMORPHISM DYNAMIQUE AVEC BLUR ADAPTATIF
+   ======================================== */
+
+.modern-nav-glass {
+  background: var(--modern-glass-medium);
+  backdrop-filter: var(--modern-blur-md);
+  -webkit-backdrop-filter: var(--modern-blur-md);
+  border-bottom: 1px solid var(--modern-glass-border-light);
+  transition: all var(--modern-duration-normal) var(--modern-ease-smooth);
+}
+
+/* Scroll-based intensity (requires JS to set --scroll-progress) */
+.modern-nav-glass--adaptive {
+  --blur-intensity: calc(8px + var(--scroll-progress, 0) * 16px);
+  backdrop-filter: blur(var(--blur-intensity));
+  background: rgba(15, 23, 42, calc(0.6 + var(--scroll-progress, 0) * 0.3));
+}
+
+.modern-nav-glass--scrolled {
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: var(--modern-blur-xl);
+  box-shadow: var(--modern-shadow-soft-md);
+}
+
+/* ========================================
+   2. NEUMORPHISM DOUX
+   ======================================== */
+
+.modern-nav-neumorphic {
+  background: var(--ds-bg-surface-2);
+  box-shadow: var(--modern-shadow-neumorphism);
+  border: none;
+}
+
+.modern-nav-neumorphic__item {
+  padding: var(--modern-space-3) var(--modern-space-5);
+  border-radius: var(--modern-radius-md);
+  transition: all var(--modern-duration-fast) var(--modern-ease-smooth);
+}
+
+.modern-nav-neumorphic__item:hover {
+  box-shadow: var(--modern-shadow-neumorphism);
+}
+
+.modern-nav-neumorphic__item.is-active {
+  box-shadow: var(--modern-shadow-neumorphism-pressed);
+  color: #8AFD81;
+}
+
+/* ========================================
+   3. MORPHING BORDER ANIMATION
+   ======================================== */
+
+.modern-nav-morphing {
+  position: relative;
+  overflow: hidden;
+}
+
+.modern-nav-morphing::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #8AFD81;
+  clip-path: polygon(0 100%, 0 100%, 0 100%, 0 100%);
+  transition: clip-path var(--modern-duration-normal) var(--modern-ease-smooth);
+}
+
+.modern-nav-morphing:hover::after {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Liquid morphing */
+.modern-nav-morphing--liquid::after {
+  animation: liquidMorph 4s ease-in-out infinite;
+}
+
+@keyframes liquidMorph {
+  0%, 100% { clip-path: polygon(0 100%, 30% 80%, 70% 90%, 100% 100%, 100% 100%, 0 100%); }
+  50% { clip-path: polygon(0 80%, 30% 100%, 70% 80%, 100% 90%, 100% 100%, 0 100%); }
+}
+
+/* ========================================
+   4. PARALLAX HORIZONTAL SUR CUSTOM NAV
+   ======================================== */
+
+.modern-nav-parallax {
+  display: flex;
+  gap: var(--modern-space-8);
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.modern-nav-parallax::-webkit-scrollbar {
+  display: none;
+}
+
+.modern-nav-parallax__section {
+  flex: none;
+  scroll-snap-align: start;
+  transform: translateX(calc(var(--scroll-offset, 0) * 0.1));
+  transition: transform var(--modern-duration-fast) var(--modern-ease-smooth);
+}
+
+/* ========================================
+   5. GRADIENT MESH ANIMÉ
+   ======================================== */
+
+.modern-nav-mesh {
+  position: relative;
+  background: var(--ds-bg-surface-1);
+  overflow: hidden;
+}
+
+.modern-nav-mesh::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--modern-gradient-mesh);
+  background-size: 200% 200%;
+  animation: meshMove 20s ease infinite;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+@keyframes meshMove {
+  0%, 100% { background-position: 0% 50%; }
+  25% { background-position: 100% 0%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+}
+
+/* ========================================
+   6. MAGNETIC HOVER EFFECT (Requires JS)
+   ======================================== */
+
+.modern-nav-magnetic {
+  display: flex;
+  gap: var(--modern-space-2);
+}
+
+.modern-nav-magnetic__item {
+  position: relative;
+  padding: var(--modern-space-3) var(--modern-space-5);
+  transition: transform var(--modern-duration-fast) var(--modern-ease-elastic);
+  will-change: transform;
+}
+
+/* JS will set --mag-x and --mag-y */
+.modern-nav-magnetic__item:hover {
+  transform: translate(
+    calc(var(--mag-x, 0) * 1px),
+    calc(var(--mag-y, 0) * 1px)
+  );
+}
+
+/* ========================================
+   7. LIQUID MORPHING TRANSITIONS
+   ======================================== */
+
+.modern-nav-liquid-tabs {
+  display: flex;
+  position: relative;
+  background: var(--modern-glass-light);
+  border-radius: var(--modern-radius-lg);
+  padding: var(--modern-space-1);
+}
+
+.modern-nav-liquid-tabs__indicator {
+  position: absolute;
+  top: var(--modern-space-1);
+  height: calc(100% - var(--modern-space-2));
+  background: var(--modern-gradient-green);
+  border-radius: var(--modern-radius-md);
+  transition: all var(--modern-duration-slow) var(--modern-ease-elastic);
+  z-index: 0;
+}
+
+.modern-nav-liquid-tabs__item {
+  position: relative;
+  z-index: 1;
+  padding: var(--modern-space-3) var(--modern-space-5);
+  font-weight: 600;
+  color: var(--ds-text-secondary);
+  transition: color var(--modern-duration-fast);
+  cursor: pointer;
+}
+
+.modern-nav-liquid-tabs__item.is-active {
+  color: #0f172a;
+}
+
+/* ========================================
+   8. AURORA BOREALIS BACKGROUND
+   ======================================== */
+
+.modern-nav-aurora {
+  position: relative;
+  background: var(--ds-bg-surface-1);
+  overflow: hidden;
+}
+
+.modern-nav-aurora::before,
+.modern-nav-aurora::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  animation: auroraMove 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.modern-nav-aurora::before {
+  background: rgba(138, 253, 129, 0.4);
+  top: -150px;
+  left: 10%;
+}
+
+.modern-nav-aurora::after {
+  background: rgba(59, 130, 246, 0.3);
+  top: -100px;
+  right: 10%;
+  animation-delay: 2s;
+  animation-direction: reverse;
+}
+
+@keyframes auroraMove {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(30px) scale(1.1); }
+}
+
+/* ========================================
+   9. SCROLL-DRIVEN REVEAL ANIMATIONS
+   ======================================== */
+
+.modern-nav-reveal {
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: navReveal 0.6s var(--modern-ease-smooth) forwards;
+}
+
+@keyframes navReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Cascade reveal for children */
+.modern-nav-reveal__item {
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: navItemReveal 0.4s var(--modern-ease-smooth) forwards;
+}
+
+.modern-nav-reveal__item:nth-child(1) { animation-delay: 0.1s; }
+.modern-nav-reveal__item:nth-child(2) { animation-delay: 0.15s; }
+.modern-nav-reveal__item:nth-child(3) { animation-delay: 0.2s; }
+.modern-nav-reveal__item:nth-child(4) { animation-delay: 0.25s; }
+.modern-nav-reveal__item:nth-child(5) { animation-delay: 0.3s; }
+.modern-nav-reveal__item:nth-child(6) { animation-delay: 0.35s; }
+
+@keyframes navItemReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================
+   10. HOLOGRAPHIC BORDER EFFECT
+   ======================================== */
+
+.modern-nav-holo-border {
+  position: relative;
+  background: var(--ds-bg-surface-1);
+  border: none;
+}
+
+.modern-nav-holo-border::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--modern-gradient-conic-rainbow);
+  background-size: 300% 100%;
+  animation: holoBorderMove 4s linear infinite;
+}
+
+@keyframes holoBorderMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+/* ========================================
+   NAV ITEM STYLES
+   ======================================== */
+
+.modern-nav-item {
+  position: relative;
+  padding: var(--modern-space-3) var(--modern-space-5);
+  font-weight: 500;
+  color: var(--ds-text-secondary);
+  text-decoration: none;
+  border-radius: var(--modern-radius-md);
+  transition: all var(--modern-duration-fast) var(--modern-ease-smooth);
+  cursor: pointer;
+}
+
+.modern-nav-item:hover {
+  color: var(--ds-text-primary);
+  background: var(--modern-glass-light);
+}
+
+.modern-nav-item.is-active {
+  color: #8AFD81;
+  background: var(--modern-glass-green);
+}
+
+/* Underline animation */
+.modern-nav-item--underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #8AFD81;
+  transition: all var(--modern-duration-fast) var(--modern-ease-smooth);
+  transform: translateX(-50%);
+}
+
+.modern-nav-item--underline:hover::after,
+.modern-nav-item--underline.is-active::after {
+  width: 100%;
+}
+
+/* Pill style */
+.modern-nav-item--pill {
+  border-radius: var(--modern-radius-full);
+}
+
+.modern-nav-item--pill.is-active {
+  background: var(--modern-gradient-green);
+  color: #0f172a;
+  box-shadow: var(--modern-glow-green-soft);
+}
+
+/* ========================================
+   MEGA MENU
+   ======================================== */
+
+.modern-mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--modern-glass-medium);
+  backdrop-filter: var(--modern-blur-lg);
+  border: 1px solid var(--modern-glass-border-light);
+  border-top: none;
+  padding: var(--modern-space-6);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all var(--modern-duration-normal) var(--modern-ease-smooth);
+  z-index: var(--modern-z-dropdown);
+}
+
+.modern-nav-item:hover + .modern-mega-menu,
+.modern-mega-menu:hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.modern-mega-menu__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--modern-space-6);
+}
+
+.modern-mega-menu__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--modern-space-3);
+}
+
+.modern-mega-menu__title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ds-text-tertiary);
+  padding-bottom: var(--modern-space-2);
+  border-bottom: 1px solid var(--modern-glass-border-light);
+}
+
+.modern-mega-menu__link {
+  display: flex;
+  align-items: center;
+  gap: var(--modern-space-3);
+  padding: var(--modern-space-2);
+  border-radius: var(--modern-radius-sm);
+  color: var(--ds-text-secondary);
+  text-decoration: none;
+  transition: all var(--modern-duration-fast);
+}
+
+.modern-mega-menu__link:hover {
+  background: var(--modern-glass-light);
+  color: #8AFD81;
+}
+
+/* ========================================
+   MOBILE NAV
+   ======================================== */
+
+.modern-nav-mobile {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--modern-glass-medium);
+  backdrop-filter: var(--modern-blur-lg);
+  border-top: 1px solid var(--modern-glass-border-light);
+  padding: var(--modern-space-2) var(--modern-space-4);
+  z-index: var(--modern-z-fixed);
+  display: flex;
+  justify-content: space-around;
+}
+
+.modern-nav-mobile__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--modern-space-1);
+  padding: var(--modern-space-2);
+  color: var(--ds-text-secondary);
+  text-decoration: none;
+  transition: all var(--modern-duration-fast);
+}
+
+.modern-nav-mobile__item:hover,
+.modern-nav-mobile__item.is-active {
+  color: #8AFD81;
+}
+
+.modern-nav-mobile__icon {
+  font-size: 24px;
+  transition: transform var(--modern-duration-fast) var(--modern-ease-spring);
+}
+
+.modern-nav-mobile__item:hover .modern-nav-mobile__icon,
+.modern-nav-mobile__item.is-active .modern-nav-mobile__icon {
+  transform: scale(1.2);
+}
+
+.modern-nav-mobile__label {
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* Active indicator */
+.modern-nav-mobile__item.is-active::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 3px;
+  background: #8AFD81;
+  border-radius: var(--modern-radius-full);
+  box-shadow: var(--modern-glow-green-soft);
+}
+
+/* ========================================
+   BREADCRUMBS
+   ======================================== */
+
+.modern-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: var(--modern-space-2);
+  font-size: 14px;
+}
+
+.modern-breadcrumbs__item {
+  color: var(--ds-text-tertiary);
+  text-decoration: none;
+  transition: color var(--modern-duration-fast);
+}
+
+.modern-breadcrumbs__item:hover {
+  color: #8AFD81;
+}
+
+.modern-breadcrumbs__item.is-current {
+  color: var(--ds-text-primary);
+  font-weight: 600;
+}
+
+.modern-breadcrumbs__separator {
+  color: var(--ds-text-tertiary);
+  opacity: 0.5;
+}
+

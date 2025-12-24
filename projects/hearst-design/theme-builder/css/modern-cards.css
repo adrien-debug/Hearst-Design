@@ -1,0 +1,583 @@
+/**
+ * ============================================
+ * MODERN CARDS - 10 Enrichissements
+ * Glassmorphism Avancé
+ * ============================================
+ */
+
+/* ========================================
+   1. FLOATING CARD WITH SHADOW PROJECTION
+   ======================================== */
+
+.modern-card-float {
+  position: relative;
+  transition: transform var(--modern-duration-normal) var(--modern-ease-smooth),
+              box-shadow var(--modern-duration-normal) var(--modern-ease-smooth);
+}
+
+.modern-card-float::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 10%;
+  right: 10%;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  filter: blur(15px);
+  border-radius: 50%;
+  transition: all var(--modern-duration-normal) var(--modern-ease-smooth);
+  z-index: -1;
+}
+
+.modern-card-float:hover {
+  transform: translateY(-8px);
+}
+
+.modern-card-float:hover::after {
+  bottom: -20px;
+  left: 5%;
+  right: 5%;
+  filter: blur(25px);
+  opacity: 0.5;
+}
+
+/* ========================================
+   2. FROSTED GLASS LAYERS
+   ======================================== */
+
+.modern-card-frost {
+  position: relative;
+  background: var(--modern-glass-light);
+  backdrop-filter: var(--modern-blur-lg);
+  -webkit-backdrop-filter: var(--modern-blur-lg);
+  border: 1px solid var(--modern-glass-border-light);
+  border-radius: var(--modern-radius-xl);
+  overflow: hidden;
+}
+
+.modern-card-frost::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  pointer-events: none;
+}
+
+.modern-card-frost::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+}
+
+/* Multi-layer frost */
+.modern-card-frost--deep {
+  background: 
+    linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 100%),
+    var(--modern-glass-medium);
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.1),
+    0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* ========================================
+   3. CARD FLIP 3D REVEAL
+   ======================================== */
+
+.modern-card-flip {
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.modern-card-flip__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform var(--modern-duration-slower) var(--modern-ease-smooth);
+  transform-style: preserve-3d;
+}
+
+.modern-card-flip:hover .modern-card-flip__inner,
+.modern-card-flip.is-flipped .modern-card-flip__inner {
+  transform: rotateY(180deg);
+}
+
+.modern-card-flip__front,
+.modern-card-flip__back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--modern-radius-xl);
+  padding: var(--modern-space-6);
+}
+
+.modern-card-flip__front {
+  background: var(--modern-glass-medium);
+  backdrop-filter: var(--modern-blur-md);
+  border: 1px solid var(--modern-glass-border-light);
+}
+
+.modern-card-flip__back {
+  background: var(--modern-gradient-green);
+  color: #0f172a;
+  transform: rotateY(180deg);
+}
+
+/* ========================================
+   4. AMBIENT LIGHT REFLECTION
+   ======================================== */
+
+.modern-card-ambient {
+  position: relative;
+  overflow: hidden;
+  background: var(--modern-glass-medium);
+  backdrop-filter: var(--modern-blur-md);
+  border: 1px solid var(--modern-glass-border-light);
+  border-radius: var(--modern-radius-xl);
+}
+
+.modern-card-ambient::before {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(
+    circle,
+    rgba(138, 253, 129, 0.3) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--modern-duration-fast);
+  transform: translate(-50%, -50%);
+}
+
+.modern-card-ambient:hover::before {
+  opacity: 1;
+}
+
+/* JavaScript needed to update --mouse-x and --mouse-y */
+.modern-card-ambient--active::before {
+  left: var(--mouse-x, 50%);
+  top: var(--mouse-y, 50%);
+}
+
+/* ========================================
+   5. EXPANDING CONTENT ON HOVER
+   ======================================== */
+
+.modern-card-expand {
+  position: relative;
+  overflow: hidden;
+  transition: all var(--modern-duration-normal) var(--modern-ease-smooth);
+}
+
+.modern-card-expand__content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all var(--modern-duration-normal) var(--modern-ease-smooth);
+}
+
+.modern-card-expand:hover {
+  transform: scale(1.02);
+}
+
+.modern-card-expand:hover .modern-card-expand__content {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: var(--modern-space-4);
+}
+
+.modern-card-expand__indicator {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--modern-space-2);
+  opacity: 0.5;
+  transition: opacity var(--modern-duration-fast);
+}
+
+.modern-card-expand:hover .modern-card-expand__indicator {
+  opacity: 0;
+}
+
+/* ========================================
+   6. BORDER LIGHT TRACE
+   ======================================== */
+
+.modern-card-border-trace {
+  position: relative;
+  background: var(--modern-glass-medium);
+  backdrop-filter: var(--modern-blur-md);
+  border-radius: var(--modern-radius-xl);
+  padding: 2px;
+}
+
+.modern-card-border-trace::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--modern-gradient-angle, 0deg),
+    transparent 0deg,
+    #8AFD81 60deg,
+    transparent 120deg
+  );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: borderTrace 3s linear infinite;
+}
+
+@keyframes borderTrace {
+  to {
+    --modern-gradient-angle: 360deg;
+  }
+}
+
+.modern-card-border-trace__inner {
+  background: var(--ds-bg-surface-1);
+  border-radius: calc(var(--modern-radius-xl) - 2px);
+  padding: var(--modern-space-6);
+}
+
+/* ========================================
+   7. PARALLAX LAYERS INSIDE CARD
+   ======================================== */
+
+.modern-card-parallax {
+  position: relative;
+  overflow: hidden;
+  perspective: 1000px;
+}
+
+.modern-card-parallax__layer {
+  transition: transform var(--modern-duration-fast) var(--modern-ease-smooth);
+}
+
+.modern-card-parallax__layer--bg {
+  position: absolute;
+  inset: -20px;
+  z-index: 0;
+}
+
+.modern-card-parallax__layer--mid {
+  position: relative;
+  z-index: 1;
+}
+
+.modern-card-parallax__layer--front {
+  position: relative;
+  z-index: 2;
+}
+
+.modern-card-parallax:hover .modern-card-parallax__layer--bg {
+  transform: translateZ(-50px) scale(1.1);
+}
+
+.modern-card-parallax:hover .modern-card-parallax__layer--mid {
+  transform: translateZ(20px);
+}
+
+.modern-card-parallax:hover .modern-card-parallax__layer--front {
+  transform: translateZ(50px);
+}
+
+/* ========================================
+   8. GLASSMORPHISM AVEC NOISE TEXTURE
+   ======================================== */
+
+.modern-card-noise {
+  position: relative;
+  background: var(--modern-glass-medium);
+  backdrop-filter: var(--modern-blur-lg);
+  border: 1px solid var(--modern-glass-border-light);
+  border-radius: var(--modern-radius-xl);
+  overflow: hidden;
+}
+
+.modern-card-noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--modern-noise-subtle);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.modern-card-noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 30%
+  );
+  pointer-events: none;
+}
+
+/* ========================================
+   9. MORPHING CORNERS
+   ======================================== */
+
+.modern-card-morph {
+  border-radius: var(--modern-radius-xl);
+  transition: border-radius var(--modern-duration-slow) var(--modern-ease-elastic);
+}
+
+.modern-card-morph:hover {
+  border-radius: var(--modern-radius-blob-1);
+}
+
+/* Animated morph */
+.modern-card-morph--animated {
+  animation: morphCorners 8s ease-in-out infinite;
+}
+
+@keyframes morphCorners {
+  0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+  25% { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%; }
+  50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
+  75% { border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%; }
+}
+
+/* ========================================
+   10. HOLOGRAPHIC FOIL EFFECT
+   ======================================== */
+
+.modern-card-holo {
+  position: relative;
+  overflow: hidden;
+  background: var(--modern-glass-medium);
+  backdrop-filter: var(--modern-blur-md);
+  border-radius: var(--modern-radius-xl);
+}
+
+.modern-card-holo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--modern-gradient-holographic);
+  background-size: 400% 400%;
+  animation: holoShift 6s ease infinite;
+  opacity: 0;
+  transition: opacity var(--modern-duration-normal);
+  pointer-events: none;
+}
+
+.modern-card-holo:hover::before {
+  opacity: 1;
+}
+
+@keyframes holoShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Intense holo on active */
+.modern-card-holo--intense::before {
+  opacity: 0.3;
+}
+
+.modern-card-holo--intense:hover::before {
+  opacity: 0.6;
+  animation: holoShift 2s ease infinite;
+}
+
+/* ========================================
+   CARD VARIANTS
+   ======================================== */
+
+/* Standard Glass Card */
+.modern-card {
+  background: var(--modern-glass-medium);
+  backdrop-filter: var(--modern-blur-md);
+  -webkit-backdrop-filter: var(--modern-blur-md);
+  border: 1px solid var(--modern-glass-border-light);
+  border-radius: var(--modern-radius-xl);
+  padding: var(--modern-space-6);
+  transition: all var(--modern-duration-normal) var(--modern-ease-smooth);
+}
+
+.modern-card:hover {
+  border-color: var(--modern-glass-border-green);
+  box-shadow: var(--modern-glow-green-subtle);
+  transform: translateY(-4px);
+}
+
+/* Elevated Card */
+.modern-card--elevated {
+  box-shadow: var(--modern-shadow-float);
+}
+
+.modern-card--elevated:hover {
+  box-shadow: 
+    var(--modern-shadow-float),
+    var(--modern-glow-green-soft);
+}
+
+/* Glow Card */
+.modern-card--glow {
+  border-color: var(--modern-glass-border-green);
+  box-shadow: var(--modern-glow-green-soft);
+}
+
+.modern-card--glow:hover {
+  box-shadow: var(--modern-glow-green-strong);
+}
+
+/* Compact Card */
+.modern-card--compact {
+  padding: var(--modern-space-4);
+  border-radius: var(--modern-radius-lg);
+}
+
+/* Interactive Card */
+.modern-card--interactive {
+  cursor: pointer;
+}
+
+.modern-card--interactive:active {
+  transform: scale(0.98);
+}
+
+/* ========================================
+   CARD HEADER
+   ======================================== */
+
+.modern-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--modern-space-4);
+  margin-bottom: var(--modern-space-4);
+  border-bottom: 1px solid var(--modern-glass-border-light);
+}
+
+.modern-card__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ds-text-primary);
+  margin: 0;
+}
+
+.modern-card__subtitle {
+  font-size: 13px;
+  color: var(--ds-text-secondary);
+  margin-top: var(--modern-space-1);
+}
+
+.modern-card__icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--modern-glass-green);
+  border: 1px solid var(--modern-glass-border-green);
+  border-radius: var(--modern-radius-md);
+  font-size: 24px;
+}
+
+/* ========================================
+   CARD BODY
+   ======================================== */
+
+.modern-card__body {
+  color: var(--ds-text-secondary);
+  line-height: 1.6;
+}
+
+/* ========================================
+   CARD FOOTER
+   ======================================== */
+
+.modern-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--modern-space-4);
+  margin-top: var(--modern-space-4);
+  border-top: 1px solid var(--modern-glass-border-light);
+}
+
+/* ========================================
+   CARD GRID LAYOUTS
+   ======================================== */
+
+.modern-card-grid {
+  display: grid;
+  gap: var(--modern-space-6);
+}
+
+.modern-card-grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.modern-card-grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.modern-card-grid--4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.modern-card-grid--auto {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+@media (max-width: 768px) {
+  .modern-card-grid--2,
+  .modern-card-grid--3,
+  .modern-card-grid--4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   CARD IMAGE
+   ======================================== */
+
+.modern-card__image {
+  margin: calc(var(--modern-space-6) * -1);
+  margin-bottom: var(--modern-space-4);
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--modern-radius-xl) var(--modern-radius-xl) 0 0;
+  position: relative;
+}
+
+.modern-card__image::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+}
+

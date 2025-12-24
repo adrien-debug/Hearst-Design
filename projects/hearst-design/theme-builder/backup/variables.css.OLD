@@ -1,0 +1,342 @@
+/**
+ * VARIABLES.CSS - Source Unique de Vérité
+ * Hearst Design System v2.0.0
+ * 
+ * Toutes les variables CSS du projet sont définies ici.
+ * Tous les autres fichiers importent ce fichier.
+ */
+
+:root {
+  /* ========================================
+     🎨 COULEURS - INTERFACE BUILDER
+     ======================================== */
+  
+  /* Surfaces (Builder UI) */
+  --ds-bg-canvas: #0f172a;
+  --ds-bg-surface-1: #1e293b;
+  --ds-bg-surface-2: #334155;
+  --ds-bg-surface-3: #475569;
+  
+  /* Text (Builder UI) */
+  --ds-text-primary: #f8fafc;
+  --ds-text-secondary: #cbd5e1;
+  --ds-text-tertiary: #94a3b8;
+  --ds-text-disabled: #64748b;
+  
+  /* Borders (Builder UI) */
+  --ds-border-subtle: rgba(148, 163, 184, 0.12);
+  --ds-border-default: rgba(148, 163, 184, 0.2);
+  --ds-border-strong: rgba(148, 163, 184, 0.3);
+  
+  /* Accent Colors */
+  --ds-green-400: #10b981;
+  --ds-green-500: #10b981;
+  --ds-green-600: #059669;
+  --ds-focus-ring: #10b981;
+  
+  /* Status Colors */
+  --ds-success: #10b981;
+  --ds-error: #ef4444;
+  --ds-warning: #f59e0b;
+  --ds-info: #3b82f6;
+  
+  --ds-amber-700: #8A5A00;
+  --ds-amber-500: #C78400;
+  --ds-red-600: #B42828;
+  --ds-red-400: #E15B5B;
+  
+  /* ========================================
+     ✍️ TYPOGRAPHIE
+     ======================================== */
+  
+  /* Font Families */
+  --ds-font-sans: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  --ds-font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  
+  /* Font Sizes */
+  --ds-font-size-xs: 12px;
+  --ds-font-size-sm: 14px;
+  --ds-font-size-base: 16px;
+  --ds-font-size-lg: 18px;
+  --ds-font-size-xl: 20px;
+  --ds-font-size-2xl: 24px;
+  --ds-font-size-3xl: 32px;
+  --ds-font-size-4xl: 40px;
+  
+  /* Font Weights */
+  --ds-font-weight-normal: 400;
+  --ds-font-weight-medium: 500;
+  --ds-font-weight-semibold: 600;
+  --ds-font-weight-bold: 700;
+  --ds-font-weight-extrabold: 800;
+  
+  /* Line Heights */
+  --ds-line-height-tight: 1.15;
+  --ds-line-height-normal: 1.5;
+  --ds-line-height-relaxed: 1.75;
+  
+  /* Letter Spacing */
+  --ds-letter-spacing-tight: -0.02em;
+  --ds-letter-spacing-normal: 0;
+  --ds-letter-spacing-wide: 0.05em;
+  
+  /* Hero Typography */
+  --hero-size: clamp(44px, 6.2vw, 88px);
+  --hero-line: 0.98;
+  --hero-tracking: -0.02em;
+  --hero-outline-w: 2px;
+  --hero-outline-color: rgba(246,247,248,0.95);
+  
+  /* ========================================
+     📐 ESPACEMENTS
+     ======================================== */
+  
+  --ds-space-0: 0;
+  --ds-space-1: 4px;
+  --ds-space-2: 8px;
+  --ds-space-3: 12px;
+  --ds-space-4: 16px;
+  --ds-space-5: 20px;
+  --ds-space-6: 24px;
+  --ds-space-7: 32px;
+  --ds-space-8: 40px;
+  --ds-space-9: 48px;
+  --ds-space-10: 64px;
+  --ds-space-12: 96px;
+  
+  /* ========================================
+     🔲 BORDER RADIUS
+     ======================================== */
+  
+  --ds-radius-0: 0;
+  --ds-radius-1: 4px;
+  --ds-radius-2: 6px;
+  --ds-radius-3: 10px;
+  --ds-radius-4: 14px;
+  --ds-radius-pill: 999px;
+  
+  /* Modern Radius (Extended) */
+  --modern-radius-sm: 4px;
+  --modern-radius-md: 8px;
+  --modern-radius-lg: 12px;
+  --modern-radius-xl: 16px;
+  --modern-radius-2xl: 24px;
+  --modern-radius-full: 9999px;
+  
+  /* ========================================
+     🌫️ SHADOWS & ELEVATION
+     ======================================== */
+  
+  --ds-elevation-0: none;
+  --ds-elevation-1: 0 4px 8px rgba(0, 0, 0, 0.2);
+  --ds-elevation-2: 0 8px 16px rgba(0, 0, 0, 0.3);
+  --ds-elevation-3: 0 16px 32px rgba(0, 0, 0, 0.4);
+  
+  /* Modern Shadows */
+  --modern-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --modern-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+  --modern-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.2);
+  --modern-shadow-xl: 0 16px 32px rgba(0, 0, 0, 0.25);
+  
+  /* Glow Effects */
+  --modern-glow-green: 0 0 20px rgba(16, 185, 129, 0.3);
+  --modern-glow-green-strong: 0 0 40px rgba(16, 185, 129, 0.5);
+  
+  /* ========================================
+     ⚡ ANIMATIONS & TRANSITIONS
+     ======================================== */
+  
+  /* Durations */
+  --ds-dur-instant: 0ms;
+  --ds-dur-fast: 150ms;
+  --ds-dur-base: 250ms;
+  --ds-dur-slow: 350ms;
+  --ds-dur-panel: 480ms;
+  
+  /* Easing Functions */
+  --ds-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ds-ease-emphasized: cubic-bezier(0.4, 0, 0.2, 1);
+  --ds-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ds-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ds-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* ========================================
+     📱 GRID SYSTEM
+     ======================================== */
+  
+  /* Columns */
+  --ds-grid-cols-mobile: 4;
+  --ds-grid-cols-tablet: 8;
+  --ds-grid-cols-desktop: 12;
+  
+  /* Gutters */
+  --ds-gutter-mobile: 16px;
+  --ds-gutter-tablet: 20px;
+  --ds-gutter-desktop: 24px;
+  
+  /* Margins */
+  --ds-margin-mobile: 16px;
+  --ds-margin-tablet: 24px;
+  --ds-margin-desktop: 32px;
+  
+  /* Container */
+  --ds-container-max: 1200px;
+  
+  /* ========================================
+     🎭 GLASSMORPHISM & EFFECTS
+     ======================================== */
+  
+  /* Glass Backgrounds */
+  --modern-glass-light: rgba(255, 255, 255, 0.05);
+  --modern-glass-medium: rgba(255, 255, 255, 0.1);
+  --modern-glass-strong: rgba(255, 255, 255, 0.15);
+  
+  /* Glass Borders */
+  --modern-glass-border-light: rgba(255, 255, 255, 0.1);
+  --modern-glass-border-medium: rgba(255, 255, 255, 0.15);
+  --modern-glass-border-strong: rgba(255, 255, 255, 0.2);
+  --modern-glass-border-green: rgba(16, 185, 129, 0.3);
+  
+  /* Backdrop Filters */
+  --modern-blur-sm: blur(4px);
+  --modern-blur-md: blur(8px);
+  --modern-blur-lg: blur(12px);
+  --modern-blur-xl: blur(16px);
+  
+  /* ========================================
+     🎨 GRADIENTS
+     ======================================== */
+  
+  --modern-gradient-green: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+  --modern-gradient-blue: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --modern-gradient-purple: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  --modern-gradient-dark: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  
+  /* ========================================
+     🔢 Z-INDEX SCALE
+     ======================================== */
+  
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
+  
+  /* ========================================
+     📏 BREAKPOINTS (for reference)
+     ======================================== */
+  
+  --breakpoint-mobile: 480px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1024px;
+  --breakpoint-wide: 1440px;
+  
+  /* ========================================
+     🎯 COMPONENT-SPECIFIC
+     ======================================== */
+  
+  /* Buttons */
+  --btn-height-sm: 32px;
+  --btn-height-md: 40px;
+  --btn-height-lg: 48px;
+  --btn-padding-x-sm: 12px;
+  --btn-padding-x-md: 16px;
+  --btn-padding-x-lg: 24px;
+  
+  /* Inputs */
+  --input-height-sm: 32px;
+  --input-height-md: 40px;
+  --input-height-lg: 48px;
+  --input-padding-x: 12px;
+  
+  /* Cards */
+  --card-padding-sm: 16px;
+  --card-padding-md: 24px;
+  --card-padding-lg: 32px;
+  
+  /* Modals */
+  --modal-width-sm: 400px;
+  --modal-width-md: 600px;
+  --modal-width-lg: 800px;
+  --modal-width-xl: 1000px;
+  
+  /* ========================================
+     🌈 THEME PREVIEW (Dynamic)
+     Ces variables sont modifiées dynamiquement par JS
+     ======================================== */
+  
+  --preview-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --preview-text: var(--ds-text-primary);
+  --preview-accent: var(--ds-green-400);
+}
+
+/* ========================================
+   🌙 DARK MODE OVERRIDES
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Les variables sont déjà en dark mode par défaut */
+    /* Pas de changements nécessaires */
+  }
+}
+
+/* ========================================
+   ☀️ LIGHT MODE OVERRIDES
+   ======================================== */
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --ds-bg-canvas: #ffffff;
+    --ds-bg-surface-1: #f8fafc;
+    --ds-bg-surface-2: #f1f5f9;
+    --ds-bg-surface-3: #e2e8f0;
+    
+    --ds-text-primary: #0f172a;
+    --ds-text-secondary: #475569;
+    --ds-text-tertiary: #64748b;
+    --ds-text-disabled: #94a3b8;
+    
+    --ds-border-subtle: rgba(15, 23, 42, 0.08);
+    --ds-border-default: rgba(15, 23, 42, 0.12);
+    --ds-border-strong: rgba(15, 23, 42, 0.2);
+  }
+}
+
+/* ========================================
+   📝 USAGE EXAMPLES
+   ======================================== */
+
+/*
+// Exemple 1: Utiliser les couleurs
+.my-component {
+  background: var(--ds-bg-surface-1);
+  color: var(--ds-text-primary);
+  border: 1px solid var(--ds-border-default);
+}
+
+// Exemple 2: Utiliser l'espacement
+.my-card {
+  padding: var(--ds-space-6);
+  gap: var(--ds-space-4);
+}
+
+// Exemple 3: Utiliser les animations
+.my-button {
+  transition: all var(--ds-dur-fast) var(--ds-ease-standard);
+}
+
+// Exemple 4: Utiliser le radius
+.my-box {
+  border-radius: var(--ds-radius-3);
+}
+
+// Exemple 5: Utiliser l'élévation
+.my-modal {
+  box-shadow: var(--ds-elevation-2);
+}
+*/
+

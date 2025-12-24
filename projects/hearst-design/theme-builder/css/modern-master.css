@@ -1,0 +1,269 @@
+/**
+ * ============================================
+ * MODERN CSS MASTER - Import Principal
+ * ============================================
+ * Version: 2.0.0
+ * 
+ * Enrichissement Ultra-Moderne Complet
+ * 150+ styles CSS avancés
+ * 
+ * USAGE:
+ * Ajouter dans votre HTML:
+ * <link rel="stylesheet" href="css/modern-master.css">
+ * 
+ * ============================================
+ */
+
+/* ========================================
+   1. TOKENS & VARIABLES
+   ======================================== */
+@import url('./modern-tokens.css');
+
+/* ========================================
+   2. ANIMATIONS (Keyframes)
+   ======================================== */
+@import url('./modern-animations.css');
+
+/* ========================================
+   3. TYPOGRAPHY
+   ======================================== */
+@import url('./modern-typography.css');
+
+/* ========================================
+   4. BUTTONS
+   ======================================== */
+@import url('./modern-buttons.css');
+
+/* ========================================
+   5. CARDS & GLASSMORPHISM
+   ======================================== */
+@import url('./modern-cards.css');
+
+/* ========================================
+   6. NAVIGATION
+   ======================================== */
+@import url('./modern-navigation.css');
+
+/* ========================================
+   7. FORMS
+   ======================================== */
+@import url('./modern-forms.css');
+
+/* ========================================
+   8. COMPONENTS (Badges, Tables, KPIs, etc.)
+   ======================================== */
+@import url('./modern-components.css');
+
+/* ========================================
+   GLOBAL ENHANCEMENTS
+   ======================================== */
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--modern-scroll-padding);
+}
+
+/* Focus visible for all interactive elements */
+:focus-visible {
+  outline: 2px solid #8AFD81;
+  outline-offset: 2px;
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(138, 253, 129, 0.3);
+  color: inherit;
+}
+
+::-moz-selection {
+  background: rgba(138, 253, 129, 0.3);
+  color: inherit;
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+/* Display */
+.modern-hidden { display: none !important; }
+.modern-block { display: block; }
+.modern-inline { display: inline; }
+.modern-inline-block { display: inline-block; }
+.modern-flex { display: flex; }
+.modern-inline-flex { display: inline-flex; }
+.modern-grid { display: grid; }
+
+/* Flexbox */
+.modern-flex-row { flex-direction: row; }
+.modern-flex-col { flex-direction: column; }
+.modern-flex-wrap { flex-wrap: wrap; }
+.modern-items-start { align-items: flex-start; }
+.modern-items-center { align-items: center; }
+.modern-items-end { align-items: flex-end; }
+.modern-justify-start { justify-content: flex-start; }
+.modern-justify-center { justify-content: center; }
+.modern-justify-end { justify-content: flex-end; }
+.modern-justify-between { justify-content: space-between; }
+.modern-justify-around { justify-content: space-around; }
+.modern-flex-1 { flex: 1; }
+.modern-flex-auto { flex: auto; }
+.modern-flex-none { flex: none; }
+
+/* Gap */
+.modern-gap-0 { gap: 0; }
+.modern-gap-1 { gap: var(--modern-space-1); }
+.modern-gap-2 { gap: var(--modern-space-2); }
+.modern-gap-3 { gap: var(--modern-space-3); }
+.modern-gap-4 { gap: var(--modern-space-4); }
+.modern-gap-5 { gap: var(--modern-space-5); }
+.modern-gap-6 { gap: var(--modern-space-6); }
+.modern-gap-8 { gap: var(--modern-space-8); }
+
+/* Margin */
+.modern-m-0 { margin: 0; }
+.modern-m-auto { margin: auto; }
+.modern-mt-0 { margin-top: 0; }
+.modern-mt-2 { margin-top: var(--modern-space-2); }
+.modern-mt-4 { margin-top: var(--modern-space-4); }
+.modern-mt-6 { margin-top: var(--modern-space-6); }
+.modern-mt-8 { margin-top: var(--modern-space-8); }
+.modern-mb-0 { margin-bottom: 0; }
+.modern-mb-2 { margin-bottom: var(--modern-space-2); }
+.modern-mb-4 { margin-bottom: var(--modern-space-4); }
+.modern-mb-6 { margin-bottom: var(--modern-space-6); }
+.modern-mb-8 { margin-bottom: var(--modern-space-8); }
+
+/* Padding */
+.modern-p-0 { padding: 0; }
+.modern-p-2 { padding: var(--modern-space-2); }
+.modern-p-4 { padding: var(--modern-space-4); }
+.modern-p-6 { padding: var(--modern-space-6); }
+.modern-p-8 { padding: var(--modern-space-8); }
+
+/* Width */
+.modern-w-full { width: 100%; }
+.modern-w-auto { width: auto; }
+.modern-max-w-sm { max-width: 400px; }
+.modern-max-w-md { max-width: 600px; }
+.modern-max-w-lg { max-width: 800px; }
+.modern-max-w-xl { max-width: 1000px; }
+.modern-max-w-full { max-width: 100%; }
+
+/* Height */
+.modern-h-full { height: 100%; }
+.modern-h-screen { height: 100vh; }
+.modern-min-h-screen { min-height: 100vh; }
+
+/* Position */
+.modern-relative { position: relative; }
+.modern-absolute { position: absolute; }
+.modern-fixed { position: fixed; }
+.modern-sticky { position: sticky; }
+
+/* Z-Index */
+.modern-z-0 { z-index: 0; }
+.modern-z-10 { z-index: 10; }
+.modern-z-20 { z-index: 20; }
+.modern-z-50 { z-index: 50; }
+.modern-z-100 { z-index: 100; }
+
+/* Overflow */
+.modern-overflow-hidden { overflow: hidden; }
+.modern-overflow-auto { overflow: auto; }
+.modern-overflow-scroll { overflow: scroll; }
+
+/* Border Radius */
+.modern-rounded-none { border-radius: 0; }
+.modern-rounded-sm { border-radius: var(--modern-radius-sm); }
+.modern-rounded-md { border-radius: var(--modern-radius-md); }
+.modern-rounded-lg { border-radius: var(--modern-radius-lg); }
+.modern-rounded-xl { border-radius: var(--modern-radius-xl); }
+.modern-rounded-2xl { border-radius: var(--modern-radius-2xl); }
+.modern-rounded-full { border-radius: var(--modern-radius-full); }
+
+/* Opacity */
+.modern-opacity-0 { opacity: 0; }
+.modern-opacity-25 { opacity: 0.25; }
+.modern-opacity-50 { opacity: 0.5; }
+.modern-opacity-75 { opacity: 0.75; }
+.modern-opacity-100 { opacity: 1; }
+
+/* Pointer Events */
+.modern-pointer-none { pointer-events: none; }
+.modern-pointer-auto { pointer-events: auto; }
+
+/* Cursor */
+.modern-cursor-pointer { cursor: pointer; }
+.modern-cursor-default { cursor: default; }
+.modern-cursor-not-allowed { cursor: not-allowed; }
+
+/* User Select */
+.modern-select-none { user-select: none; }
+.modern-select-auto { user-select: auto; }
+.modern-select-all { user-select: all; }
+
+/* ========================================
+   RESPONSIVE UTILITIES
+   ======================================== */
+
+@media (max-width: 768px) {
+  .modern-hidden-mobile { display: none !important; }
+  .modern-block-mobile { display: block !important; }
+  .modern-flex-col-mobile { flex-direction: column !important; }
+}
+
+@media (min-width: 769px) {
+  .modern-hidden-desktop { display: none !important; }
+}
+
+/* ========================================
+   SVG FILTERS FOR EFFECTS
+   ======================================== */
+
+/* 
+Add this SVG to your HTML for gooey effect:
+
+<svg style="position: absolute; width: 0; height: 0;">
+  <defs>
+    <filter id="gooey-filter">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="gooey" />
+      <feComposite in="SourceGraphic" in2="gooey" operator="atop"/>
+    </filter>
+    
+    <filter id="noise-filter">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    
+    <filter id="glow-filter">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+</svg>
+*/
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+
+@media print {
+  .modern-no-print { display: none !important; }
+  
+  * {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  a, a:visited {
+    text-decoration: underline;
+  }
+}
+
