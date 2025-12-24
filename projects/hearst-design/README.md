@@ -1,589 +1,509 @@
-<div align="center">
+# 🎨 HEARST DESIGN
 
-# 🎨 Hearst Design
-
-**Système de Design Complet & Multi-Composants**
-
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/adrien-debug/Hearst-Design)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
-
-[![CI Pipeline](https://img.shields.io/badge/CI-passing-brightgreen.svg)](.github/workflows/ci.yml)
-[![Security](https://img.shields.io/badge/security-audited-brightgreen.svg)](SECURITY.md)
-[![Code Quality](https://img.shields.io/badge/code%20quality-A-brightgreen.svg)](https://github.com/adrien-debug/Hearst-Design)
-
-[🚀 Démarrage Rapide](#-démarrage-rapide) • [📚 Documentation](#-documentation-complémentaire) • [🤝 Contribuer](CONTRIBUTING.md) • [🔒 Sécurité](SECURITY.md)
-
-</div>
+> **Type** : Projet Web Design System  
+> **Statut** : 🟢 **ACTIF**  
+> **Port Backend** : 3002  
+> **Port Frontend** : 3200  
+> **Date Création** : Décembre 2025
 
 ---
 
-## 🎯 Vue d'ensemble
+## 📊 À PROPOS DU PROJET
 
-**Hearst Design** est un système de design complet et un projet web multi-composants comprenant :
+### Informations Générales
 
-<table>
-<tr>
-<td align="center" width="33%">
-<img src="https://img.shields.io/badge/Backend-Express.js-000000?style=for-the-badge&logo=express&logoColor=white" alt="Backend"/>
-<br/>
-<strong>Backend API</strong>
-<br/>
-Express.js • Port 3002
-<br/>
-<em>API REST complète avec authentification JWT</em>
-</td>
-<td align="center" width="33%">
-<img src="https://img.shields.io/badge/Frontend-Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white" alt="Frontend"/>
-<br/>
-<strong>Frontend Application</strong>
-<br/>
-Next.js 14 • TypeScript
-<br/>
-<em>Interface web interactive moderne</em>
-</td>
-<td align="center" width="33%">
-<img src="https://img.shields.io/badge/Design-Theme_Builder-9B59B6?style=for-the-badge&logo=css3&logoColor=white" alt="Theme Builder"/>
-<br/>
-<strong>Theme Builder</strong>
-<br/>
-HTML/CSS/JS Vanilla
-<br/>
-<em>Système de design interactif</em>
-</td>
-</tr>
-</table>
+**Hearst Design** est un système de design complet comprenant un theme builder interactif, une application web moderne et une API backend robuste.
 
----
+**Composants** :
+- **Theme Builder** : Système de création de thèmes interactif
+- **Design System** : Composants UI réutilisables
+- **Backend API** : Gestion des projets et contenus
+- **Frontend App** : Interface utilisateur moderne
 
-## ✨ Fonctionnalités Principales
-
-### 🔧 Backend API
-
-- ✅ **API REST** complète avec Express.js
-- ✅ **Authentification JWT** avec Supabase
-- ✅ **RBAC** (Role-Based Access Control)
-- ✅ **Rate Limiting** & sécurité avancée
-- ✅ **Documentation Swagger** (OpenAPI 3.0)
-- ✅ **Health Checks** & monitoring
-
-### ⚛️ Frontend Next.js
-
-- ✅ **Next.js 14** avec App Router
-- ✅ **TypeScript** pour type safety
-- ✅ **Tailwind CSS** pour styling
-- ✅ **Dashboard** responsive
-- ✅ **Authentification** intégrée
-- ✅ **Design System** cohérent
-
-### 🎨 Theme Builder
-
-- ✅ **4 Palettes** pré-configurées (Dark Pro, Light Clean, Blue Tech, Green Mining)
-- ✅ **Preview Temps Réel** des changements
-- ✅ **Export JSON/CSS** des thèmes
-- ✅ **Design Tokens** modulaires
-- ✅ **Composants Interactifs** (Cards, Forms, Alerts, KPIs)
-- ✅ **Accessibilité WCAG AAA**
-- ✅ **Keyboard Shortcuts** (Ctrl/Cmd+S, Ctrl/Cmd+E)
-
----
-
-## 📁 Structure du Projet
+### Architecture
 
 ```
 hearst-design/
-├── 🔧 backend/                    # API Express.js (Port 3002)
-│   ├── controllers/            # Logique métier
-│   ├── routes/                 # Routes API REST
-│   ├── middleware/             # Middlewares Express
-│   ├── core-modules/           # Modules partagés
-│   │   ├── auth/              # Service d'authentification
-│   │   ├── database/          # Client Supabase
-│   │   └── middleware/        # Middleware auth
-│   └── server.js               # Point d'entrée backend
+├── backend/                    # Backend Express.js (Port 3002)
+│   ├── controllers/            # Contrôleurs métier
+│   ├── routes/                 # Routes API
+│   ├── middleware/             # Middlewares
+│   ├── core-modules/           # Code partagé (copie de core/)
+│   ├── utils/                  # Utilitaires
+│   └── server.js               # Point d'entrée
 │
-├── ⚛️ frontend/                   # Application Next.js 14
-│   ├── src/app/                # App Router Next.js
-│   │   ├── dashboard/          # Dashboard principal
-│   │   ├── login/              # Page de connexion
-│   │   └── layout.tsx          # Layout global
-│   └── src/lib/                # Bibliothèques utilitaires
+├── frontend/                   # Frontend Next.js (Port 3200)
+│   ├── src/
+│   │   ├── app/                # Pages Next.js
+│   │   └── lib/                # Bibliothèques client
+│   └── package.json
 │
-├── 🎨 theme-builder/              # Theme Builder / Design System
-│   ├── index.html              # Application principale
-│   ├── css/                    # Styles modulaires
-│   │   ├── modern-tokens.css  # Design tokens CSS
-│   │   ├── modern-components.css
-│   │   └── modern-master.css  # Style principal
-│   ├── js/                     # Modules JavaScript ES6
-│   │   ├── theme-manager.js   # Gestion des thèmes
-│   │   ├── export.js          # Export JSON/CSS
-│   │   └── app.js             # Application principale
-│   └── design-tokens.json      # Tokens de design
+├── theme-builder/              # Theme Builder interactif
+│   ├── css/                    # Feuilles de style
+│   ├── js/                     # Scripts JavaScript
+│   ├── docs/                   # Documentation theme
+│   └── index.html              # Interface theme builder
 │
-├── 📄 .github/                    # GitHub Configuration
-│   ├── workflows/              # GitHub Actions CI/CD
-│   │   ├── ci.yml             # Pipeline CI
-│   │   ├── deploy.yml         # Déploiement
-│   │   └── pr-check.yml       # Vérifications PR
-│   ├── ISSUE_TEMPLATE/         # Templates d'issues
-│   ├── PULL_REQUEST_TEMPLATE.md
-│   └── CODE_OF_CONDUCT.md
-│
-├── 📚 Documentation/
-│   ├── README.md               # Ce fichier
-│   ├── CONTRIBUTING.md         # Guide de contribution
-│   ├── SECURITY.md             # Politique de sécurité
-│   ├── CHANGELOG.md            # Historique des versions
-│   └── LICENSE                 # Licence MIT
-│
-├── ⚙️ Configuration/
-│   ├── PROJECT_CONFIG.json     # Configuration projet
-│   ├── VERSION.json            # Métadonnées version
-│   └── .gitignore              # Git ignore rules
-│
-└── 🌐 Déploiement/
-    └── vercel.json             # Configuration Vercel
+└── docs/                       # Documentation projet
 ```
 
 ---
 
-## 🚀 Démarrage Rapide
+## 🔐 SÉCURITÉ & CONFORMITÉ
+
+### Règles Applicables
+
+| # | Règle | Description | Statut |
+|---|-------|-------------|--------|
+| **#42** | URLs Frontend | DOIT pointer vers Backend Central (4000) | ✅ Conforme |
+| **#43** | Accès Direct | Accès direct port 3002 INTERDIT | ✅ Documenté |
+| **#44** | Modification URLs | Nécessite autorisation architecte | ✅ Warnings |
+| **#30** | Secrets | Pas de secrets en dur | ✅ .gitignore |
+| **#31** | Variables Env | Variables d'environnement | ✅ env.example |
+
+### URLs & Ports
+
+| Service | Port | URL | Accès |
+|---------|------|-----|-------|
+| **Backend Design** | 3002 | http://localhost:3002 | ⚠️ Direct déconseillé |
+| **Frontend Design** | 3200 | http://localhost:3200 | ✅ Principal |
+| **Backend Central** | 4000 | http://localhost:4000 | ✅ API Gateway |
+| **API Design (via Central)** | 4000 | http://localhost:4000/api/design | ✅ Recommandé |
+
+---
+
+## 🚀 CONFIGURATION
 
 ### Prérequis
 
-- **Node.js** ≥ 18.0.0
-- **npm** ≥ 9.0.0
-- **Supabase Account** (pour l'authentification)
+- Node.js 18+
+- npm ou yarn
+- Supabase configuré
+- Backend Central démarré (port 4000)
 
-### Option 1 : Démarrage via Hearst Control (Recommandé)
+### Variables d'Environnement
 
-```bash
-# Depuis la racine du mono-repo Hearst Control
-./scripts/start-all.sh
-```
-
-Hearst Control démarre automatiquement :
-- ✅ Backend Central (port 4000)
-- ✅ Hearst Design Backend (port 3002)
-- ✅ Hearst Design Frontend (port 3002)
-
-**URLs Disponibles :**
-- 🌐 Frontend : http://localhost:3002
-- 🔌 Backend API : http://localhost:3002/api
-- 🎨 Theme Builder : http://localhost:8080
-
-### Option 2 : Démarrage Manuel
-
-#### 1️⃣ Backend
+#### Backend (`.env`)
 
 ```bash
-# Naviguer vers le backend
-cd backend
-
-# Installer les dépendances
-npm install
-
-# Configurer les variables d'environnement
-cp env.example .env
-# Éditer .env avec vos credentials Supabase
-
-# Démarrer le serveur
-npm start
-```
-
-Le backend démarre sur **http://localhost:3002**
-
-#### 2️⃣ Frontend
-
-```bash
-# Naviguer vers le frontend
-cd frontend
-
-# Installer les dépendances
-npm install
-
-# Configurer les variables d'environnement
-cp env.example .env.local
-# Éditer .env.local
-
-# Démarrer en développement
-npm run dev
-```
-
-Le frontend démarre sur **http://localhost:3000** (ou 3002 si configuré)
-
-#### 3️⃣ Theme Builder (Standalone)
-
-```bash
-# Naviguer vers theme-builder
-cd theme-builder
-
-# Démarrer un serveur HTTP simple
-python3 -m http.server 8080
-# Ou avec Node.js :
-npx http-server -p 8080
-```
-
-Ouvrir : **http://localhost:8080**
-
----
-
-## 🔐 Configuration
-
-### Backend (.env)
-
-```bash
-cd backend
-cp env.example .env
-```
-
-Variables requises :
-
-```env
-# Server
-PORT=3002
+# Application
 NODE_ENV=development
-
-# JWT
-JWT_SECRET=votre-secret-jwt-tres-securise
+PORT=3002
 
 # Supabase
-SUPABASE_URL=https://xxxxx.supabase.co
-SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-SUPABASE_SERVICE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_ANON_KEY=your-anon-key
+SUPABASE_SERVICE_KEY=your-service-key
+
+# JWT
+JWT_SECRET=your-secret-key-min-32-chars
+JWT_EXPIRES_IN=24h
+
+# CORS
+CORS_ORIGIN=http://localhost:3200
+
+# Rate Limiting
+RATE_LIMIT_WINDOW_MS=900000
+RATE_LIMIT_MAX=100
 ```
 
-### Frontend (.env.local)
+**⚠️ Voir** : `backend/env.example` pour le template complet
+
+#### Frontend (`.env.local`)
 
 ```bash
-cd frontend
-cp env.example .env.local
-```
-
-Variables requises :
-
-```env
-# API Backend Central (Hearst Control)
+# ⚠️ RÈGLE #42 - NE PAS MODIFIER L'URL API
+# Toutes les requêtes DOIVENT passer par le Backend Central
 NEXT_PUBLIC_API_URL=http://localhost:4000/api/design
 
-# Ou Backend Direct (développement)
-# NEXT_PUBLIC_API_URL=http://localhost:3002/api
+# Project Information
+NEXT_PUBLIC_PROJECT_NAME=Hearst Design
+NEXT_PUBLIC_PROJECT_SLUG=hearst-design
+
+# UI Configuration
+NEXT_PUBLIC_THEME=light
+NEXT_PUBLIC_PRIMARY_COLOR=#3b82f6
 ```
 
-**⚠️ Important :** En production, le frontend **doit** pointer vers le **Backend Central (port 4000)**, conformément à l'architecture Hearst Control (règle #42).
+**⚠️ IMPORTANT** : Le frontend DOIT pointer vers le Backend Central (port 4000), PAS vers le backend Design direct (port 3002). Voir [REGLE_URLS_FRONTENDS.md](../../REGLE_URLS_FRONTENDS.md).
 
 ---
 
-## 📊 API Documentation
+## 📦 INSTALLATION
 
-### Endpoints Principaux
-
-| Endpoint | Méthode | Description | Auth |
-|----------|---------|-------------|------|
-| `/api/health` | GET | Health check | ❌ |
-| `/api/auth/login` | POST | Authentification | ❌ |
-| `/api/auth/verify` | GET | Vérification token | ✅ |
-| `/api/auth/me` | GET | Profil utilisateur | ✅ |
-| `/api/metrics` | GET | Métriques projet | ✅ |
-| `/api/pages` | GET | Liste des pages | ✅ |
-| `/api/servers` | GET | État des serveurs | ✅ |
-
-### Swagger Documentation
-
-Documentation interactive complète disponible dans `backend/swagger.json`
-
-Exemple d'appel API :
+### Installation Complète
 
 ```bash
-# Health Check
-curl http://localhost:3002/api/health
+# 1. Backend
+cd backend
+npm install
+cp env.example .env
+# Éditer .env avec vos credentials
 
-# Login
-curl -X POST http://localhost:3002/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"email":"user@example.com","password":"password"}'
+# 2. Frontend  
+cd ../frontend
+npm install
+cp env.example .env.local
+# NE PAS MODIFIER l'URL API (Règle #42)
 
-# Métriques (avec token)
-curl http://localhost:3002/api/metrics \
-  -H "Authorization: Bearer YOUR_JWT_TOKEN"
+# 3. Theme Builder (optionnel)
+cd ../theme-builder
+# Pas d'installation nécessaire (HTML/CSS/JS pur)
 ```
 
 ---
 
-## 🎨 Theme Builder — Guide d'Utilisation
+## 🎮 UTILISATION
 
-### Palettes Disponibles
+### Démarrage Services
 
-<table>
-<tr>
-<td align="center">🌑 <strong>Dark Pro</strong><br/>Mode sombre professionnel</td>
-<td align="center">☀️ <strong>Light Clean</strong><br/>Mode clair minimal</td>
-</tr>
-<tr>
-<td align="center">🔵 <strong>Blue Tech</strong><br/>Bleu technologique</td>
-<td align="center">🟢 <strong>Green Mining</strong><br/>Vert mining</td>
-</tr>
-</table>
+```bash
+# Depuis la racine Hearst Control
+./scripts/start-all.sh
 
-### Raccourcis Clavier
+# OU individuellement :
 
-| Raccourci | Action |
-|-----------|--------|
-| `Ctrl/Cmd + S` | Sauvegarder le thème actuel |
-| `Ctrl/Cmd + E` | Exporter en JSON/CSS |
-| `Ctrl/Cmd + L` | Charger un thème |
-| `Esc` | Fermer les modales |
+# Backend
+cd projects/hearst-design/backend
+npm start
 
-### Export de Thèmes
+# Frontend
+cd projects/hearst-design/frontend
+npm run dev
 
-Le Theme Builder permet d'exporter les thèmes dans deux formats :
-
-**📦 JSON (Design Tokens)**
-```json
-{
-  "colors": {
-    "primary": "#667eea",
-    "secondary": "#764ba2",
-    ...
-  },
-  "typography": {...},
-  "spacing": {...}
-}
+# Theme Builder
+# Ouvrir theme-builder/index.html dans un navigateur
 ```
 
-**🎨 CSS (Variables)**
-```css
-:root {
-  --color-primary: #667eea;
-  --color-secondary: #764ba2;
-  --font-family-base: 'Inter', sans-serif;
-  ...
-}
-```
+### Arrêter Services
 
-Pour plus de détails, consultez [`theme-builder/README.md`](theme-builder/README.md)
+```bash
+# Depuis la racine
+./scripts/stop-all.sh
+
+# OU Ctrl+C dans chaque terminal
+```
 
 ---
 
-## 🧪 Tests
+## 🌐 URLS
 
-### Backend Tests
+### Services Locaux
+
+| Service | URL | Description |
+|---------|-----|-------------|
+| **Frontend** | http://localhost:3200 | Application principale |
+| **Theme Builder** | file:///.../theme-builder/index.html | Constructeur de thèmes |
+| **API (via Central)** | http://localhost:4000/api/design | API recommandée |
+| **Backend Direct** | http://localhost:3002 | ⚠️ Déconseillé |
+
+### Routes API Principales
+
+```
+GET  /api/design/health          # Health check
+POST /api/design/auth/login      # Authentification
+GET  /api/design/projects        # Liste projets
+GET  /api/design/containers      # Liste containers
+GET  /api/design/miners          # Liste mineurs
+```
+
+---
+
+## 🎨 THEME BUILDER
+
+### Accès
+
+```bash
+# Ouvrir dans un navigateur
+open projects/hearst-design/theme-builder/index.html
+
+# OU si vous avez un serveur HTTP local
+cd projects/hearst-design/theme-builder
+python3 -m http.server 8000
+open http://localhost:8000
+```
+
+### Fonctionnalités
+
+- ✅ Création de thèmes personnalisés
+- ✅ Prévisualisation en temps réel
+- ✅ Export CSS/JSON
+- ✅ Composants UI préfabriqués
+- ✅ Design tokens configurables
+
+### Documentation
+
+- [GUIDE_UTILISATEUR.md](./theme-builder/GUIDE_UTILISATEUR.md)
+- [ARCHITECTURE_UX_UI.md](./theme-builder/ARCHITECTURE_UX_UI.md)
+- [CSS_ENRICHMENT_GUIDE.md](./theme-builder/CSS_ENRICHMENT_GUIDE.md)
+
+---
+
+## 📚 DOCUMENTATION
+
+### Documentation Principale
+
+| Document | Description |
+|----------|-------------|
+| [README.md](./README.md) | Ce fichier |
+| [SECURITY.md](./SECURITY.md) | Guide sécurité |
+| [QUICK_START.md](./QUICK_START.md) | Démarrage rapide |
+| [CHANGELOG.md](./CHANGELOG.md) | Historique versions |
+| [CONTRIBUTING.md](./CONTRIBUTING.md) | Guide contribution |
+
+### Documentation Theme Builder
+
+| Document | Description |
+|----------|-------------|
+| [theme-builder/README.md](./theme-builder/README.md) | Vue d'ensemble |
+| [theme-builder/GUIDE_UTILISATEUR.md](./theme-builder/GUIDE_UTILISATEUR.md) | Guide utilisateur |
+| [theme-builder/ARCHITECTURE_UX_UI.md](./theme-builder/ARCHITECTURE_UX_UI.md) | Architecture UX/UI |
+| [theme-builder/INDEX_DOCUMENTS.md](./theme-builder/INDEX_DOCUMENTS.md) | Index documentation |
+
+---
+
+## 🔧 DÉVELOPPEMENT
+
+### Standards de Code
+
+**Backend** :
+- Node.js 18+
+- Express.js
+- Structure MVC
+- Async/await obligatoire
+- Try/catch sur toutes opérations async
+
+**Frontend** :
+- Next.js 14
+- React 18
+- TypeScript strict
+- Tailwind CSS
+- Composants fonctionnels uniquement
+
+**Theme Builder** :
+- HTML5/CSS3/JavaScript pur
+- Pas de framework
+- Vanilla JS
+- CSS moderne (variables, grid, flexbox)
+
+### Conventions Nommage
+
+```javascript
+// Fichiers
+authController.js       // Backend
+api.ts                  // Frontend
+theme-manager.js        // Theme Builder
+
+// Classes
+class AuthService {}    // PascalCase
+
+// Fonctions
+function getUserById() {} // camelCase
+
+// Constantes
+const JWT_SECRET = ''   // UPPER_SNAKE_CASE
+
+// Dossiers
+core-modules/           // kebab-case
+```
+
+---
+
+## 🧪 TESTS
+
+### Backend
 
 ```bash
 cd backend
-npm test                    # Tous les tests
-npm test -- --watch        # Mode watch
-npm test -- --coverage     # Avec coverage
+npm test
 ```
 
-### Frontend Tests
+### Frontend
 
 ```bash
 cd frontend
-npm test                   # Tests Jest
-npm run test:e2e          # Tests E2E (Playwright)
-npm run test:coverage     # Avec coverage
+npm test
 ```
 
 ### Tests Manuels
 
 ```bash
-# Backend Health Check
-curl http://localhost:3002/api/health
+# Health check
+curl http://localhost:4000/api/design/health
 
-# Frontend
-open http://localhost:3002
-
-# Theme Builder
-open http://localhost:8080
+# Login (remplacer credentials)
+curl -X POST http://localhost:4000/api/design/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"admin@hearst.com","password":"password"}'
 ```
 
 ---
 
-## 🛠️ Stack Technologique
+## 🚨 DÉPANNAGE
 
-### Backend
+### Problèmes Courants
 
-<p>
-<img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js"/>
-<img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express.js"/>
-<img src="https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase"/>
-<img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white" alt="JWT"/>
-</p>
+#### 1. Erreur "URL non conforme"
 
-### Frontend
+**Cause** : Frontend ne pointe pas vers Backend Central  
+**Solution** :
 
-<p>
-<img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js"/>
-<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React"/>
-<img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/>
-<img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS"/>
-</p>
-
-### Design System
-
-<p>
-<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5"/>
-<img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3"/>
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript"/>
-<img src="https://img.shields.io/badge/Design_Tokens-9B59B6?style=for-the-badge" alt="Design Tokens"/>
-</p>
-
-### DevOps & Tools
-
-<p>
-<img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white" alt="GitHub Actions"/>
-<img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel"/>
-<img src="https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white" alt="ESLint"/>
-<img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=black" alt="Prettier"/>
-</p>
-
----
-
-## 📚 Documentation Complémentaire
-
-| Document | Description |
-|----------|-------------|
-| 📖 [`theme-builder/README.md`](theme-builder/README.md) | Guide complet Theme Builder |
-| 🏗️ [`theme-builder/ARCHITECTURE_UX_UI.md`](theme-builder/ARCHITECTURE_UX_UI.md) | Architecture technique |
-| 👤 [`theme-builder/GUIDE_UTILISATEUR.md`](theme-builder/GUIDE_UTILISATEUR.md) | Guide utilisateur détaillé |
-| 🤝 [`CONTRIBUTING.md`](CONTRIBUTING.md) | Guide de contribution |
-| 🔒 [`SECURITY.md`](SECURITY.md) | Politique de sécurité |
-| 📝 [`CHANGELOG.md`](CHANGELOG.md) | Historique des versions |
-| 📋 [`PROJECT_CONFIG.json`](PROJECT_CONFIG.json) | Configuration projet |
-| 📡 [`backend/swagger.json`](backend/swagger.json) | Documentation API |
-
----
-
-## 🤝 Contribuer
-
-Nous accueillons toutes les contributions ! Voici comment vous pouvez aider :
-
-1. 🍴 **Fork** le projet
-2. 🌿 **Créez** une branche feature (`git checkout -b feature/AmazingFeature`)
-3. ✅ **Committez** vos changements (`git commit -m 'feat: Add AmazingFeature'`)
-4. 📤 **Poussez** vers la branche (`git push origin feature/AmazingFeature`)
-5. 🔀 **Ouvrez** une Pull Request
-
-Consultez [`CONTRIBUTING.md`](CONTRIBUTING.md) pour plus de détails.
-
-### 📋 Conventions de Commit
-
-Nous utilisons [Conventional Commits](https://www.conventionalcommits.org/) :
-
+```bash
+# Vérifier frontend/.env.local
+cat frontend/.env.local
+# Doit contenir : NEXT_PUBLIC_API_URL=http://localhost:4000/api/design
 ```
-feat(scope): add new feature
-fix(scope): fix bug
-docs(scope): update documentation
-style(scope): format code
-refactor(scope): refactor code
-test(scope): add tests
-chore(scope): update dependencies
+
+#### 2. Backend ne démarre pas
+
+```bash
+# Port déjà utilisé ?
+lsof -i :3002
+kill -9 <PID>
+
+# Variables manquantes ?
+cat backend/.env
+
+# Tester Supabase
+cd backend
+node -e "require('dotenv').config(); console.log(process.env.SUPABASE_URL)"
+```
+
+#### 3. Frontend ne se connecte pas
+
+```bash
+# Backend Central démarré ?
+curl http://localhost:4000/api/design/health
+
+# URL correcte ?
+grep NEXT_PUBLIC_API_URL frontend/.env.local
+```
+
+#### 4. Theme Builder ne charge pas
+
+```bash
+# Vérifier le chemin des assets
+# Les chemins doivent être relatifs dans index.html
+
+# Servir via HTTP local
+cd theme-builder
+python3 -m http.server 8000
 ```
 
 ---
 
-## 🔒 Sécurité
+## 🔗 LIENS UTILES
 
-La sécurité est une priorité absolue. Si vous découvrez une vulnérabilité :
+### Documentation Globale
 
-- **🚫 NE PAS** créer d'issue publique
-- **📧 Envoyer** un email à : security@hearst-design.com
-- **🔐 Ou** créer une GitHub Security Advisory (privée)
+- [Architecture Hearst Control](../../docs/architecture/ARCHITECTURE_GLOBALE.md)
+- [Guide Agents AI](../../AI_AGENT_GUIDE.md)
+- [Quick Start AI](../../QUICK_START_AI.md)
+- [Project Structure](../../PROJECT_STRUCTURE.md)
 
-Consultez [`SECURITY.md`](SECURITY.md) pour plus de détails.
+### Règles & Sécurité
 
----
+- [Règles URLs Frontends](../../REGLE_URLS_FRONTENDS.md)
+- [44 Règles Complètes](../../docs/ESSENTIELS/RULES_REFERENCE.md)
+- [Guide Sécurité](../../docs/securite/SECURITE_README.md)
 
-## 📜 Licence
+### Scripts Utiles
 
-Ce projet est sous licence **MIT**. Voir [`LICENSE`](LICENSE) pour plus d'informations.
-
----
-
-## 🔗 Liens Utiles
-
-- 📦 **Repository** : [github.com/adrien-debug/Hearst-Design](https://github.com/adrien-debug/Hearst-Design)
-- 🐛 **Issues** : [Issues Tracker](https://github.com/adrien-debug/Hearst-Design/issues)
-- 💡 **Feature Requests** : [Request Feature](https://github.com/adrien-debug/Hearst-Design/issues/new?template=feature_request.md)
-- 💬 **Discussions** : [GitHub Discussions](https://github.com/adrien-debug/Hearst-Design/discussions)
-- 📧 **Contact** : contact@hearst-design.com
-
----
-
-## 🙏 Remerciements
-
-- **Hearst Control** pour l'intégration centralisée
-- **Supabase** pour l'authentification
-- **Vercel** pour l'hébergement
-- **Next.js Team** pour le framework
-- **Communauté Open Source** pour l'inspiration
+```bash
+# Depuis la racine Hearst Control
+./scripts/start-all.sh              # Démarrer tous les services
+./scripts/stop-all.sh               # Arrêter tous les services
+./scripts/verify-frontend-urls.sh   # Vérifier URLs conformes
+./scripts/check-secrets.sh          # Vérifier secrets
+```
 
 ---
 
-## 🎯 Roadmap
+## 📞 SUPPORT
 
-### ✅ Version 1.0 (Actuelle)
+### En Cas de Problème
 
-- [x] Backend API complet
-- [x] Frontend Next.js 14
-- [x] Theme Builder interactif
-- [x] 4 palettes pré-configurées
-- [x] Export JSON/CSS
-- [x] Documentation complète
-- [x] CI/CD GitHub Actions
+1. **Consulter la documentation** :
+   - Ce README
+   - [QUICK_START.md](./QUICK_START.md)
+   - [SECURITY.md](./SECURITY.md)
 
-### 🚧 Version 1.1 (Q1 2026)
+2. **Vérifier les logs** :
+   ```bash
+   tail -f backend/logs/*.log
+   ```
 
-- [ ] Export Figma pour design tokens
-- [ ] Mode collaboration temps réel
-- [ ] Historique des versions de thèmes
-- [ ] Templates de composants additionnels
-- [ ] API publique design tokens
-- [ ] Plugin VS Code
-- [ ] Support i18n (FR, EN, AR)
+3. **Tester la configuration** :
+   ```bash
+   curl http://localhost:4000/api/design/health
+   ```
 
-### 🔮 Version 1.2 (Q2 2026)
-
-- [ ] Design system versioning
-- [ ] Component library npm package
-- [ ] Storybook integration
-- [ ] Visual regression testing
-- [ ] AI-assisted theme generation
-- [ ] Mobile app (React Native)
+4. **Contacter l'équipe** :
+   - Technique : tech@hearst.com
+   - Design : design@hearst.com
 
 ---
 
-## 📊 Statistiques du Projet
+## ✅ CHECKLIST
 
-- **64 fichiers** créés
-- **34,000+ lignes** de code
-- **3 composants** principaux
-- **4 palettes** de design
-- **15+ composants** UI
-- **10+ endpoints** API
-- **100% TypeScript** (Frontend)
-- **WCAG AAA** accessible
+### Avant de Commencer
+
+- [ ] Node.js 18+ installé
+- [ ] Backend Central démarré (port 4000)
+- [ ] Supabase configuré
+- [ ] Variables d'environnement configurées
+
+### Avant de Développer
+
+- [ ] Backend configuré (.env)
+- [ ] Frontend configuré (.env.local avec URL correcte)
+- [ ] Tests passent
+- [ ] Je ne modifie PAS les URLs frontend (Règle #42)
+
+### Avant de Pousser
+
+- [ ] Code testé localement
+- [ ] Pas de secrets en dur
+- [ ] Documentation mise à jour
+- [ ] Pas de régression
+- [ ] Tests passent
 
 ---
 
-## 🌟 Montrez votre Support
+## 📈 STATISTIQUES PROJET
 
-Si ce projet vous aide, donnez-lui une ⭐ sur GitHub !
-
-<div align="center">
-
-**[⬆ Retour en haut](#-hearst-design)**
+```
+Composants:      3 (Backend, Frontend, Theme Builder)
+Pages Theme:     15+ composants UI
+API Endpoints:   20+ routes
+Documentation:   25+ fichiers
+Technologies:    Express, Next.js, TypeScript, Tailwind
+```
 
 ---
 
-**Hearst Design** | Système de Design Complet  
-Intégré à **Hearst Control V2.0**  
-Fait avec ❤️ par l'équipe Hearst Design
+## 📝 CHANGELOG
 
-**Version 1.0.0** | Dernière mise à jour : 24 décembre 2025
+### Version 1.0.0 (Décembre 2025)
+- ✅ Backend API complet
+- ✅ Frontend Next.js moderne
+- ✅ Theme Builder interactif
+- ✅ Documentation complète
+- ✅ Conformité Règle #42 (URLs)
+- ✅ Architecture sécurisée
 
-</div>
+---
 
+## 📄 LICENSE
+
+**Projet Propriétaire - Hearst Corporation**
+
+---
+
+**Date Mise à Jour** : 24 Décembre 2025  
+**Version** : 1.0.0  
+**Statut** : 🟢 **ACTIF**
+
+---
+
+**Hearst Control V2.0** | Design System | Projet Web

@@ -1,140 +1,93 @@
-# ========================================
-# Hearst Design - Configuration .gitignore
-# ========================================
+# ============================================
+# HEARST DESIGN - .gitignore
+# ============================================
 
-# ============ Dependencies ============
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
+# ============================================
+# 🔒 SÉCURITÉ - RÈGLE #30 & #31
+# ============================================
 
-# ============ Environment Variables ============
+# Environment Files
 .env
-.env*.local
+.env.local
 .env.development
 .env.production
-.env.test
 *.env
 
-# ============ Next.js ============
-.next/
-out/
-build/
-dist/
-.vercel
-.turbo
-
-# Next.js cache
-.next/cache/
-**/.next/
-
-# ============ Logs ============
-logs/
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
-.pnpm-debug.log*
-
-# ============ OS Generated Files ============
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-*~
-
-# ============ IDEs and Editors ============
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
-*.sublime-project
-
-# Cursor IDE
-.cursor/
-.cursorrules
-
-# ============ Testing ============
-coverage/
-.nyc_output/
-*.lcov
-.coverage
-.pytest_cache/
-__pycache__/
-*.py[cod]
-*$py.class
-
-# ============ Build Artifacts ============
-build/
-dist/
-*.tsbuildinfo
-.cache/
-.parcel-cache/
-.webpack/
-
-# ============ Temporary Files ============
-tmp/
-temp/
-*.tmp
-*.bak
-*.swp
-.cache
-
-# ============ Database ============
-*.sqlite
-*.sqlite3
-*.db
-
-# ============ Supabase ============
-.supabase/
-
-# ============ Theme Builder ============
-theme-builder/.DS_Store
-theme-builder/node_modules/
-theme-builder/dist/
-theme-builder/.cache/
-
-# ============ Sensitive Data ============
-secrets/
+# Credentials
+credentials.json
+service-account.json
 *.pem
 *.key
 *.cert
-credentials.json
-service-account.json
 
-# ============ Documentation Temp ============
-docs/.temp/
-*.draft.md
+# Logs
+logs/*.log
+backend/logs/*.log
+!logs/README.md
+!logs/.gitkeep
 
-# ============ Deployment ============
-.vercel/
-.netlify/
-.firebase/
+# ============================================
+# NODE.JS
+# ============================================
 
-# ============ Archives ============
-*.zip
-*.tar.gz
-*.rar
-*.7z
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
 
-# ============ Keep Important Files ============
-!.gitkeep
-!.env.example
+# Build
+dist/
+build/
+.next/
+out/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Caching
+.cache/
+.eslintcache
+
+# ============================================
+# TYPESCRIPT
+# ============================================
+*.tsbuildinfo
+next-env.d.ts
+
+# ============================================
+# IDE / EDITORS
+# ============================================
+
+.vscode/*
+!.vscode/settings.json
+.cursor/
+.idea/
+*.iml
+*.sublime-*
+
+# ============================================
+# OS FILES
+# ============================================
+
+.DS_Store
+Thumbs.db
+Desktop.ini
+*~
+
+# ============================================
+# TEMPORARY
+# ============================================
+*.tmp
+*.temp
+*.swp
+*.bak
+*.backup
+
+# ============================================
+# KEEP THESE
+# ============================================
 !env.example
-
+!.env.example
+!README.md
+!.gitkeep

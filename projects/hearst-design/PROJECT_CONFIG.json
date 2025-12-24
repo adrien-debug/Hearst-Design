@@ -1,76 +1,86 @@
 {
-  "project": {
-    "id": "hearst-design",
-    "name": "Hearst Design",
-    "slug": "hearst-design",
-    "description": "Projet web de design et prototypage pour les interfaces Hearst",
-    "version": "1.0.0",
-    "status": "active",
-    "type": "Web Application"
+  "name": "Hearst Design",
+  "slug": "hearst-design",
+  "shortName": "Design",
+  "version": "1.0.0",
+  "status": "active",
+  "protected": false,
+  "security": {
+    "level": "STANDARD",
+    "rules": [42, 43, 44, 30, 31],
+    "requiresAuthorization": false,
+    "auditLevel": "STANDARD",
+    "directStartAllowed": true
   },
-  "display": {
-    "icon": "🎨",
-    "color": "#9B59B6",
-    "theme": "purple"
+  "ports": {
+    "backend": 3002,
+    "frontend": 3200,
+    "centralAPI": "4000/api/design"
   },
-  "network": {
-    "port": 3002,
-    "backendUrl": "http://localhost:3002",
-    "frontendUrl": "http://localhost:3002",
-    "apiBasePath": "/api"
+  "database": {
+    "type": "supabase",
+    "isolated": true,
+    "multiTenant": true
   },
-  "monitoring": {
-    "enabled": true,
-    "endpoints": {
-      "health": "/api/health",
-      "metrics": "/api/metrics",
-      "pages": "/api/pages",
-      "servers": "/api/servers"
-    },
-    "refreshInterval": 10000
+  "components": {
+    "backend": true,
+    "frontend": true,
+    "themeBuilder": true
   },
-  "pages": [
+  "permissions": {
+    "access": ["super_admin", "admin", "manager", "operator", "viewer"],
+    "create": ["super_admin", "admin", "manager", "operator"],
+    "modify": ["super_admin", "admin", "manager"],
+    "delete": ["super_admin", "admin"]
+  },
+  "urls": {
+    "frontend": "http://localhost:3200",
+    "backend": "http://localhost:3002",
+    "api": "http://localhost:4000/api/design",
+    "themeBuilder": "file:///.../theme-builder/index.html"
+  },
+  "features": {
+    "themeBuilder": true,
+    "designSystem": true,
+    "componentLibrary": true,
+    "designTokens": true
+  },
+  "documentation": {
+    "readme": "README.md",
+    "security": "SECURITY.md",
+    "quickStart": "QUICK_START.md",
+    "changelog": "CHANGELOG.md",
+    "contributing": "CONTRIBUTING.md",
+    "rules": [
+      "/REGLE_URLS_FRONTENDS.md"
+    ]
+  },
+  "themeBuilder": {
+    "directory": "theme-builder/",
+    "documentation": [
+      "theme-builder/README.md",
+      "theme-builder/GUIDE_UTILISATEUR.md",
+      "theme-builder/ARCHITECTURE_UX_UI.md"
+    ]
+  },
+  "createdAt": "2025-12-24",
+  "updatedAt": "2025-12-24",
+  "maintainers": [
     {
-      "category": "Dashboard",
-      "items": [
-        { "path": "/dashboard", "label": "Tableau de bord", "icon": "📊" },
-        { "path": "/design", "label": "Design Studio", "icon": "🎨" }
-      ]
+      "role": "Design Lead",
+      "contact": "design@hearst.com"
     },
     {
-      "category": "Composants",
-      "items": [
-        { "path": "/components", "label": "Bibliothèque", "icon": "📦" },
-        { "path": "/prototypes", "label": "Prototypes", "icon": "🔧" }
-      ]
-    },
-    {
-      "category": "Administration",
-      "items": [
-        { "path": "/settings", "label": "Paramètres", "icon": "⚙️" }
-      ]
+      "role": "Technical Lead",
+      "contact": "tech@hearst.com"
     }
   ],
-  "services": [
-    {
-      "id": "backend-design",
-      "name": "Backend Design API",
-      "port": 3002,
-      "description": "API principale Hearst Design",
-      "healthCheck": "/health"
-    }
-  ],
-  "integration": {
-    "backendCentral": "http://localhost:4000",
-    "frontendCentral": "http://localhost:3100",
-    "authenticationType": "JWT",
-    "tenantId": "hearst-global"
-  },
-  "metadata": {
-    "createdAt": "2025-12-24T00:00:00Z",
-    "updatedAt": "2025-12-24T00:00:00Z",
-    "createdBy": "Hearst Control System",
-    "location": "Paris, France"
-  }
+  "tags": [
+    "design",
+    "theme",
+    "ui",
+    "components",
+    "design-system",
+    "frontend"
+  ]
 }
-
