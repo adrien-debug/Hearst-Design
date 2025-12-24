@@ -35,7 +35,7 @@ Vous aviez raison ! Le système est maintenant un **monitoring centralisé MULTI
 
 ```env
 SUPABASE_URL=https://tnnsfheflydiuhiduntn.supabase.co
-SUPABASE_ANON_KEY=sb_publishable_Szjcw1a4pnMl1UwqPsUFZQ_WXOtx8-u
+SUPABASE_ANON_KEY=sb_publishable_<REDACTED>
 ```
 
 ### 3. Scripts
@@ -308,10 +308,10 @@ Supabase URL:
 https://tnnsfheflydiuhiduntn.supabase.co
 
 Anon Key:
-sb_publishable_Szjcw1a4pnMl1UwqPsUFZQ_WXOtx8-u
+sb_publishable_<REDACTED>
 
 PostgreSQL (référence):
-postgresql://postgres:Hearst1234$$@db.tnnsfheflydiuhiduntn.supabase.co:5432/postgres
+postgresql://postgres:<REDACTED>@db.<votre-projet-id>.supabase.co:5432/postgres
 ```
 
 **Dashboards:**

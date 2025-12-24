@@ -1,0 +1,167 @@
+{
+  "version": "2.0.1",
+  "releaseDate": "2025-12-24",
+  "codename": "Autonomous Control",
+  "status": "stable",
+  "electron": {
+    "implemented": false,
+    "status": "planned",
+    "note": "Electron mentionné dans la documentation comme vision future - aucune version n'a jamais utilisé Electron en production"
+  },
+  "description": "Application Electron (de bureau) pour la gestion centralisée de projets web indépendants avec architecture multi-tenant",
+  
+  "documentation": {
+    "agentGuide": "AI_AGENT_GUIDE.md",
+    "quickStart": "QUICK_START_AI.md",
+    "projectStructure": "PROJECT_STRUCTURE.md",
+    "cursorRules": ".cursorrules",
+    "architecture": "docs/architecture/",
+    "rules": "docs/ESSENTIELS/RULES_REFERENCE.md",
+    "commands": "docs/ESSENTIELS/COMMANDS_REFERENCE.md",
+    "workflow": "docs/ESSENTIELS/DEVELOPMENT_WORKFLOW.md",
+    "synchronization": "docs/ESSENTIELS/REGLES_SYNCHRONISATION.md",
+    "syncSystem": "SYSTEME_SYNCHRONISATION.md"
+  },
+  
+  "readingOrder": [
+    "QUICK_START_AI.md",
+    "AI_AGENT_GUIDE.md",
+    "docs/ESSENTIELS/RULES_REFERENCE.md",
+    "PROJECT_STRUCTURE.md"
+  ],
+  
+  "projects": {
+    "active": [
+      {
+        "id": "hearst-design",
+        "name": "Hearst Design",
+        "type": "Projet Web",
+        "description": "Projet web de design",
+        "path": "projects/hearst-design/",
+        "port": 3002,
+        "status": "active"
+      },
+      {
+        "id": "hearst-qatar-new",
+        "name": "Hearst Qatar",
+        "type": "Projet Web",
+        "description": "Projet web Qatar",
+        "path": "projects/hearst-qatar-new/",
+        "port": 3001,
+        "status": "active"
+      },
+      {
+        "id": "hearst-strategic-reserve-qatar",
+        "name": "Hearst Strategic Reserve Qatar",
+        "type": "Projet Web",
+        "description": "Projet web Strategic Reserve Qatar",
+        "path": "projects/hearst-strategic-reserve-qatar/",
+        "port": 3003,
+        "status": "active"
+      }
+    ],
+    "reference": [
+      {
+        "id": "qatar-dashboard-original",
+        "name": "Qatar Dashboard Original",
+        "path": "projects/qatar-dashboard-original/",
+        "purpose": "Template de référence"
+      }
+    ]
+  },
+  
+  "services": {
+    "backendCentral": {
+      "port": 4000,
+      "path": "backend-central/",
+      "role": "API Gateway + Auth centralisée"
+    },
+    "core": {
+      "path": "core/",
+      "role": "Code commun réutilisable (70-80%)"
+    }
+  },
+  
+  "requirements": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0",
+    "supabase": "required"
+  },
+  
+  "rules": {
+    "total": 41,
+    "categories": [
+      "Architecture (3)",
+      "Base de données (3)",
+      "Authentification (4)",
+      "Réutilisabilité (5)",
+      "Création projet (2)",
+      "Backend central (5)",
+      "Documentation (2)",
+      "Scripts (3)",
+      "Tests (2)",
+      "Déploiement (2)",
+      "Performance (4)",
+      "Sécurité (6)"
+    ]
+  },
+  
+  "autonomyLevels": [
+    "Auto-Installation",
+    "Auto-Configuration",
+    "Auto-Vérification",
+    "Auto-Réparation",
+    "Auto-Surveillance",
+    "Auto-Lancement",
+    "Auto-Synchronisation"
+  ],
+  
+  "syncSystem": {
+    "version": "1.0.0",
+    "status": "operational",
+    "description": "Système de synchronisation automatique core → projets",
+    "features": [
+      "Détection automatique des changements critiques",
+      "Synchronisation automatique via sync-core-to-projects.sh",
+      "Hooks Git pour validation pré-commit/pré-push",
+      "Backups automatiques avant chaque synchronisation",
+      "Logging complet dans SYNC_CHANGELOG.md",
+      "Alertes pour modifications de sécurité/authentification",
+      "Vérification de cohérence via verify-sync.sh",
+      "Surveillance continue via detect-changes.sh watch"
+    ],
+    "files": {
+      "manifest": "SYNC_MANIFEST.json",
+      "changelog": "SYNC_CHANGELOG.md",
+      "documentation": "SYSTEME_SYNCHRONISATION.md",
+      "rules": "docs/ESSENTIELS/REGLES_SYNCHRONISATION.md"
+    },
+    "scripts": {
+      "sync": "scripts/sync-core-to-projects.sh",
+      "detect": "scripts/detect-changes.sh",
+      "verify": "scripts/verify-sync.sh",
+      "installHooks": "scripts/install-git-hooks.sh"
+    },
+    "hooks": {
+      "preCommit": ".git/hooks/pre-commit",
+      "commitMsg": ".git/hooks/commit-msg",
+      "prePush": ".git/hooks/pre-push"
+    },
+    "criticalFiles": [
+      "core/auth/authService.js",
+      "core/middleware/authMiddleware.js",
+      "core/database/supabaseClient.js",
+      "backend-central/routes/auth.js",
+      "backend-central/controllers/authController.js",
+      "database/central-schema.sql"
+    ]
+  },
+  
+  "maintainers": [
+    "Hearst Technology Team"
+  ],
+  
+  "repository": "Hearst-Control-GitHub",
+  "license": "Proprietary"
+}
+

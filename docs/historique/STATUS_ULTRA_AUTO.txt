@@ -57,7 +57,7 @@
 3️⃣  Dans l'onglet "Authentication > Users" :
    • Cliquer "Add user" (bouton vert)
    • Email : admin@hearstmining.com
-   • Password : Admin123!Hearst
+   • Password : <REDACTED>
    • Cocher "Auto Confirm User"
    • Cliquer "Create user"
 
@@ -86,7 +86,7 @@ ZÉRO COMMANDE SUPPLÉMENTAIRE À TAPER !
 
 Dashboard multi-projets Hearst Control :
   • http://localhost:3000
-  • Login : admin@hearstmining.com / Admin123!Hearst
+  • Login : admin@hearstmining.com / <REDACTED>
   • Hearst Qatar (58 containers, 17,864 mineurs, 8.45 EH/s)
   • Hearst Aquahash (planned)
   • Monitoring temps réel complet

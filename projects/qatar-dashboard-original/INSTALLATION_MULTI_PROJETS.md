@@ -431,7 +431,7 @@ POST   /api/alerts/:id/resolve                  # Résoudre alerte
 
 ```
 URL: https://tnnsfheflydiuhiduntn.supabase.co
-ANON_KEY: sb_publishable_Szjcw1a4pnMl1UwqPsUFZQ_WXOtx8-u
+ANON_KEY: sb_publishable_<REDACTED>
 ```
 
 **Dashboards :**

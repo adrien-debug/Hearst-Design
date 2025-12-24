@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Containers - Hearst Design</title>
+    <link rel="stylesheet" href="../assets/css/design-system.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <style>
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-6);
+        }
+
+        .containers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .container-card {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .container-card::after {
+            content: '→ View Details';
+            position: absolute;
+            bottom: var(--space-4);
+            right: var(--space-4);
+            font-size: var(--text-xs);
+            color: var(--primary-green);
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+        }
+
+        .container-card:hover::after {
+            opacity: 1;
+        }
+
+        .container-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: var(--space-4);
+        }
+
+        .container-id {
+            font-size: var(--text-lg);
+            font-weight: var(--font-bold);
+            color: var(--text-primary);
+        }
+
+        .container-model {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-4);
+        }
+
+        .container-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-3);
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: var(--text-sm);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+        }
+
+        .stat-value {
+            color: var(--text-primary);
+            font-weight: var(--font-semibold);
+        }
+
+        .stats-summary {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-4);
+            margin-bottom: var(--space-6);
+        }
+
+        .summary-item {
+            background: var(--primary-grey);
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            text-align: center;
+        }
+
+        .summary-value {
+            font-size: var(--text-2xl);
+            font-weight: var(--font-bold);
+            color: var(--primary-green);
+        }
+
+        .summary-label {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: var(--space-2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <div class="logo">
+                <img src="../assets/images/hearst-logo.svg" alt="HEARST" style="width: 120px;">
+            </div>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="02-dashboard.html" class="nav-item" data-page="dashboard">
+                🏠 Dashboard
+            </a>
+            <a href="03-containers-list.html" class="nav-item active" data-page="containers">
+                📦 Containers <span style="opacity: 0.5;">(20)</span>
+            </a>
+            <a href="05-miners-list.html" class="nav-item" data-page="miners">
+                ⚡ Miners <span style="opacity: 0.5;">(6,160)</span>
+            </a>
+            <a href="07-metrics.html" class="nav-item" data-page="metrics">
+                📊 Metrics
+            </a>
+            <a href="#alerts" class="nav-item" data-page="alerts">
+                🔔 Alerts
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div style="font-size: 11px; color: var(--text-muted);">
+                v1.0.0 • Hearst Design
+            </div>
+        </div>
+    </aside>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-title">
+            Containers
+        </div>
+        <div class="header-actions">
+            <div class="user-menu">
+                <div class="user-info">
+                    <div class="user-name" id="userName">Admin Design</div>
+                    <div class="user-role" id="userRole">Administrator</div>
+                </div>
+                <button class="btn btn-secondary" onclick="logout()" style="padding: 8px 16px;">
+                    👤 Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Stats Summary -->
+        <div class="stats-summary" id="statsSummary">
+            <div class="summary-item">
+                <div class="summary-value" id="totalContainers">20</div>
+                <div class="summary-label">Total</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-value" id="operationalContainers">20</div>
+                <div class="summary-label">🟢 Operational</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-value" id="maintenanceContainers">0</div>
+                <div class="summary-label">⚠️ Maintenance</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-value" id="offlineContainers">0</div>
+                <div class="summary-label">🔴 Offline</div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <div class="filter-group">
+                <label class="filter-label">Status</label>
+                <select id="statusFilter" class="filter-select">
+                    <option value="">All Statuses</option>
+                    <option value="operational">🟢 Operational</option>
+                    <option value="maintenance">⚠️ Maintenance</option>
+                    <option value="offline">🔴 Offline</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Containers Grid -->
+        <div class="containers-grid" id="containersGrid">
+            <!-- Containers will be loaded here -->
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="../assets/js/api-mock.js"></script>
+    <script src="../assets/js/navigation.js"></script>
+    <script src="../assets/js/components.js"></script>
+    
+    <script>
+        // Check authentication
+        const token = localStorage.getItem('hearst_token');
+        const user = localStorage.getItem('hearst_user');
+        
+        if (!token || !user) {
+            window.location.href = '01-login.html';
+        }
+
+        // Load user info
+        const userData = JSON.parse(user);
+        document.getElementById('userName').textContent = userData.name;
+        document.getElementById('userRole').textContent = userData.role.toUpperCase();
+
+        // Logout function
+        function logout() {
+            if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+                localStorage.removeItem('hearst_token');
+                localStorage.removeItem('hearst_user');
+                window.location.href = '01-login.html';
+            }
+        }
+
+        // Load containers
+        async function loadContainers(filters = {}) {
+            const grid = document.getElementById('containersGrid');
+            const { createBadge, formatNumber, formatHashrate, formatPower } = HearstComponents;
+            
+            try {
+                grid.innerHTML = HearstComponents.createLoader('Loading containers...');
+                
+                const data = await HearstAPI.getContainers(filters);
+                
+                if (data.containers.length === 0) {
+                    grid.innerHTML = HearstComponents.createEmptyState('No containers found');
+                    return;
+                }
+                
+                grid.innerHTML = data.containers.map(container => `
+                    <div class="card container-card" onclick="viewContainer('${container.id}')">
+                        <div class="container-header">
+                            <div>
+                                <div class="container-id">${container.id}</div>
+                                <div class="container-model">${container.model}</div>
+                            </div>
+                            ${createBadge(container.status, container.status === 'operational' ? 'success' : 'danger')}
+                        </div>
+                        
+                        <div class="container-stats">
+                            <div class="stat-row">
+                                <span class="stat-label">Miners:</span>
+                                <span class="stat-value">${container.miners_count}</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Online:</span>
+                                <span class="stat-value">${container.online_miners}</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Hashrate:</span>
+                                <span class="stat-value">${(container.total_hashrate_ths / 1000).toFixed(1)} PH/s</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Power:</span>
+                                <span class="stat-value">${container.total_power_kw.toFixed(1)} kW</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Temp:</span>
+                                <span class="stat-value">${container.avg_temperature.toFixed(1)}°C</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Location:</span>
+                                <span class="stat-value">${container.location}</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                // Update stats summary
+                updateStatsSummary(data.containers);
+                
+            } catch (error) {
+                console.error('Error loading containers:', error);
+                grid.innerHTML = HearstComponents.createEmptyState('Error loading containers');
+            }
+        }
+
+        // Update stats summary
+        function updateStatsSummary(containers) {
+            const operational = containers.filter(c => c.status === 'operational').length;
+            const maintenance = containers.filter(c => c.status === 'maintenance').length;
+            const offline = containers.filter(c => c.status === 'offline').length;
+            
+            document.getElementById('totalContainers').textContent = containers.length;
+            document.getElementById('operationalContainers').textContent = operational;
+            document.getElementById('maintenanceContainers').textContent = maintenance;
+            document.getElementById('offlineContainers').textContent = offline;
+        }
+
+        // View container detail
+        function viewContainer(id) {
+            window.location.href = `04-container-detail.html?id=${id}`;
+        }
+
+        // Filter change
+        document.getElementById('statusFilter').addEventListener('change', (e) => {
+            const filters = {};
+            if (e.target.value) {
+                filters.status = e.target.value;
+            }
+            loadContainers(filters);
+        });
+
+        // Initialize
+        HearstNav.init();
+        loadContainers();
+    </script>
+</body>
+</html>
+

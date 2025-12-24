@@ -50,7 +50,7 @@ ALTER TABLE auth_logs DISABLE ROW LEVEL SECURITY;
 
 ### 3.2 Cliquer sur "Add User"
 - Email: `admin@hearstmining.com`
-- Password: `Admin123!Hearst`
+- Password: `<REDACTED>`
 - ✅ Cocher "Confirm Email"
 - Cliquer "Add User"
 
@@ -120,7 +120,7 @@ npm run dev
 
 Se connecter avec :
 - Email: `admin@hearstmining.com`
-- Password: `Admin123!Hearst`
+- Password: `<REDACTED>`
 
 ---
 

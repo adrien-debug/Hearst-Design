@@ -1,0 +1,107 @@
+{
+  "project": {
+    "id": "hearst-strategic-reserve-qatar",
+    "name": "Strategic Reserve Qatar",
+    "slug": "hearst-strategic-reserve-qatar",
+    "description": "Gestion d'opérations minières Bitcoin - Strategic Reserve au Qatar avec 30 containers ANTSPACE HD5",
+    "version": "1.0.0",
+    "status": "active",
+    "type": "Mining Operations"
+  },
+  "display": {
+    "icon": "🇶🇦",
+    "color": "#F39C12",
+    "theme": "gold"
+  },
+  "network": {
+    "port": 3003,
+    "backendUrl": "http://localhost:3003",
+    "frontendUrl": "http://localhost:3100",
+    "apiBasePath": "/api"
+  },
+  "monitoring": {
+    "enabled": true,
+    "endpoints": {
+      "health": "/api/health",
+      "metrics": "/api/metrics/current",
+      "containers": "/api/containers",
+      "miners": "/api/miners",
+      "pages": "/api/pages",
+      "servers": "/api/servers"
+    },
+    "refreshInterval": 10000
+  },
+  "pages": [
+    {
+      "category": "Dashboard",
+      "items": [
+        { "path": "/dashboard", "label": "Dashboard Principal", "icon": "📊" },
+        { "path": "/bitcoin-command-center", "label": "Command Center", "icon": "₿" }
+      ]
+    },
+    {
+      "category": "Mining",
+      "items": [
+        { "path": "/mining-dashboard", "label": "Mining Dashboard", "icon": "⛏️" },
+        { "path": "/infrastructure", "label": "Infrastructure", "icon": "🏗️" },
+        { "path": "/monitoring", "label": "Monitoring", "icon": "📡" }
+      ]
+    },
+    {
+      "category": "Visualisation",
+      "items": [
+        { "path": "/gallery", "label": "Galerie", "icon": "🖼️" },
+        { "path": "/unreal-viewer", "label": "Unreal Viewer", "icon": "🎮" }
+      ]
+    }
+  ],
+  "services": [
+    {
+      "id": "backend-srq",
+      "name": "Backend SRQ API",
+      "port": 3003,
+      "description": "API principale Strategic Reserve Qatar",
+      "healthCheck": "/health"
+    },
+    {
+      "id": "frontend-srq",
+      "name": "Frontend SRQ",
+      "port": 3100,
+      "description": "Interface utilisateur SRQ",
+      "healthCheck": null
+    }
+  ],
+  "mining": {
+    "containers": {
+      "total": 30,
+      "model": "ANTSPACE HD5",
+      "minersPerContainer": 308
+    },
+    "miners": {
+      "total": 9240,
+      "model": "S21XP Hydro",
+      "hashratePerUnit": 473,
+      "powerPerUnit": 5676
+    },
+    "performance": {
+      "totalHashrate": "4.37 EH/s",
+      "totalHashrateTHS": 4369920,
+      "totalPower": "52.95 MW",
+      "efficiency": "12 W/TH"
+    }
+  },
+  "integration": {
+    "backendCentral": "http://localhost:4000",
+    "frontendCentral": "http://localhost:3100",
+    "authenticationType": "JWT",
+    "tenantId": "hearst-global"
+  },
+  "metadata": {
+    "createdAt": "2025-12-24T00:00:00Z",
+    "updatedAt": "2025-12-24T00:00:00Z",
+    "createdBy": "Hearst Control System",
+    "location": "Qatar",
+    "startDate": "2025-01-01"
+  }
+}
+

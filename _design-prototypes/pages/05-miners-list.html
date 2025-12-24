@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miners - Hearst Design</title>
+    <link rel="stylesheet" href="../assets/css/design-system.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <style>
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--space-4);
+            margin-bottom: var(--space-6);
+        }
+
+        .stat-box {
+            background: var(--primary-grey);
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            text-align: center;
+        }
+
+        .stat-box-value {
+            font-size: var(--text-xl);
+            font-weight: var(--font-bold);
+            color: var(--primary-green);
+        }
+
+        .stat-box-label {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: var(--space-2);
+        }
+
+        .filters-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-4);
+            margin-bottom: var(--space-6);
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .table-container {
+            background: var(--primary-grey);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+        }
+
+        .pagination-info {
+            text-align: center;
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            margin-top: var(--space-4);
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <div class="logo">
+                <img src="../assets/images/hearst-logo.svg" alt="HEARST" style="width: 120px;">
+            </div>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="02-dashboard.html" class="nav-item" data-page="dashboard">
+                🏠 Dashboard
+            </a>
+            <a href="03-containers-list.html" class="nav-item" data-page="containers">
+                📦 Containers <span style="opacity: 0.5;">(20)</span>
+            </a>
+            <a href="05-miners-list.html" class="nav-item active" data-page="miners">
+                ⚡ Miners <span style="opacity: 0.5;">(6,160)</span>
+            </a>
+            <a href="07-metrics.html" class="nav-item" data-page="metrics">
+                📊 Metrics
+            </a>
+            <a href="#alerts" class="nav-item" data-page="alerts">
+                🔔 Alerts
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div style="font-size: 11px; color: var(--text-muted);">
+                v1.0.0 • Hearst Design
+            </div>
+        </div>
+    </aside>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-title">
+            Miners
+        </div>
+        <div class="header-actions">
+            <div class="user-menu">
+                <div class="user-info">
+                    <div class="user-name" id="userName">Admin Design</div>
+                    <div class="user-role" id="userRole">Administrator</div>
+                </div>
+                <button class="btn btn-secondary" onclick="logout()" style="padding: 8px 16px;">
+                    👤 Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-box">
+                <div class="stat-box-value" id="totalMiners">6,160</div>
+                <div class="stat-box-label">Total Miners</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-box-value" id="onlineMiners">6,160</div>
+                <div class="stat-box-label">🟢 Online</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-box-value" id="offlineMiners">0</div>
+                <div class="stat-box-label">🔴 Offline</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-box-value" id="maintenanceMiners">0</div>
+                <div class="stat-box-label">⚠️ Maintenance</div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters-bar">
+            <div class="filter-group">
+                <label class="filter-label">Status</label>
+                <select id="statusFilter" class="filter-select">
+                    <option value="">All Statuses</option>
+                    <option value="online">🟢 Online</option>
+                    <option value="offline">🔴 Offline</option>
+                    <option value="maintenance">⚠️ Maintenance</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Container</label>
+                <select id="containerFilter" class="filter-select">
+                    <option value="">All Containers</option>
+                    <!-- Will be populated dynamically -->
+                </select>
+            </div>
+
+            <div class="filter-group search-input">
+                <label class="filter-label">Search by ID</label>
+                <input type="text" id="searchInput" class="input" placeholder="DESIGN-M0001...">
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Container</th>
+                        <th>Status</th>
+                        <th>Model</th>
+                        <th>Hashrate</th>
+                        <th>Power</th>
+                        <th>Temperature</th>
+                    </tr>
+                </thead>
+                <tbody id="minersTableBody">
+                    <!-- Miners will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div id="paginationContainer"></div>
+        <div class="pagination-info" id="paginationInfo"></div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="../assets/js/api-mock.js"></script>
+    <script src="../assets/js/navigation.js"></script>
+    <script src="../assets/js/components.js"></script>
+    
+    <script>
+        // Check authentication
+        const token = localStorage.getItem('hearst_token');
+        const user = localStorage.getItem('hearst_user');
+        
+        if (!token || !user) {
+            window.location.href = '01-login.html';
+        }
+
+        // Load user info
+        const userData = JSON.parse(user);
+        document.getElementById('userName').textContent = userData.name;
+        document.getElementById('userRole').textContent = userData.role.toUpperCase();
+
+        // Logout function
+        function logout() {
+            if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+                localStorage.removeItem('hearst_token');
+                localStorage.removeItem('hearst_user');
+                window.location.href = '01-login.html';
+            }
+        }
+
+        // State
+        let currentPage = 1;
+        const perPage = 50;
+        let currentFilters = {};
+
+        // Load miners
+        async function loadMiners(page = 1) {
+            const tbody = document.getElementById('minersTableBody');
+            const { createBadge, formatNumber, formatHashrate, formatPower, formatTemperature } = HearstComponents;
+            
+            try {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 40px;">Loading miners...</td></tr>';
+                
+                const filters = {
+                    ...currentFilters,
+                    page: page,
+                    per_page: perPage
+                };
+                
+                const data = await HearstAPI.getMiners(filters);
+                
+                if (data.miners.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 40px;">No miners found</td></tr>';
+                    return;
+                }
+                
+                tbody.innerHTML = data.miners.map(miner => {
+                    const statusBadge = createBadge(
+                        miner.status,
+                        miner.status === 'online' ? 'success' : miner.status === 'offline' ? 'danger' : 'warning'
+                    );
+                    
+                    return `
+                        <tr onclick="viewMiner('${miner.id}')" style="cursor: pointer;">
+                            <td><strong>${miner.id}</strong></td>
+                            <td>${miner.container_id}</td>
+                            <td>${statusBadge}</td>
+                            <td>${miner.model}</td>
+                            <td>${miner.hashrate_ths} TH/s</td>
+                            <td>${formatNumber(miner.power_w)} W</td>
+                            <td>${formatTemperature(miner.temperature)}</td>
+                        </tr>
+                    `;
+                }).join('');
+                
+                // Update pagination
+                renderPagination(data.page, data.total_pages, data.total);
+                
+                // Update stats
+                updateStats(data.total);
+                
+                currentPage = page;
+                
+            } catch (error) {
+                console.error('Error loading miners:', error);
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 40px; color: var(--accent-danger);">Error loading miners</td></tr>';
+            }
+        }
+
+        // Render pagination
+        function renderPagination(currentPage, totalPages, totalItems) {
+            const container = document.getElementById('paginationContainer');
+            container.innerHTML = HearstComponents.createPagination(
+                currentPage,
+                totalPages,
+                'goToPage'
+            );
+            
+            const info = document.getElementById('paginationInfo');
+            const start = (currentPage - 1) * perPage + 1;
+            const end = Math.min(currentPage * perPage, totalItems);
+            info.textContent = `Showing ${start}-${end} of ${totalItems.toLocaleString()} miners`;
+        }
+
+        // Go to page
+        function goToPage(page) {
+            loadMiners(page);
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Update stats
+        function updateStats(total) {
+            document.getElementById('totalMiners').textContent = formatNumber(total);
+            document.getElementById('onlineMiners').textContent = formatNumber(total);
+            document.getElementById('offlineMiners').textContent = '0';
+            document.getElementById('maintenanceMiners').textContent = '0';
+        }
+
+        // View miner detail
+        function viewMiner(id) {
+            window.location.href = `06-miner-detail.html?id=${id}`;
+        }
+
+        // Format number
+        function formatNumber(num) {
+            return new Intl.NumberFormat('en-US').format(num);
+        }
+
+        // Populate container filter
+        async function populateContainerFilter() {
+            const select = document.getElementById('containerFilter');
+            const containers = await HearstAPI.getContainers();
+            
+            containers.containers.forEach(container => {
+                const option = document.createElement('option');
+                option.value = container.id;
+                option.textContent = container.id;
+                select.appendChild(option);
+            });
+        }
+
+        // Filter change handlers
+        document.getElementById('statusFilter').addEventListener('change', (e) => {
+            if (e.target.value) {
+                currentFilters.status = e.target.value;
+            } else {
+                delete currentFilters.status;
+            }
+            loadMiners(1);
+        });
+
+        document.getElementById('containerFilter').addEventListener('change', (e) => {
+            if (e.target.value) {
+                currentFilters.container_id = e.target.value;
+            } else {
+                delete currentFilters.container_id;
+            }
+            loadMiners(1);
+        });
+
+        // Search input
+        let searchTimeout;
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                if (e.target.value) {
+                    currentFilters.search = e.target.value;
+                } else {
+                    delete currentFilters.search;
+                }
+                loadMiners(1);
+            }, 500);
+        });
+
+        // Initialize
+        HearstNav.init();
+        populateContainerFilter();
+        loadMiners();
+    </script>
+</body>
+</html>
+

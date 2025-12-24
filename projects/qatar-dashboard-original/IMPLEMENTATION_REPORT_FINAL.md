@@ -491,7 +491,7 @@ Health   : http://localhost:3001/health
 
 ```
 Email    : admin@hearstmining.com
-Password : Admin123!Hearst
+Password : <REDACTED>
 ```
 
 ---

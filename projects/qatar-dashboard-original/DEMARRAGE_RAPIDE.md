@@ -118,7 +118,7 @@ ls -la backend/.env
 cd backend
 cat > .env << 'EOF'
 SUPABASE_URL=https://tnnsfheflydiuhiduntn.supabase.co
-SUPABASE_ANON_KEY=sb_publishable_Szjcw1a4pnMl1UwqPsUFZQ_WXOtx8-u
+SUPABASE_ANON_KEY=sb_publishable_<REDACTED>
 PORT=3001
 NODE_ENV=development
 EOF
@@ -133,7 +133,7 @@ ls -la frontend/.env.local
 cd frontend
 cat > .env.local << 'EOF'
 NEXT_PUBLIC_SUPABASE_URL=https://tnnsfheflydiuhiduntn.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_Szjcw1a4pnMl1UwqPsUFZQ_WXOtx8-u
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_<REDACTED>
 NEXT_PUBLIC_API_URL=http://localhost:3001
 EOF
 ```
@@ -157,7 +157,7 @@ https://tnnsfheflydiuhiduntn.supabase.co
 
 **Clé Publique (Anon Key) :**
 ```
-sb_publishable_Szjcw1a4pnMl1UwqPsUFZQ_WXOtx8-u
+sb_publishable_<REDACTED>
 ```
 
 **SQL Editor :**

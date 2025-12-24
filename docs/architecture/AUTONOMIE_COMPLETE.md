@@ -198,7 +198,7 @@ Après le lancement automatique :
 
 Login :
   Email    : admin@hearstmining.com
-  Password : Admin123!Hearst
+  Password : <REDACTED>
 
 Projets visibles :
   ✅ Hearst Qatar (58 containers, 17,864 mineurs)

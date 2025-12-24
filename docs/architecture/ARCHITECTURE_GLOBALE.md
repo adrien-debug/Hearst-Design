@@ -236,7 +236,7 @@ CREATE TABLE user_project_access (
 
 ```
 Email    : admin@hearstmining.com
-Password : Admin123!Hearst
+Password : <REDACTED>
 Projects : Qatar ✓, Aquahash ✓
 ```
 

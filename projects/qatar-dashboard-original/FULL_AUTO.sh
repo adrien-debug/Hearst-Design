@@ -93,7 +93,7 @@ else
     echo "3️⃣  Dans l'onglet Authentication :"
     echo "   → Add user"
     echo "   → Email : admin@hearstmining.com"
-    echo "   → Password : Admin123!Hearst"
+    echo "   → Password : <REDACTED>"
     echo "   → Cocher Auto Confirm"
     echo ""
     echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"

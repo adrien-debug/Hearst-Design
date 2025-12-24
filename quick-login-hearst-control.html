@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏢 Hearst Control - Connexion Rapide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(26, 26, 26, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(138, 253, 129, 0.2);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #8afd81 0%, #6ed664 100%);
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin-bottom: 15px;
+            box-shadow: 0 10px 30px rgba(138, 253, 129, 0.3);
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #8afd81;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .info-box {
+            background: rgba(138, 253, 129, 0.1);
+            border: 1px solid rgba(138, 253, 129, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 30px;
+        }
+
+        .info-box h3 {
+            color: #8afd81;
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .account {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .account:hover {
+            border-color: #8afd81;
+            transform: translateX(5px);
+        }
+
+        .account.selected {
+            border-color: #8afd81;
+            background: rgba(138, 253, 129, 0.1);
+        }
+
+        .account-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .account-name {
+            color: #fff;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .account-role {
+            color: #8afd81;
+            font-size: 12px;
+            padding: 3px 8px;
+            background: rgba(138, 253, 129, 0.2);
+            border-radius: 5px;
+        }
+
+        .account-email {
+            color: #888;
+            font-size: 13px;
+            margin-bottom: 3px;
+        }
+
+        .account-password {
+            color: #666;
+            font-size: 12px;
+            font-family: monospace;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #8afd81;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(138, 253, 129, 0.3);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #8afd81;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        button {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-login {
+            background: linear-gradient(135deg, #8afd81 0%, #6ed664 100%);
+            color: #0a0a0a;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(138, 253, 129, 0.4);
+        }
+
+        .btn-auto {
+            background: rgba(138, 253, 129, 0.2);
+            color: #8afd81;
+            border: 2px solid #8afd81;
+        }
+
+        .btn-auto:hover {
+            background: rgba(138, 253, 129, 0.3);
+        }
+
+        .status {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 14px;
+            display: none;
+        }
+
+        .status.success {
+            background: rgba(138, 253, 129, 0.2);
+            color: #8afd81;
+            border: 1px solid #8afd81;
+        }
+
+        .status.error {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid #ef4444;
+        }
+
+        .status.loading {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            border: 1px solid #3b82f6;
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .endpoints {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            font-size: 12px;
+        }
+
+        .endpoints h4 {
+            color: #8afd81;
+            margin-bottom: 10px;
+        }
+
+        .endpoint {
+            color: #888;
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .endpoint strong {
+            color: #fff;
+            min-width: 120px;
+        }
+
+        .endpoint a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        .endpoint a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <div class="logo-icon">🏢</div>
+            <h1>Hearst Control</h1>
+            <div class="subtitle">Connexion Rapide - Environnement de Développement</div>
+        </div>
+
+        <div class="info-box">
+            <h3>📋 Comptes de Test Disponibles</h3>
+            
+            <div class="account" onclick="selectAccount('admin')">
+                <div class="account-header">
+                    <span class="account-name">Super Admin</span>
+                    <span class="account-role">super_admin</span>
+                </div>
+                <div class="account-email">📧 admin@hearstmining.com</div>
+                <div class="account-password">🔑 admin123</div>
+            </div>
+
+            <div class="account" onclick="selectAccount('design')">
+                <div class="account-header">
+                    <span class="account-name">Design Manager</span>
+                    <span class="account-role">admin</span>
+                </div>
+                <div class="account-email">📧 design@hearst.com</div>
+                <div class="account-password">🔑 design123</div>
+            </div>
+        </div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">📧 Email</label>
+                <input type="email" id="email" name="email" value="admin@hearstmining.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">🔑 Mot de passe</label>
+                <input type="password" id="password" name="password" value="admin123" required>
+            </div>
+
+            <div class="btn-container">
+                <button type="button" class="btn-auto" onclick="autoLogin()">⚡ Connexion Auto</button>
+                <button type="submit" class="btn-login">🚀 Se Connecter</button>
+            </div>
+        </form>
+
+        <div id="status" class="status"></div>
+
+        <div class="endpoints">
+            <h4>🌐 URLs des Services</h4>
+            <div class="endpoint">
+                <strong>Backend Central:</strong>
+                <a href="http://localhost:4000" target="_blank">http://localhost:4000</a>
+            </div>
+            <div class="endpoint">
+                <strong>Frontend Central:</strong>
+                <a href="http://localhost:3100" target="_blank">http://localhost:3100</a>
+            </div>
+            <div class="endpoint">
+                <strong>Design:</strong>
+                <a href="http://localhost:3002" target="_blank">http://localhost:3002</a>
+            </div>
+            <div class="endpoint">
+                <strong>SRQ:</strong>
+                <a href="http://localhost:3003" target="_blank">http://localhost:3003</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            🔒 Environnement de développement uniquement<br>
+            Version 2.0.2 • Hearst Control
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:4000';
+        const FRONTEND_URL = 'http://localhost:3100'; // Hearst Control Dashboard
+
+        const accounts = {
+            admin: {
+                email: 'admin@hearstmining.com',
+                password: 'admin123'
+            },
+            design: {
+                email: 'design@hearst.com',
+                password: 'design123'
+            }
+        };
+
+        function selectAccount(type) {
+            // Retirer la sélection des autres comptes
+            document.querySelectorAll('.account').forEach(acc => {
+                acc.classList.remove('selected');
+            });
+            
+            // Sélectionner le compte cliqué
+            event.currentTarget.classList.add('selected');
+            
+            // Remplir le formulaire
+            const account = accounts[type];
+            document.getElementById('email').value = account.email;
+            document.getElementById('password').value = account.password;
+        }
+
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status ${type}`;
+            status.style.display = 'block';
+        }
+
+        function hideStatus() {
+            const status = document.getElementById('status');
+            status.style.display = 'none';
+        }
+
+        async function login(email, password) {
+            try {
+                showStatus('🔄 Connexion en cours...', 'loading');
+
+                const response = await fetch(`${API_URL}/api/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showStatus('✅ Connexion réussie ! Redirection...', 'success');
+                    
+                    // Stocker le token dans localStorage (pour le backend central)
+                    localStorage.setItem('hearst_token', data.token);
+                    if (data.user) {
+                        localStorage.setItem('hearst_user', JSON.stringify(data.user));
+                    }
+
+                    // Rediriger vers le dashboard avec le token dans l'URL (pour cross-origin)
+                    setTimeout(() => {
+                        const token = encodeURIComponent(data.token);
+                        const user = encodeURIComponent(JSON.stringify(data.user));
+                        window.location.href = `${FRONTEND_URL}/dashboard?token=${token}&user=${user}`;
+                    }, 1000);
+                } else {
+                    showStatus(`❌ Erreur: ${data.error || 'Identifiants invalides'}`, 'error');
+                }
+            } catch (error) {
+                console.error('Erreur de connexion:', error);
+                showStatus('❌ Impossible de se connecter au serveur', 'error');
+            }
+        }
+
+        // Formulaire de connexion
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            await login(email, password);
+        });
+
+        // Connexion automatique
+        async function autoLogin() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            await login(email, password);
+        }
+
+        // Pré-sélectionner le compte admin
+        window.onload = () => {
+            document.querySelector('.account').classList.add('selected');
+        };
+    </script>
+</body>
+</html>
+

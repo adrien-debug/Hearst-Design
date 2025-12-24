@@ -223,7 +223,7 @@ pbcopy < disable-rls.sql
 # 1. Aller dans Authentication → Users
 # 2. Cliquer "Add user" (bouton vert)
 # 3. Email : admin@hearstmining.com
-# 4. Password : Admin123!Hearst
+# 4. Password : <REDACTED>
 # 5. Cocher "Auto Confirm User"
 # 6. Cliquer "Create user"
 ```

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💼 Design Manager - Hearst Design</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: #f9f9f9;
+            color: #000;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            border: 1px solid #e0e0e0;
+            width: 450px;
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 14px;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            background: #fff;
+            transition: border 0.3s;
+        }
+        input:focus {
+            outline: none;
+            border-color: #666;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #000;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #333;
+        }
+        .info {
+            margin-top: 30px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            font-size: 13px;
+        }
+        .info strong {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .endpoint {
+            color: #666;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+        .result.success {
+            background: #d4edda;
+            color: #155724;
+            display: block;
+        }
+        .result.error {
+            background: #f8d7da;
+            color: #721c24;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💼 Design Manager</h1>
+        <div class="subtitle">Hearst Design</div>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label>📧 Email</label>
+                <input type="email" id="email" value="manager@design.hearst.com" readonly>
+            </div>
+            
+            <div class="form-group">
+                <label>🔒 Password</label>
+                <input type="password" id="password" value="<REDACTED>" readonly>
+            </div>
+            
+            <div class="form-group">
+                <label>🏢 Project ID</label>
+                <input type="text" id="projectId" value="DESIGN-001" readonly>
+            </div>
+            
+            <button type="submit">🚀 SE CONNECTER</button>
+        </form>
+        
+        <div id="result" class="result"></div>
+        
+        <div class="info">
+            <strong>📊 Informations</strong>
+            <div class="endpoint">Backend: http://localhost:3201</div>
+            <div class="endpoint">Mineurs: 6,160</div>
+            <div class="endpoint">Hashrate: 2.91 EH/s</div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const projectId = document.getElementById('projectId').value;
+            const resultDiv = document.getElementById('result');
+            
+            try {
+                const response = await fetch('http://localhost:3201/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password, projectId })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.className = 'result success';
+                    resultDiv.innerHTML = `
+                        ✅ <strong>Connexion réussie !</strong><br>
+                        👤 ${data.user.name}<br>
+                        🎭 ${data.user.role}<br>
+                        🔑 Token: ${data.token.substring(0, 50)}...
+                    `;
+                    localStorage.setItem('design_token', data.token);
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.innerHTML = `❌ <strong>Erreur:</strong> ${data.error || 'Échec de la connexion'}`;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `❌ <strong>Erreur:</strong> ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>
+

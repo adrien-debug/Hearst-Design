@@ -140,7 +140,7 @@ POST http://localhost:4000/api/auth/login
 
 {
   "email": "admin@hearstmining.com",
-  "password": "Admin123!Hearst",
+  "password": "<REDACTED>",
   "projectId": "QATAR-001" // optionnel
 }
 

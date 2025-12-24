@@ -5,12 +5,15 @@ const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
+const { initDevUsers } = require('./utils/devUsers');
 const authRoutes = require('./routes/auth');
 const containersRoutes = require('./routes/containers');
 const minersRoutes = require('./routes/miners');
 const metricsRoutes = require('./routes/metrics');
 
 const app = express();
+// ⚠️ NOTE: NE PAS MODIFIER CE PORT - Configuration infrastructure fixe
+// Port 3001 = Hearst Qatar (selon PROJECT_STRUCTURE.md)
 const PORT = process.env.PORT || 3001;
 
 // Middleware
@@ -50,10 +53,17 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
+  // #region agent log
+  fetch('http://127.0.0.1:7246/ingest/eae5f0fe-29ef-4376-8b15-c32e28fe1e52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'qatar-server.js:55',message:'Qatar backend started',data:{port:PORT,service:'hearst-qatar'},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A'})}).catch(()=>{});
+  // #endregion
   console.log(`🚀 Server running on port ${PORT}`);
   console.log(`📊 Environment: ${process.env.NODE_ENV}`);
   console.log(`🔗 Health check: http://localhost:${PORT}/health`);
+  
+  // Initialize dev users
+  await initDevUsers();
+  console.log(`🔐 Dev mode: Login with admin@hearstmining.com / SecureQatar2024!`);
 });
 
 module.exports = app;

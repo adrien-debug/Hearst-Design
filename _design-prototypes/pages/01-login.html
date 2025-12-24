@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Hearst Design</title>
+    <link rel="stylesheet" href="../assets/css/design-system.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 450px;
+            padding: var(--space-8);
+        }
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: var(--space-8);
+        }
+
+        .logo-image {
+            width: 200px;
+            height: auto;
+            margin-bottom: var(--space-6);
+        }
+
+        .app-title {
+            font-size: var(--text-2xl);
+            font-weight: var(--font-bold);
+            color: var(--text-primary);
+            margin-bottom: var(--space-2);
+        }
+
+        .app-subtitle {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+        }
+
+        .login-card {
+            background: var(--primary-grey);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            box-shadow: var(--shadow-xl);
+            border: var(--border-thin) solid var(--border-color-alpha);
+        }
+
+        .form-group {
+            margin-bottom: var(--space-6);
+        }
+
+        .form-label {
+            display: block;
+            font-size: var(--text-sm);
+            font-weight: var(--font-medium);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-2);
+        }
+
+        .login-button {
+            width: 100%;
+            margin-top: var(--space-4);
+        }
+
+        .quick-login {
+            margin-top: var(--space-6);
+            padding-top: var(--space-6);
+            border-top: var(--border-thin) solid var(--border-color);
+        }
+
+        .quick-login-title {
+            font-size: var(--text-xs);
+            font-weight: var(--font-medium);
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: var(--space-3);
+            text-align: center;
+        }
+
+        .quick-login-buttons {
+            display: grid;
+            gap: var(--space-2);
+        }
+
+        .quick-btn {
+            padding: var(--space-2) var(--space-4);
+            font-size: var(--text-xs);
+        }
+
+        .project-stats {
+            margin-top: var(--space-6);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-4);
+            text-align: center;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-1);
+        }
+
+        .stat-icon {
+            font-size: var(--text-xl);
+        }
+
+        .stat-value {
+            font-size: var(--text-sm);
+            font-weight: var(--font-semibold);
+            color: var(--primary-green);
+        }
+
+        .stat-label {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+        }
+
+        .error-message {
+            padding: var(--space-3);
+            background: rgba(255, 107, 107, 0.1);
+            border: var(--border-thin) solid var(--accent-danger);
+            border-radius: var(--radius-md);
+            color: var(--accent-danger);
+            font-size: var(--text-sm);
+            margin-bottom: var(--space-4);
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            padding: var(--space-3);
+            background: rgba(138, 253, 129, 0.1);
+            border: var(--border-thin) solid var(--primary-green);
+            border-radius: var(--radius-md);
+            color: var(--primary-green);
+            font-size: var(--text-sm);
+            margin-bottom: var(--space-4);
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <!-- Logo & Title -->
+        <div class="logo-section">
+            <img src="../assets/images/hearst-logo.svg" alt="HEARST" class="logo-image">
+            <h1 class="app-title">Hearst Design</h1>
+            <p class="app-subtitle">Bitcoin Mining Control Dashboard</p>
+        </div>
+
+        <!-- Login Card -->
+        <div class="login-card">
+            <div id="errorMessage" class="error-message"></div>
+            <div id="successMessage" class="success-message"></div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label class="form-label" for="email">📧 Email Address</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        class="input" 
+                        placeholder="admin@design.hearst.com"
+                        value="admin@design.hearst.com"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">🔒 Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        class="input" 
+                        placeholder="Enter your password"
+                        value="Design2025!Admin"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="btn btn-primary login-button">
+                    🚀 SE CONNECTER
+                </button>
+            </form>
+
+            <!-- Quick Login -->
+            <div class="quick-login">
+                <div class="quick-login-title">Quick Login</div>
+                <div class="quick-login-buttons">
+                    <button class="btn btn-secondary quick-btn" onclick="quickLogin('admin')">
+                        👤 Admin
+                    </button>
+                    <button class="btn btn-secondary quick-btn" onclick="quickLogin('manager')">
+                        👔 Manager
+                    </button>
+                    <button class="btn btn-secondary quick-btn" onclick="quickLogin('operator')">
+                        🔧 Operator
+                    </button>
+                </div>
+            </div>
+
+            <!-- Project Stats -->
+            <div class="project-stats">
+                <div class="stat-item">
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-value">20</div>
+                    <div class="stat-label">Containers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">⚡</div>
+                    <div class="stat-value">6,160</div>
+                    <div class="stat-label">Miners</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">🚀</div>
+                    <div class="stat-value">2.91</div>
+                    <div class="stat-label">EH/s</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/api-mock.js"></script>
+    <script src="../assets/js/components.js"></script>
+    
+    <script>
+        // Quick Login credentials
+        const credentials = {
+            admin: {
+                email: 'admin@design.hearst.com',
+                password: 'Design2025!Admin'
+            },
+            manager: {
+                email: 'manager@design.hearst.com',
+                password: 'Design2025!Manager'
+            },
+            operator: {
+                email: 'operator@design.hearst.com',
+                password: 'Design2025!Operator'
+            }
+        };
+
+        // Quick Login function
+        function quickLogin(role) {
+            const creds = credentials[role];
+            document.getElementById('email').value = creds.email;
+            document.getElementById('password').value = creds.password;
+            
+            // Auto-submit after a brief delay
+            setTimeout(() => {
+                document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+            }, 300);
+        }
+
+        // Form submission
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorMsg = document.getElementById('errorMessage');
+            const successMsg = document.getElementById('successMessage');
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            
+            // Reset messages
+            errorMsg.classList.remove('show');
+            successMsg.classList.remove('show');
+            
+            // Disable button
+            submitBtn.disabled = true;
+            submitBtn.textContent = '⏳ Connexion en cours...';
+            
+            try {
+                // Call API
+                const response = await HearstAPI.login(email, password);
+                
+                // Store token and user
+                localStorage.setItem('hearst_token', response.token);
+                localStorage.setItem('hearst_user', JSON.stringify(response.user));
+                
+                // Show success
+                successMsg.textContent = `✅ Bienvenue, ${response.user.name} !`;
+                successMsg.classList.add('show');
+                
+                // Redirect to dashboard after 1s
+                setTimeout(() => {
+                    window.location.href = '../pages/02-dashboard.html';
+                }, 1000);
+                
+            } catch (error) {
+                // Show error
+                errorMsg.textContent = `❌ ${error.error || 'Erreur de connexion'}`;
+                errorMsg.classList.add('show');
+                
+                // Re-enable button
+                submitBtn.disabled = false;
+                submitBtn.textContent = '🚀 SE CONNECTER';
+            }
+        });
+
+        // Check if already logged in
+        if (localStorage.getItem('hearst_token')) {
+            const user = JSON.parse(localStorage.getItem('hearst_user'));
+            document.getElementById('successMessage').textContent = `Déjà connecté en tant que ${user.name}`;
+            document.getElementById('successMessage').classList.add('show');
+            
+            setTimeout(() => {
+                window.location.href = '../pages/02-dashboard.html';
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
+

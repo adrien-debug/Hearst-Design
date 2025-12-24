@@ -191,7 +191,7 @@ cd "/Users/adrienbeyondcrypto/Desktop/Hearst Control /Qatar-Dashboard"
 💚 Health   : http://localhost:3001/health
 
 🔑 Login    : admin@hearstmining.com
-🔒 Password : Admin123!Hearst
+🔒 Password : <REDACTED>
 ```
 
 ---

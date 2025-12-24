@@ -61,7 +61,7 @@ cd "/Users/adrienbeyondcrypto/Desktop/Hearst Control /Qatar-Dashboard" && ./ULTR
 
 1️⃣  SQL Editor → Cmd+V → RUN ▶️
 2️⃣  pbcopy < disable-rls.sql → Cmd+V → RUN
-3️⃣  Authentication → Add user → admin@hearstmining.com / Admin123!Hearst
+3️⃣  Authentication → Add user → admin@hearstmining.com / <REDACTED>
 
 ✅ Le script DÉTECTE automatiquement et LANCE !
 
@@ -72,7 +72,7 @@ cd "/Users/adrienbeyondcrypto/Desktop/Hearst Control /Qatar-Dashboard" && ./ULTR
 🎯 RÉSULTAT FINAL :
 
 http://localhost:3000
-Login : admin@hearstmining.com / Admin123!Hearst
+Login : admin@hearstmining.com / <REDACTED>
 
 Dashboard multi-projets Hearst Control avec :
 • Hearst Qatar (58 containers, 17,864 mineurs, 8.45 EH/s)

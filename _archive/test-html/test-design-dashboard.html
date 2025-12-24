@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hearst Design - Test Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-left: 15px;
+        }
+        
+        .status.online {
+            background: #10b981;
+            color: white;
+        }
+        
+        .status.offline {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-card h3 {
+            color: #666;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .stat-card .value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        .stat-card .label {
+            color: #999;
+            font-size: 0.9em;
+        }
+        
+        .data-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+        
+        .data-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .data-content {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+        
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: #333;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: white;
+            font-size: 1.2em;
+        }
+        
+        .error {
+            background: #fee;
+            border: 2px solid #f88;
+            color: #c00;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .login-form {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 400px;
+            margin: 0 auto 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+            font-weight: 600;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .quick-login {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .quick-login button {
+            margin-bottom: 10px;
+            background: #10b981;
+        }
+        
+        .quick-login button:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 Hearst Design <span class="status online" id="apiStatus">Connexion...</span></h1>
+            <p>Test Dashboard - Connexion API Backend</p>
+        </div>
+        
+        <div class="loading" id="loading">Chargement des données...</div>
+        
+        <div id="loginSection" style="display: none;">
+            <div class="login-form">
+                <h2 style="text-align: center; color: #667eea; margin-bottom: 20px;">Connexion</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="email" value="admin@design.hearst.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="password" value="<REDACTED>" required>
+                    </div>
+                    <button type="submit">Se connecter</button>
+                </form>
+                <div class="quick-login">
+                    <p style="text-align: center; color: #666; margin-bottom: 10px; font-size: 0.9em;">Connexion rapide :</p>
+                    <button onclick="quickLogin('admin@design.hearst.com', '<REDACTED>')">Admin Design</button>
+                    <button onclick="quickLogin('manager@design.hearst.com', '<REDACTED>')">Manager Design</button>
+                    <button onclick="quickLogin('operator@design.hearst.com', '<REDACTED>')">Operator Design</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="dashboard" style="display: none;">
+            <div class="stats-grid" id="statsGrid"></div>
+            
+            <div class="data-section">
+                <h2>📊 Statistiques Complètes</h2>
+                <div class="data-content">
+                    <pre id="statsData"></pre>
+                </div>
+            </div>
+            
+            <div class="data-section">
+                <h2>⚡ Métriques en Temps Réel</h2>
+                <div class="data-content">
+                    <pre id="metricsData"></pre>
+                </div>
+            </div>
+            
+            <div class="data-section">
+                <h2>📦 Containers (3 premiers)</h2>
+                <div class="data-content">
+                    <pre id="containersData"></pre>
+                </div>
+            </div>
+        </div>
+        
+        <div id="errorSection" style="display: none;">
+            <div class="error" id="errorMessage"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:3201/api';
+        let authToken = null;
+
+        async function checkHealth() {
+            try {
+                const response = await fetch('http://localhost:3201/health');
+                const data = await response.json();
+                document.getElementById('apiStatus').textContent = '🟢 En ligne';
+                document.getElementById('apiStatus').className = 'status online';
+                return true;
+            } catch (error) {
+                document.getElementById('apiStatus').textContent = '🔴 Hors ligne';
+                document.getElementById('apiStatus').className = 'status offline';
+                showError('Backend non accessible sur http://localhost:3201. Assurez-vous que le serveur est démarré.');
+                return false;
+            }
+        }
+
+        async function login(email, password) {
+            try {
+                const response = await fetch(`${API_BASE}/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Identifiants incorrects');
+                }
+                
+                const data = await response.json();
+                authToken = data.token;
+                
+                document.getElementById('loginSection').style.display = 'none';
+                document.getElementById('loading').style.display = 'block';
+                
+                await loadData();
+            } catch (error) {
+                showError('Erreur de connexion: ' + error.message);
+            }
+        }
+
+        async function loadData() {
+            try {
+                const headers = { 'Authorization': `Bearer ${authToken}` };
+                
+                // Charger les stats
+                const statsResponse = await fetch(`${API_BASE}/metrics/stats`, { headers });
+                const stats = await statsResponse.json();
+                
+                // Charger les métriques
+                const metricsResponse = await fetch(`${API_BASE}/metrics/current`, { headers });
+                const metrics = await metricsResponse.json();
+                
+                // Charger les containers
+                const containersResponse = await fetch(`${API_BASE}/containers`, { headers });
+                const containers = await containersResponse.json();
+                
+                displayStats(stats);
+                displayMetrics(metrics);
+                displayContainers(containers);
+                
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+            } catch (error) {
+                showError('Erreur lors du chargement des données: ' + error.message);
+            }
+        }
+
+        function displayStats(stats) {
+            const statsGrid = document.getElementById('statsGrid');
+            statsGrid.innerHTML = `
+                <div class="stat-card">
+                    <h3>Containers</h3>
+                    <div class="value">${stats.containers.operational}/${stats.containers.total}</div>
+                    <div class="label">Opérationnels</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Mineurs</h3>
+                    <div class="value">${stats.miners.online}/${stats.miners.total}</div>
+                    <div class="label">En ligne</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Hashrate</h3>
+                    <div class="value">${stats.miners.totalHashrateEhs} EH/s</div>
+                    <div class="label">Total</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Power</h3>
+                    <div class="value">${(stats.miners.totalPower / 1000).toFixed(2)} MW</div>
+                    <div class="label">Consommation</div>
+                </div>
+            `;
+            
+            document.getElementById('statsData').textContent = JSON.stringify(stats, null, 2);
+        }
+
+        function displayMetrics(metrics) {
+            document.getElementById('metricsData').textContent = JSON.stringify(metrics, null, 2);
+        }
+
+        function displayContainers(data) {
+            const sample = data.containers.slice(0, 3);
+            document.getElementById('containersData').textContent = JSON.stringify(sample, null, 2);
+        }
+
+        function showError(message) {
+            document.getElementById('errorMessage').textContent = message;
+            document.getElementById('errorSection').style.display = 'block';
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        function quickLogin(email, password) {
+            document.getElementById('email').value = email;
+            document.getElementById('password').value = password;
+            login(email, password);
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            login(email, password);
+        });
+
+        // Init
+        (async () => {
+            const healthy = await checkHealth();
+            document.getElementById('loading').style.display = 'none';
+            
+            if (healthy) {
+                document.getElementById('loginSection').style.display = 'block';
+            }
+        })();
+    </script>
+</body>
+</html>
+

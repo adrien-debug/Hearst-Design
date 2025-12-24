@@ -75,7 +75,7 @@ ALTER TABLE auth_logs DISABLE ROW LEVEL SECURITY;
 2. Cliquer sur **"Add User"**
 3. Créer un utilisateur admin :
    - Email: `admin@hearstmining.com`
-   - Password: `Admin123!Hearst`
+   - Password: `<REDACTED>`
    - Confirm Email: ✅ (cocher)
 
 #### 2.2 Assigner des Permissions
@@ -278,7 +278,7 @@ curl -X POST http://localhost:3001/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{
     "email": "admin@hearstmining.com",
-    "password": "Admin123!Hearst"
+    "password": "<REDACTED>"
   }'
 
 # Copier le access_token retourné
@@ -293,7 +293,7 @@ curl http://localhost:3001/api/projects \
 1. Ouvrir http://localhost:3000
 2. Se connecter avec :
    - Email: `admin@hearstmining.com`
-   - Password: `Admin123!Hearst`
+   - Password: `<REDACTED>`
 3. ✅ Accès au dashboard multi-projets !
 
 ---

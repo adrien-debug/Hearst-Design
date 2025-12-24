@@ -61,7 +61,7 @@
    3. Choisir "Create new user"
    4. Remplir :
       • Email    : admin@hearstmining.com
-      • Password : Admin123!Hearst
+      • Password : <REDACTED>
    5. Cocher "Auto Confirm User"
    6. Cliquer "Create user"
 
@@ -94,7 +94,7 @@
    
    Login :
    • Email    : admin@hearstmining.com
-   • Password : Admin123!Hearst
+   • Password : <REDACTED>
 
    Vous verrez :
    ✅ Hearst Qatar (58 containers, 17,864 mineurs)

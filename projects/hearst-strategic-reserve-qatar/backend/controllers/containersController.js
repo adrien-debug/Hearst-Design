@@ -6,7 +6,7 @@ exports.getAllContainers = async (req, res) => {
     const { data, error } = await supabase
       .from('containers')
       .select('*')
-      .order('name');
+      .order('container_id');
 
     if (error) throw error;
 

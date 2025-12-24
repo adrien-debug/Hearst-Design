@@ -1,0 +1,76 @@
+{
+  "project": {
+    "id": "hearst-design",
+    "name": "Hearst Design",
+    "slug": "hearst-design",
+    "description": "Projet web de design et prototypage pour les interfaces Hearst",
+    "version": "1.0.0",
+    "status": "active",
+    "type": "Web Application"
+  },
+  "display": {
+    "icon": "🎨",
+    "color": "#9B59B6",
+    "theme": "purple"
+  },
+  "network": {
+    "port": 3002,
+    "backendUrl": "http://localhost:3002",
+    "frontendUrl": "http://localhost:3002",
+    "apiBasePath": "/api"
+  },
+  "monitoring": {
+    "enabled": true,
+    "endpoints": {
+      "health": "/api/health",
+      "metrics": "/api/metrics",
+      "pages": "/api/pages",
+      "servers": "/api/servers"
+    },
+    "refreshInterval": 10000
+  },
+  "pages": [
+    {
+      "category": "Dashboard",
+      "items": [
+        { "path": "/dashboard", "label": "Tableau de bord", "icon": "📊" },
+        { "path": "/design", "label": "Design Studio", "icon": "🎨" }
+      ]
+    },
+    {
+      "category": "Composants",
+      "items": [
+        { "path": "/components", "label": "Bibliothèque", "icon": "📦" },
+        { "path": "/prototypes", "label": "Prototypes", "icon": "🔧" }
+      ]
+    },
+    {
+      "category": "Administration",
+      "items": [
+        { "path": "/settings", "label": "Paramètres", "icon": "⚙️" }
+      ]
+    }
+  ],
+  "services": [
+    {
+      "id": "backend-design",
+      "name": "Backend Design API",
+      "port": 3002,
+      "description": "API principale Hearst Design",
+      "healthCheck": "/health"
+    }
+  ],
+  "integration": {
+    "backendCentral": "http://localhost:4000",
+    "frontendCentral": "http://localhost:3100",
+    "authenticationType": "JWT",
+    "tenantId": "hearst-global"
+  },
+  "metadata": {
+    "createdAt": "2025-12-24T00:00:00Z",
+    "updatedAt": "2025-12-24T00:00:00Z",
+    "createdBy": "Hearst Control System",
+    "location": "Paris, France"
+  }
+}
+

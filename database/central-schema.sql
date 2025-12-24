@@ -230,7 +230,7 @@ CREATE TRIGGER update_projects_updated_at BEFORE UPDATE ON projects
 -- INITIAL DATA
 -- ============================================
 
--- Super Admin (password: Admin123!Hearst)
+-- Super Admin (password: <REDACTED>)
 INSERT INTO users (email, password_hash, name, role) VALUES
 ('admin@hearstmining.com', '$2a$10$rFKwEzYhQ6xqVz.iyKV8YOxfXRp.KNJKZy9QsT8H4ggO5YPQXvPea', 'Super Admin', 'super_admin')
 ON CONFLICT (email) DO NOTHING;
@@ -251,7 +251,7 @@ INSERT INTO projects (id, name, description, location, status,
  58, 17864, 8445400, 102.37,
  'ANTSPACE HD5', 308,
  'S21XP Hydro', 473, 5676,
- 'http://localhost:3001', 'http://localhost:3000', '2025-01-01'),
+ 'http://localhost:3001', 'http://localhost:3000', DATE '2025-01-01'),
 
 -- Projet Aquahash (PLANIFIÉ)
 ('AQUA-001', 
@@ -262,7 +262,7 @@ INSERT INTO projects (id, name, description, location, status,
  15, 4620, 2185260, 26.37,
  'ANTSPACE HD5', 308,
  'S21XP Hydro', 473, 5676,
- 'http://localhost:3002', 'http://localhost:3100', '2025-06-01'),
+ 'http://localhost:3002', 'http://localhost:3100', DATE '2025-06-01'),
 
 -- Projet Texas (FUTUR)
 ('TEXAS-001', 
@@ -341,7 +341,7 @@ BEGIN
     RAISE NOTICE '';
     RAISE NOTICE '🔑 Super Admin Login:';
     RAISE NOTICE '   Email: admin@hearstmining.com';
-    RAISE NOTICE '   Password: Admin123!Hearst';
+    RAISE NOTICE '   Password: <REDACTED>';
     RAISE NOTICE '';
     RAISE NOTICE '🎯 Total Capacity (Active):';
     RAISE NOTICE '   • 58 containers';

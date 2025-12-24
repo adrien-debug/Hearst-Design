@@ -1,0 +1,118 @@
+{
+  "version": "2.0.0",
+  "releaseDate": "2025-12-24",
+  "codename": "Autonomous Control",
+  "status": "stable",
+  "description": "Plateforme centralisée multi-tenant GÉNÉRIQUE pour la gestion de N'IMPORTE QUEL type de projets technologiques indépendants (web apps, dashboards, APIs, services, IoT, etc.)",
+  
+  "documentation": {
+    "agentGuide": "AI_AGENT_GUIDE.md",
+    "quickStart": "QUICK_START_AI.md",
+    "projectStructure": "PROJECT_STRUCTURE.md",
+    "cursorRules": ".cursorrules",
+    "architecture": "docs/architecture/",
+    "rules": "docs/ESSENTIELS/RULES_REFERENCE.md",
+    "commands": "docs/ESSENTIELS/COMMANDS_REFERENCE.md",
+    "workflow": "docs/ESSENTIELS/DEVELOPMENT_WORKFLOW.md"
+  },
+  
+  "readingOrder": [
+    "QUICK_START_AI.md",
+    "AI_AGENT_GUIDE.md",
+    "docs/ESSENTIELS/RULES_REFERENCE.md",
+    "PROJECT_STRUCTURE.md"
+  ],
+  
+  "projects": {
+    "active": [
+      {
+        "id": "hearst-design",
+        "name": "Hearst Design",
+        "type": "Web Application",
+        "description": "Projet web de design",
+        "path": "projects/hearst-design/",
+        "port": 3002,
+        "status": "active"
+      },
+      {
+        "id": "hearst-qatar-new",
+        "name": "Hearst Qatar",
+        "type": "Mining Dashboard",
+        "description": "Dashboard de surveillance d'opérations minières",
+        "path": "projects/hearst-qatar-new/",
+        "port": 3001,
+        "status": "active"
+      },
+      {
+        "id": "hearst-strategic-reserve-qatar",
+        "name": "Hearst Strategic Reserve Qatar",
+        "type": "Mining Operations",
+        "description": "Gestion d'opérations minières Bitcoin (Strategic Reserve)",
+        "path": "projects/hearst-strategic-reserve-qatar/",
+        "port": 3003,
+        "status": "active"
+      }
+    ],
+    "reference": [
+      {
+        "id": "qatar-dashboard-original",
+        "name": "Qatar Dashboard Original",
+        "path": "projects/qatar-dashboard-original/",
+        "purpose": "Template de référence"
+      }
+    ]
+  },
+  
+  "services": {
+    "backendCentral": {
+      "port": 4000,
+      "path": "backend-central/",
+      "role": "API Gateway + Auth centralisée"
+    },
+    "core": {
+      "path": "core/",
+      "role": "Code commun réutilisable (70-80%)"
+    }
+  },
+  
+  "requirements": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0",
+    "supabase": "required"
+  },
+  
+  "rules": {
+    "total": 41,
+    "categories": [
+      "Architecture (3)",
+      "Base de données (3)",
+      "Authentification (4)",
+      "Réutilisabilité (5)",
+      "Création projet (2)",
+      "Backend central (5)",
+      "Documentation (2)",
+      "Scripts (3)",
+      "Tests (2)",
+      "Déploiement (2)",
+      "Performance (4)",
+      "Sécurité (6)"
+    ]
+  },
+  
+  "autonomyLevels": [
+    "Auto-Installation",
+    "Auto-Configuration",
+    "Auto-Vérification",
+    "Auto-Réparation",
+    "Auto-Surveillance",
+    "Auto-Lancement"
+  ],
+  
+  "maintainers": [
+    "Hearst Technology Team"
+  ],
+  
+  "repository": "Hearst-Control-GitHub",
+  "license": "Proprietary"
+}
+

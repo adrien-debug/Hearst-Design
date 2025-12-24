@@ -142,7 +142,7 @@ Menu complet avec 18 options :
 
 | Service | URL | Credentials |
 |---------|-----|-------------|
-| Dashboard | http://localhost:3000 | admin@hearstmining.com / Admin123!Hearst |
+| Dashboard | http://localhost:3000 | admin@hearstmining.com / <REDACTED> |
 | API Backend | http://localhost:3001 | JWT token via login |
 | Supabase Dashboard | https://supabase.com/dashboard/project/tnnsfheflydiuhiduntn | (votre compte) |
 
@@ -193,7 +193,7 @@ Coller et exécuter dans SQL Editor
 1. Aller sur : https://supabase.com/dashboard/project/tnnsfheflydiuhiduntn/auth/users
 2. Cliquer "Add user"
 3. Email : `admin@hearstmining.com`
-4. Password : `Admin123!Hearst`
+4. Password : `<REDACTED>`
 5. Cocher "Auto Confirm User"
 
 ---

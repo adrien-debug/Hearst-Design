@@ -40,7 +40,7 @@ INSERT INTO projects (
   5676,
   'http://localhost:3002',
   'http://localhost:3100',
-  '2025-03-01',
+  DATE '2025-03-01',
   'Strategic project for Qatar national Bitcoin reserve. Focus on energy efficiency and sovereignty.'
 )
 ON CONFLICT (id) DO UPDATE SET

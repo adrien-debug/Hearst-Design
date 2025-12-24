@@ -59,9 +59,9 @@ Puis éditer `backend/.env` avec vos valeurs :
 
 ```env
 # Supabase
-SUPABASE_URL=https://tnnsfheflydiuhiduntn.supabase.co
-SUPABASE_ANON_KEY=sb_publishable_Szjcw1a4pnMl1UwqPsUFZQ_WXOtx8-u
-SUPABASE_SERVICE_KEY=sb_publishable_Szjcw1a4pnMl1UwqPsUFZQ_WXOtx8-u
+SUPABASE_URL=https://<votre-projet-id>.supabase.co
+SUPABASE_ANON_KEY=sb_publishable_<REDACTED>
+SUPABASE_SERVICE_KEY=sb_secret_<REDACTED>
 
 # Backend
 PORT=3001
@@ -81,7 +81,7 @@ Puis éditer `frontend/.env.local` :
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=https://tnnsfheflydiuhiduntn.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_Szjcw1a4pnMl1UwqPsUFZQ_WXOtx8-u
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_<REDACTED>
 NEXT_PUBLIC_API_URL=http://localhost:3001
 ```
 

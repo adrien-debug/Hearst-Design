@@ -1,0 +1,382 @@
+# Hearst Control V2.0 - Règles pour Agents AI
+
+## 🎯 CONTEXTE DU PROJET
+
+Hearst Control est une **application Electron (de bureau)** pour gérer plusieurs **projets web indépendants** pour Hearst avec une architecture multi-tenant.
+
+### Nature de l'Application
+
+**Hearst Control** = Application de bureau (Electron) qui :
+- ✅ Gère plusieurs projets web depuis une interface centralisée
+- ✅ Fournit une authentification multi-tenant
+- ✅ Orchestre les projets via un backend central (API Gateway)
+- ✅ Isole complètement chaque projet web
+
+**Projets actuels** (tous des projets web) :
+- **Hearst Qatar** : Projet web
+- **Hearst SRQ** (Strategic Reserve Qatar) : Projet web
+- **Hearst Design** : Projet web en développement
+
+### Architecture en 30 Secondes
+
+```
+HEARST CONTROL (Plateforme Centrale)
+├── core/                  ← Code commun réutilisable (70-80%)
+├── backend-central/       ← API Gateway + Auth (Port 4000)
+├── projects/              ← Projets isolés
+│   ├── hearst-design/         (Port 3002)
+│   ├── hearst-qatar-new/      (Port 3001)
+│   └── hearst-strategic-reserve-qatar/ (Port 3003)
+└── scripts/               ← Automatisation
+```
+
+---
+
+## 📚 LECTURE OBLIGATOIRE
+
+AVANT toute intervention, lire dans cet ordre :
+
+1. `QUICK_START_AI.md` (2 min) - Vue d'ensemble rapide
+2. `AI_AGENT_GUIDE.md` (10 min) - Guide complet
+3. `docs/ESSENTIELS/RULES_REFERENCE.md` (10 min) - 41 règles détaillées
+4. `PROJECT_STRUCTURE.md` (5 min) - Structure annotée
+
+---
+
+## ⚠️ LES 41 RÈGLES FONDAMENTALES
+
+### 🏗️ Architecture (Règles 1-3)
+
+**#1** La plateforme centrale ne contient JAMAIS de code métier spécifique à un projet
+**#2** Chaque projet est totalement isolé et indépendant
+**#3** Le code commun réutilisable va dans `core/`
+
+### 💾 Base de Données (Règles 4-6)
+
+**#4** Un utilisateur ne voit JAMAIS les données d'un autre tenant
+**#5** Seul le `super_admin` peut voir tous les tenants
+**#6** Les requêtes SQL doivent TOUJOURS filtrer par `tenant_id` (sauf super_admin)
+
+### 🔐 Authentification (Règles 7-10)
+
+**#7** Pas de tenant_id dans le JWT = pas d'accès
+**#8** Le token doit être vérifié sur CHAQUE requête protégée
+**#9** Un rôle inférieur ne peut JAMAIS effectuer d'actions d'un rôle supérieur
+**#10** Permissions vérifiées au niveau middleware ET contrôleur
+
+### 🔄 Réutilisabilité (Règles 11-15)
+
+**#11** NE JAMAIS réécrire l'authentification - utiliser core/auth/
+**#12** NE JAMAIS recréer la structure de projet
+**#13** TOUJOURS utiliser le script `deploy-project.sh` pour créer un projet
+**#14** Nouveau projet = 3-6 semaines MAX (au lieu de 8-12)
+**#15** Économie de 50-60% de temps MINIMUM
+
+### 📊 Création Projet (Règles 16-17)
+
+**#16** Chaque nouveau projet DOIT avoir son propre Supabase
+**#17** Isolation complète des données entre projets
+
+### 🖥️ Backend Central (Règles 18-22)
+
+**#18** UN SEUL point d'entrée pour l'authentification
+**#19** TOUS les projets passent par le backend central
+**#20** JAMAIS de logique métier dans les routes
+**#21** TOUJOURS valider les inputs
+**#22** TOUJOURS gérer les erreurs avec try/catch
+
+### 📁 Documentation (Règles 23-24)
+
+**#23** Documentation générée AUTOMATIQUEMENT lors de la création projet
+**#24** Documentation mise à jour à CHAQUE changement majeur
+
+### 🔧 Scripts (Règles 25-27)
+
+**#25** Les scripts DOIVENT être idempotents (réexécutables)
+**#26** TOUJOURS vérifier les prérequis avant exécution
+**#27** TOUJOURS afficher des messages clairs (succès/erreur)
+
+### 🧪 Tests (Règles 28-29)
+
+**#28** Les tests DOIVENT passer avant chaque commit
+**#29** CI/CD DOIT bloquer si tests échouent
+
+### 🚀 Déploiement (Règles 30-31)
+
+**#30** JAMAIS de secrets en dur dans le code
+**#31** TOUJOURS utiliser des variables d'environnement
+
+### 📈 Performance (Règles 32-35)
+
+**#32** Chaque projet DOIT être scalable horizontalement
+**#33** Base de données DOIT avoir des indexes sur `tenant_id`
+**#34** API Gateway DOIT supporter le load balancing
+**#35** Caching DOIT être implémenté pour les données fréquentes
+
+### 🔒 Sécurité (Règles 36-41)
+
+**#36** Mots de passe DOIVENT être hashés avec bcrypt (min 10 rounds)
+**#37** Tokens JWT DOIVENT expirer (24h max)
+**#38** CORS DOIT être configuré strictement
+**#39** Rate limiting DOIT être activé
+**#40** HTTPS OBLIGATOIRE en production
+**#41** Audit logs DOIVENT tracer toutes actions sensibles
+
+### 🌐 Configuration Frontend (Règles 42-44)
+
+**#42** Les frontends DOIVENT TOUJOURS pointer vers le Backend Central (port 4000)
+**#43** Accès direct aux backends de projet (ports 3001, 3002, 3003) INTERDIT
+**#44** Modification des URLs API nécessite autorisation architecte système
+
+#### Règle #42 - Backend Central Obligatoire
+
+```bash
+# ✅ CORRECT
+NEXT_PUBLIC_API_URL=http://localhost:4000/api/qatar
+NEXT_PUBLIC_API_URL=http://localhost:4000/api/design
+NEXT_PUBLIC_API_URL=http://localhost:4000/api/srq
+
+# ❌ INTERDIT
+NEXT_PUBLIC_API_URL=http://localhost:3001  # Accès direct Qatar
+NEXT_PUBLIC_API_URL=http://localhost:3002  # Accès direct Design
+NEXT_PUBLIC_API_URL=http://localhost:3003  # Accès direct SRQ
+```
+
+**Voir documentation complète** : `/REGLE_URLS_FRONTENDS.md`
+
+---
+
+## 🚫 INTERDICTIONS ABSOLUES
+
+1. ❌ JAMAIS réécrire l'authentification (utiliser core/auth/)
+2. ❌ JAMAIS modifier core/ sans vérifier l'impact sur TOUS les projets
+3. ❌ JAMAIS créer de dépendances entre projets
+4. ❌ JAMAIS mettre de secrets en dur dans le code
+5. ❌ JAMAIS bypasser l'isolation tenant
+6. ❌ JAMAIS importer depuis un autre projet
+7. ❌ JAMAIS mettre de logique métier dans backend-central
+8. ❌ JAMAIS pousser sur main sans PR et review
+
+---
+
+## ✅ STANDARDS DE CODE
+
+### JavaScript/TypeScript
+
+- ESLint + Prettier obligatoires
+- TypeScript strict mode pour frontend
+- Async/await (pas de callbacks)
+- try/catch sur toutes les opérations async
+
+### Nommage
+
+- **Fichiers** : camelCase (authController.js)
+- **Classes** : PascalCase (AuthService)
+- **Fonctions** : camelCase (getUserById)
+- **Constantes** : UPPER_SNAKE_CASE (JWT_SECRET)
+- **Dossiers** : kebab-case (shared-utils)
+
+### Structure Fonction
+
+```javascript
+/**
+ * Description de la fonction
+ * @param {string} param - Description
+ * @returns {Promise<Object>} Description
+ */
+exports.functionName = async (param) => {
+  try {
+    // Validation inputs
+    if (!param) {
+      throw new Error('Parameter required');
+    }
+    
+    // Logique
+    const result = await operation();
+    
+    // Retour
+    return result;
+  } catch (error) {
+    // Gestion erreur
+    throw error;
+  }
+};
+```
+
+---
+
+## 🔧 COMMANDES ESSENTIELLES
+
+```bash
+# Orchestration
+./scripts/start-all.sh         # Démarrer tous les services
+./scripts/stop-all.sh          # Arrêter tous les services
+
+# Création
+./scripts/deploy-project.sh <nom>  # Créer nouveau projet
+
+# Tests
+./scripts/test-multi-tenant.sh     # Tester isolation
+
+# Sécurité
+./scripts/check-secrets.sh         # Vérifier secrets exposés
+
+# Backend
+cd backend-central && npm start    # Démarrer backend central
+node test-supabase-connection.js   # Tester connexion DB
+```
+
+---
+
+## 📋 CHECKLIST AVANT MODIFICATION
+
+### Vérifications Préalables
+
+- [ ] J'ai lu AI_AGENT_GUIDE.md et QUICK_START_AI.md
+- [ ] Je connais le contexte (quel projet ? quel composant ?)
+- [ ] J'ai vérifié les règles applicables
+- [ ] Je ne touche pas aux autres projets
+- [ ] Mes modifications respectent l'isolation
+
+### Pendant le Développement
+
+- [ ] Pas de code métier dans core/
+- [ ] Pas de code métier dans backend-central/
+- [ ] Filtrage tenant_id présent (si applicable)
+- [ ] Validation des inputs
+- [ ] Gestion des erreurs (try/catch)
+- [ ] Pas de secrets en dur
+
+### Après Modification
+
+- [ ] Tests passent
+- [ ] Documentation mise à jour
+- [ ] Pas de régression sur autres projets
+
+---
+
+## 🎯 WORKFLOW RECOMMANDÉ
+
+### Pour une Modification Simple
+
+```
+1. Lire documentation pertinente
+2. Identifier le fichier à modifier
+3. Vérifier les règles applicables
+4. Proposer la modification
+5. Attendre validation utilisateur
+6. Implémenter
+7. Tester
+```
+
+### Pour une Nouvelle Fonctionnalité
+
+```
+1. Lire AI_AGENT_GUIDE.md complet
+2. Analyser l'architecture actuelle
+3. Identifier l'emplacement approprié
+4. Proposer un plan détaillé
+5. Attendre validation
+6. Implémenter par étapes
+7. Tests à chaque étape
+8. Documentation finale
+```
+
+### Pour un Nouveau Projet
+
+```
+1. Utiliser ./scripts/deploy-project.sh
+2. Configurer Supabase dédié
+3. Adapter schéma DB
+4. Adapter controllers
+5. Adapter frontend
+6. Tests complets
+7. Documentation
+```
+
+---
+
+## 📂 STRUCTURE À RESPECTER
+
+### Projet
+
+```
+projects/<nom>/
+├── backend/
+│   ├── controllers/    ← Logique métier
+│   ├── routes/         ← Définition routes
+│   ├── middleware/     ← Middlewares
+│   ├── utils/          ← Utilitaires
+│   └── server.js       ← Point d'entrée
+├── frontend/
+│   ├── src/app/        ← Pages Next.js
+│   └── src/lib/        ← Utilitaires client
+├── database/
+│   └── schema.sql      ← Schéma spécifique
+└── README.md
+```
+
+### Core (NE PAS MODIFIER SANS VALIDATION)
+
+```
+core/
+├── auth/authService.js           ← Auth multi-tenant
+├── middleware/authMiddleware.js  ← Middlewares partagés
+├── database/supabaseClient.js    ← Client DB
+└── shared-utils/                 ← Utilitaires communs
+```
+
+---
+
+## 🆘 EN CAS DE DOUTE
+
+1. **Relire** AI_AGENT_GUIDE.md
+2. **Vérifier** docs/ESSENTIELS/RULES_REFERENCE.md
+3. **Demander** clarification à l'utilisateur
+4. **Ne pas** faire de suppositions
+5. **Proposer** un plan avant d'exécuter
+
+---
+
+## 📊 INFORMATIONS TECHNIQUES
+
+### Ports
+
+| Service | Port |
+|---------|------|
+| Backend Central | 4000 |
+| Hearst Qatar | 3001 |
+| Hearst Design | 3002 |
+| Hearst SRQ | 3003 |
+
+### Technologies
+
+- **Backend** : Node.js 18+, Express.js, Supabase
+- **Frontend** : Next.js 14, React 18, TypeScript, Tailwind
+- **Auth** : JWT + bcrypt
+- **DB** : PostgreSQL (via Supabase)
+
+### Rôles Utilisateurs
+
+1. `super_admin` - Accès global plateforme
+2. `admin` - Admin d'un tenant
+3. `manager` - Gestion opérationnelle
+4. `operator` - Opérations quotidiennes
+5. `viewer` - Lecture seule
+
+---
+
+## ✨ RAPPEL FINAL
+
+> **"Hearst Control = Autonomie + Isolation + Réutilisabilité"**
+
+- **Autonomie** : Le système se configure, vérifie, répare, lance tout seul
+- **Isolation** : Chaque projet/tenant est 100% indépendant
+- **Réutilisabilité** : 70-80% du code est réutilisable
+
+**En cas de doute, demander. Mieux vaut une question qu'une erreur.**
+
+---
+
+Hearst Control V2.0 | .cursorrules | Décembre 2025
+

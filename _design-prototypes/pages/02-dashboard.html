@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Hearst Design</title>
+    <link rel="stylesheet" href="../assets/css/design-system.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <style>
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-6);
+            margin-bottom: var(--space-8);
+        }
+
+        .project-info-card {
+            background: var(--primary-grey);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            border: var(--border-thin) solid var(--border-color-alpha);
+            margin-bottom: var(--space-8);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-4);
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-1);
+        }
+
+        .info-label {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            font-size: var(--text-base);
+            font-weight: var(--font-semibold);
+            color: var(--text-primary);
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-4);
+        }
+
+        .action-btn {
+            padding: var(--space-4);
+            text-align: center;
+        }
+
+        .refresh-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+        }
+
+        .refresh-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: var(--space-4);
+            border-top: var(--border-thin) solid var(--border-color);
+            text-align: center;
+        }
+
+        .sidebar-logo-small {
+            width: 80px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar - RÈGLE #5: 200px -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <div class="logo">
+                <img src="../assets/images/hearst-logo.svg" alt="HEARST" style="width: 120px;">
+            </div>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="#dashboard" class="nav-item active" data-page="dashboard">
+                🏠 Dashboard
+            </a>
+            <a href="#containers" class="nav-item" data-page="containers">
+                📦 Containers <span style="opacity: 0.5;">(20)</span>
+            </a>
+            <a href="#miners" class="nav-item" data-page="miners">
+                ⚡ Miners <span style="opacity: 0.5;">(6,160)</span>
+            </a>
+            <a href="#metrics" class="nav-item" data-page="metrics">
+                📊 Metrics
+            </a>
+            <a href="#alerts" class="nav-item" data-page="alerts">
+                🔔 Alerts
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div style="font-size: 11px; color: var(--text-muted);">
+                v1.0.0 • Hearst Design
+            </div>
+        </div>
+    </aside>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-title">
+            Dashboard
+            <span class="refresh-indicator">
+                <span class="refresh-dot"></span>
+                Auto-refresh: 30s
+            </span>
+        </div>
+        <div class="header-actions">
+            <div class="user-menu">
+                <div class="user-info">
+                    <div class="user-name" id="userName">Admin Design</div>
+                    <div class="user-role" id="userRole">Administrator</div>
+                </div>
+                <button class="btn btn-secondary" onclick="logout()" style="padding: 8px 16px;">
+                    👤 Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Stats Grid -->
+        <div class="stats-grid" id="statsGrid">
+            <!-- Stats will be loaded here -->
+        </div>
+
+        <!-- Project Info -->
+        <div class="project-info-card">
+            <h2 style="margin-bottom: var(--space-6); font-size: var(--text-lg);">
+                Project Specifications
+            </h2>
+            <div class="info-grid" id="projectInfo">
+                <!-- Project info will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="card">
+            <h2 style="margin-bottom: var(--space-6); font-size: var(--text-lg);">
+                Quick Actions
+            </h2>
+            <div class="quick-actions">
+                <a href="03-containers-list.html" class="btn btn-primary action-btn">
+                    📦 View Containers
+                </a>
+                <a href="05-miners-list.html" class="btn btn-primary action-btn">
+                    ⚡ View Miners
+                </a>
+                <a href="07-metrics.html" class="btn btn-primary action-btn">
+                    📊 View Metrics
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="../assets/js/api-mock.js"></script>
+    <script src="../assets/js/navigation.js"></script>
+    <script src="../assets/js/components.js"></script>
+    
+    <script>
+        // Check authentication
+        const token = localStorage.getItem('hearst_token');
+        const user = localStorage.getItem('hearst_user');
+        
+        if (!token || !user) {
+            window.location.href = '01-login.html';
+        }
+
+        // Load user info
+        const userData = JSON.parse(user);
+        document.getElementById('userName').textContent = userData.name;
+        document.getElementById('userRole').textContent = userData.role.toUpperCase();
+
+        // Logout function
+        function logout() {
+            if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+                localStorage.removeItem('hearst_token');
+                localStorage.removeItem('hearst_user');
+                window.location.href = '01-login.html';
+            }
+        }
+
+        // Load dashboard data
+        async function loadDashboard() {
+            try {
+                // Load metrics
+                const metrics = await HearstAPI.getMetrics();
+                const project = await HearstAPI.getProject();
+                
+                // Render stats
+                renderStats(metrics);
+                
+                // Render project info
+                renderProjectInfo(project);
+                
+            } catch (error) {
+                console.error('Error loading dashboard:', error);
+                HearstComponents.showToast('Erreur de chargement des données', 'danger');
+            }
+        }
+
+        // Render stats cards
+        function renderStats(metrics) {
+            const statsGrid = document.getElementById('statsGrid');
+            const { createStatCard, formatNumber, formatHashrate, formatPower } = HearstComponents;
+            
+            const stats = [
+                {
+                    icon: '📦',
+                    title: 'Containers',
+                    value: metrics.total_containers,
+                    label: `${metrics.operational_containers} operational`
+                },
+                {
+                    icon: '⚡',
+                    title: 'Miners',
+                    value: formatNumber(metrics.total_miners),
+                    label: `${formatNumber(metrics.online_miners)} online`
+                },
+                {
+                    icon: '🚀',
+                    title: 'Hashrate',
+                    value: `${metrics.total_hashrate_ehs} EH/s`,
+                    label: formatHashrate(metrics.total_hashrate_ths)
+                },
+                {
+                    icon: '⚡',
+                    title: 'Power',
+                    value: `${metrics.total_power_mw} MW`,
+                    label: formatPower(metrics.total_power_kw * 1000)
+                }
+            ];
+            
+            statsGrid.innerHTML = stats.map(stat => createStatCard(stat)).join('');
+        }
+
+        // Render project info
+        function renderProjectInfo(project) {
+            const projectInfo = document.getElementById('projectInfo');
+            
+            const info = [
+                { label: 'Containers', value: `${project.total_containers} × ${project.container_model}` },
+                { label: 'Capacity per Container', value: `${project.miners_per_container} miners` },
+                { label: 'Miner Model', value: project.miner_model },
+                { label: 'Hashrate per Miner', value: `${project.hashrate_per_miner} TH/s` },
+                { label: 'Power per Miner', value: `${project.power_per_miner.toLocaleString()} W` },
+                { label: 'Total Miners', value: project.total_miners.toLocaleString() },
+                { label: 'Total Hashrate', value: `${project.total_hashrate_ehs} EH/s` },
+                { label: 'Total Power', value: `${project.total_power_mw} MW` },
+                { label: 'Location', value: project.location }
+            ];
+            
+            projectInfo.innerHTML = info.map(item => `
+                <div class="info-item">
+                    <div class="info-label">${item.label}</div>
+                    <div class="info-value">${item.value}</div>
+                </div>
+            `).join('');
+        }
+
+        // Auto-refresh every 30 seconds
+        let refreshInterval;
+        function startAutoRefresh() {
+            refreshInterval = setInterval(() => {
+                console.log('Auto-refreshing dashboard...');
+                loadDashboard();
+            }, 30000); // 30 seconds
+        }
+
+        // Initialize
+        HearstNav.init();
+        loadDashboard();
+        startAutoRefresh();
+
+        // Clean up on page unload
+        window.addEventListener('beforeunload', () => {
+            if (refreshInterval) {
+                clearInterval(refreshInterval);
+            }
+        });
+    </script>
+</body>
+</html>
+

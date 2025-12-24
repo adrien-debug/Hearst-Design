@@ -1,0 +1,192 @@
+/* ============================================
+   HEARST DESIGN SYSTEM - Variables CSS
+   Charte graphique officielle HEARST
+   ============================================ */
+
+:root {
+    /* ====================================
+       COULEURS PRINCIPALES - HEARST
+       ==================================== */
+    
+    /* Couleur principale HEARST */
+    --primary-green: #8afd81;          /* Vert HEARST - Accent principal */
+    --accent-primary: #8afd81;         /* Alias */
+    --hearst-primary: #8afd81;         /* Alias cockpit */
+    
+    /* Variations */
+    --accent-primary-dark: #6fdc66;    /* Hover, états actifs */
+    --accent-primary-light: #a5ff9c;   /* États hover légers */
+    
+    /* Backgrounds */
+    --primary-dark: #000000;           /* Fond principal (body) */
+    --bg-primary: #0a0a0a;             /* Fond principal (header) */
+    --primary-grey: #1a1a1a;           /* Fond secondaire (sidebar, cards) */
+    --bg-secondary: #1a1a1a;           /* Alias */
+    --bg-tertiary: #242424;            /* Éléments tertiaires */
+    --bg-hover: #2a2a2a;               /* États hover */
+    
+    /* Nuances de gris */
+    --grey-100: #2a2a2a;               /* Bordures, séparateurs */
+    --grey-200: #3a3a3a;               /* Hover backgrounds */
+    --grey-300: #4a4a4a;               /* Disabled states */
+    --grey-400: #666666;               /* Texte secondaire */
+    --grey-500: #999999;               /* Texte tertiaire */
+    
+    /* Accents secondaires */
+    --accent-secondary: #7bed9f;       /* Mint green (accent secondaire) */
+    --accent-success: #8afd81;         /* Succès (vert HEARST) */
+    --success: #27ae60;                /* Succès alternatif */
+    --accent-warning: #f6c344;         /* Avertissement (orange) */
+    --warning: #f39c12;                /* Avertissement alternatif */
+    --accent-danger: #ff6b6b;          /* Erreur, danger (rouge) */
+    --error: #e74c3c;                  /* Erreur alternatif */
+    --accent-info: #4ecdc4;            /* Information (cyan) */
+    --info: #3498db;                   /* Information alternatif */
+    
+    /* Textes */
+    --text-primary: #ffffff;           /* Texte principal (blanc) */
+    --text-secondary: #cccccc;         /* Texte secondaire (gris clair) */
+    --text-muted: #999999;             /* Texte atténué (gris) */
+    
+    /* Bordures */
+    --border-color: #2a2a2a;           /* Bordures par défaut */
+    --border-hover: #3a3a3a;           /* Bordures au survol */
+    --border-color-alpha: rgba(255, 255, 255, 0.08);
+    
+    /* ====================================
+       TYPOGRAPHIE
+       ==================================== */
+    
+    /* Familles de polices */
+    --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --font-mono: 'Fira Code', 'Consolas', 'Monaco', monospace;
+    
+    /* Tailles de police */
+    --text-xs: 0.75rem;      /* 12px - Small text, badges */
+    --text-sm: 0.875rem;     /* 14px - Body text */
+    --text-base: 1rem;       /* 16px - Logo, card titles */
+    --text-lg: 1.125rem;     /* 18px - Section titles */
+    --text-xl: 1.25rem;      /* 20px - Page title */
+    --text-2xl: 1.5rem;      /* 24px */
+    --text-3xl: 2rem;        /* 32px */
+    --text-4xl: 2.5rem;      /* 40px */
+    
+    /* Poids de police */
+    --font-normal: 400;      /* Texte de contenu normal */
+    --font-medium: 500;      /* Labels, texte secondaire */
+    --font-semibold: 600;    /* Titres, boutons, navigation */
+    --font-bold: 700;        /* Titres principaux, emphase */
+    
+    /* Line heights */
+    --leading-tight: 1.25;      /* Titres compacts */
+    --leading-normal: 1.5;      /* Texte de contenu lisible */
+    --leading-relaxed: 1.75;    /* Texte aéré */
+    
+    /* ====================================
+       ESPACEMENTS (multiples de 4px)
+       ==================================== */
+    --space-1: 0.25rem;      /* 4px */
+    --space-2: 0.5rem;       /* 8px */
+    --space-3: 0.75rem;      /* 12px */
+    --space-4: 1rem;         /* 16px */
+    --space-5: 1.25rem;      /* 20px */
+    --space-6: 1.5rem;       /* 24px */
+    --space-8: 2rem;         /* 32px */
+    --space-10: 2.5rem;      /* 40px */
+    --space-12: 3rem;        /* 48px */
+    --space-16: 4rem;        /* 64px */
+    --space-20: 5rem;        /* 80px */
+    
+    /* ====================================
+       BORDURES & OMBRES
+       ==================================== */
+    
+    /* Rayons de bordure */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-full: 9999px;
+    
+    /* Épaisseurs de bordure */
+    --border-thin: 1px;
+    --border-medium: 2px;
+    --border-thick: 3px;
+    
+    /* Ombres */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.6);
+    
+    /* Glow effects (vert HEARST) */
+    --glow-green: 0 0 20px rgba(138, 253, 129, 0.3);
+    --glow-green-strong: 0 0 30px rgba(138, 253, 129, 0.5);
+    
+    /* ====================================
+       ANIMATIONS & TRANSITIONS
+       ==================================== */
+    
+    /* Durées */
+    --duration-fast: 150ms;
+    --duration-normal: 250ms;
+    --duration-slow: 350ms;
+    
+    /* Easings */
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Transitions (aliases) */
+    --transition-fast: var(--duration-fast) var(--ease-in-out);
+    --transition-normal: var(--duration-normal) var(--ease-in-out);
+    
+    /* ====================================
+       LAYOUT
+       ==================================== */
+    --sidebar-width: 200px;
+    --header-height: 70px;
+}
+
+/* ====================================
+   BASE STYLES
+   ==================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    color: var(--text-primary);
+    background: var(--primary-dark);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ====================================
+   UTILITY CLASSES
+   ==================================== */
+
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+
+.bg-primary { background: var(--bg-primary); }
+.bg-secondary { background: var(--bg-secondary); }
+
+.font-normal { font-weight: var(--font-normal); }
+.font-medium { font-weight: var(--font-medium); }
+.font-semibold { font-weight: var(--font-semibold); }
+.font-bold { font-weight: var(--font-bold); }
+
+.text-xs { font-size: var(--text-xs); }
+.text-sm { font-size: var(--text-sm); }
+.text-base { font-size: var(--text-base); }
+.text-lg { font-size: var(--text-lg); }
+.text-xl { font-size: var(--text-xl); }
+

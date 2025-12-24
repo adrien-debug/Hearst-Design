@@ -47,7 +47,7 @@ Cliquez **RUN** ▶️
 
 1. Cliquez **"Add User"**
 2. Email: `admin@hearstmining.com`
-3. Password: `Admin123!Hearst`
+3. Password: `<REDACTED>`
 4. ✅ Cocher "Confirm Email"
 5. Cliquer **"Add User"**
 
@@ -92,7 +92,7 @@ Le navigateur s'ouvre automatiquement sur **http://localhost:3000**
 
 **Connectez-vous avec** :
 - Email: `admin@hearstmining.com`
-- Password: `Admin123!Hearst`
+- Password: `<REDACTED>`
 
 **Vous verrez** :
 - 📊 Dashboard multi-projets
@@ -146,7 +146,7 @@ Si vous avez déjà tout fait dans Supabase :
 # Attendre 15 secondes
 
 # Ouvrir http://localhost:3000
-# Login: admin@hearstmining.com / Admin123!Hearst
+# Login: admin@hearstmining.com / <REDACTED>
 
 # ✅ C'EST PARTI !
 ```

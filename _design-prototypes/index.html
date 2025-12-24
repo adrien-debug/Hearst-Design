@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototypes Hearst Design</title>
+    <link rel="stylesheet" href="assets/css/design-system.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+            padding: var(--space-8);
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: var(--space-12);
+        }
+
+        .logo-img {
+            width: 250px;
+            margin-bottom: var(--space-6);
+        }
+
+        .main-title {
+            font-size: var(--text-4xl);
+            font-weight: var(--font-bold);
+            color: var(--text-primary);
+            margin-bottom: var(--space-4);
+        }
+
+        .subtitle {
+            font-size: var(--text-lg);
+            color: var(--text-secondary);
+        }
+
+        .prototypes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-6);
+            margin-bottom: var(--space-8);
+        }
+
+        .prototype-card {
+            background: var(--primary-grey);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            border: var(--border-thin) solid var(--border-color-alpha);
+            transition: all var(--transition-normal);
+            text-decoration: none;
+            display: block;
+        }
+
+        .prototype-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(138, 253, 129, 0.3);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .prototype-icon {
+            font-size: var(--text-3xl);
+            margin-bottom: var(--space-4);
+        }
+
+        .prototype-title {
+            font-size: var(--text-xl);
+            font-weight: var(--font-bold);
+            color: var(--text-primary);
+            margin-bottom: var(--space-2);
+        }
+
+        .prototype-description {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-4);
+        }
+
+        .prototype-meta {
+            display: flex;
+            gap: var(--space-4);
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .info-section {
+            background: var(--primary-grey);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            border: var(--border-thin) solid var(--border-color-alpha);
+        }
+
+        .info-title {
+            font-size: var(--text-xl);
+            font-weight: var(--font-bold);
+            color: var(--text-primary);
+            margin-bottom: var(--space-4);
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-list li {
+            padding: var(--space-2) 0;
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .info-list li::before {
+            content: '✓';
+            color: var(--primary-green);
+            font-weight: var(--font-bold);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: var(--space-12);
+            padding-top: var(--space-8);
+            border-top: var(--border-thin) solid var(--border-color);
+            color: var(--text-muted);
+            font-size: var(--text-sm);
+        }
+
+        .badge-new {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--primary-green);
+            color: #000;
+            font-size: 10px;
+            font-weight: var(--font-bold);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: var(--radius-sm);
+            margin-left: var(--space-2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header-section">
+            <img src="assets/images/hearst-logo.svg" alt="HEARST" class="logo-img">
+            <h1 class="main-title">Prototypes UI/UX</h1>
+            <p class="subtitle">Hearst Design • Bitcoin Mining Control Dashboard</p>
+        </div>
+
+        <!-- Prototypes Grid -->
+        <div class="prototypes-grid">
+            <!-- Login -->
+            <a href="pages/01-login.html" class="prototype-card">
+                <div class="prototype-icon">🔐</div>
+                <h2 class="prototype-title">Login</h2>
+                <p class="prototype-description">
+                    Page d'authentification avec quick-login pour Admin, Manager et Operator
+                </p>
+                <div class="prototype-meta">
+                    <div class="meta-item">
+                        <span>✓</span> Fonctionnel
+                    </div>
+                    <div class="meta-item">
+                        <span>🎨</span> Charte HEARST
+                    </div>
+                </div>
+            </a>
+
+            <!-- Dashboard -->
+            <a href="pages/02-dashboard.html" class="prototype-card">
+                <div class="prototype-icon">🏠</div>
+                <h2 class="prototype-title">Dashboard</h2>
+                <p class="prototype-description">
+                    Vue d'ensemble avec stats temps réel, project info et quick actions
+                </p>
+                <div class="prototype-meta">
+                    <div class="meta-item">
+                        <span>✓</span> Auto-refresh 30s
+                    </div>
+                    <div class="meta-item">
+                        <span>📊</span> 4 stats cards
+                    </div>
+                </div>
+            </a>
+
+            <!-- Containers -->
+            <a href="pages/03-containers-list.html" class="prototype-card">
+                <div class="prototype-icon">📦</div>
+                <h2 class="prototype-title">Containers</h2>
+                <p class="prototype-description">
+                    Liste des 20 containers ANTSPACE HD5 avec filtres et stats
+                </p>
+                <div class="prototype-meta">
+                    <div class="meta-item">
+                        <span>20</span> Containers
+                    </div>
+                    <div class="meta-item">
+                        <span>🔍</span> Filtres
+                    </div>
+                </div>
+            </a>
+
+            <!-- Miners -->
+            <a href="pages/05-miners-list.html" class="prototype-card">
+                <div class="prototype-icon">⚡</div>
+                <h2 class="prototype-title">Miners</h2>
+                <p class="prototype-description">
+                    Liste paginée des 6,160 miners S21XP Hydro avec recherche et filtres
+                </p>
+                <div class="prototype-meta">
+                    <div class="meta-item">
+                        <span>6,160</span> Miners
+                    </div>
+                    <div class="meta-item">
+                        <span>📄</span> Pagination
+                    </div>
+                </div>
+            </a>
+
+            <!-- Metrics -->
+            <a href="pages/07-metrics.html" class="prototype-card">
+                <div class="prototype-icon">📊</div>
+                <h2 class="prototype-title">Metrics <span class="badge-new">Charts</span></h2>
+                <p class="prototype-description">
+                    Métriques temps réel avec charts interactifs (Hashrate, Power, Temp)
+                </p>
+                <div class="prototype-meta">
+                    <div class="meta-item">
+                        <span>🔄</span> Auto-refresh 10s
+                    </div>
+                    <div class="meta-item">
+                        <span>📈</span> Chart.js
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Info Section -->
+        <div class="info-section">
+            <h3 class="info-title">📋 Informations Projet</h3>
+            <ul class="info-list">
+                <li>Charte graphique HEARST officielle respectée</li>
+                <li>Vert signature #8afd81 - Texte noir sur fond vert</li>
+                <li>Sidebar 200px fixe avec navigation</li>
+                <li>Données mockées réalistes (20 containers, 6,160 miners)</li>
+                <li>Fonctionnalités interactives complètes (auth, filtres, pagination, charts)</li>
+                <li>Auto-refresh et temps réel simulés</li>
+                <li>Responsive design pour desktop, tablet et mobile</li>
+                <li>Prêt pour implémentation Electron</li>
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Hearst Design © 2025 • Prototypes UI/UX v1.0.0</p>
+            <p style="margin-top: var(--space-2);">
+                <a href="README.md" style="color: var(--primary-green); text-decoration: none;">📖 Documentation</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+

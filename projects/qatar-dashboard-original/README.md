@@ -142,7 +142,7 @@ cp .env.example .env
 🔧 Backend  : http://localhost:3001
 
 🔑 Login    : admin@hearstmining.com
-🔒 Password : Admin123!Hearst
+🔒 Password : <REDACTED>
 ```
 
 ---

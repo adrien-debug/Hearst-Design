@@ -429,16 +429,16 @@ FROM project_overview;
 ```bash
 # core/backend/.env
 SUPABASE_URL=https://tnnsfheflydiuhiduntn.supabase.co
-SUPABASE_ANON_KEY=sb_publishable_Szjcw1a4pnMl1UwqPsUFZQ_WXOtx8-u
+SUPABASE_ANON_KEY=sb_publishable_<REDACTED>
 
 # projects/hearst-qatar/backend/.env
 SUPABASE_URL=https://tnnsfheflydiuhiduntn.supabase.co  ← MÊME
-SUPABASE_ANON_KEY=sb_publishable_Szjcw1a4pnMl1UwqPsUFZQ_WXOtx8-u  ← MÊME
+SUPABASE_ANON_KEY=sb_publishable_<REDACTED>  ← MÊME
 PROJECT_ID=QATAR-001  ← DIFFÉRENT
 
 # projects/hearst-aquahash/backend/.env
 SUPABASE_URL=https://tnnsfheflydiuhiduntn.supabase.co  ← MÊME
-SUPABASE_ANON_KEY=sb_publishable_Szjcw1a4pnMl1UwqPsUFZQ_WXOtx8-u  ← MÊME
+SUPABASE_ANON_KEY=sb_publishable_<REDACTED>  ← MÊME
 PROJECT_ID=AQUA-001  ← DIFFÉRENT
 ```
 

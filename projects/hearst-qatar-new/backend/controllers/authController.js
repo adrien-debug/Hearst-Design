@@ -1,6 +1,6 @@
-const supabase = require('../utils/supabase');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const { getDevUser } = require('../utils/devUsers');
 
 // Login
 exports.login = async (req, res) => {
@@ -11,26 +11,22 @@ exports.login = async (req, res) => {
       return res.status(400).json({ error: 'Email and password required' });
     }
 
-    // Get user from database
-    const { data: users, error } = await supabase
-      .from('users')
-      .select('*')
-      .eq('email', email)
-      .single();
-
-    if (error || !users) {
+    // MODE DÉVELOPPEMENT : Utilisateurs hardcodés
+    const user = getDevUser(email);
+    
+    if (!user) {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
     // Check password
-    const isValid = await bcrypt.compare(password, users.password_hash);
+    const isValid = await bcrypt.compare(password, user.password_hash);
     if (!isValid) {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
     // Generate token
     const token = jwt.sign(
-      { id: users.id, email: users.email, role: users.role },
+      { id: user.id, email: user.email, role: user.role, tenant_id: user.tenant_id },
       process.env.JWT_SECRET,
       { expiresIn: '24h' }
     );
@@ -38,10 +34,11 @@ exports.login = async (req, res) => {
     res.json({
       token,
       user: {
-        id: users.id,
-        email: users.email,
-        name: users.name,
-        role: users.role
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        role: user.role,
+        tenant_id: user.tenant_id
       }
     });
   } catch (error) {

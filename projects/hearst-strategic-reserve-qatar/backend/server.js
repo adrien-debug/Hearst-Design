@@ -5,17 +5,21 @@ const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
+const { initDevUsers } = require('./utils/devUsers');
 const authRoutes = require('./routes/auth');
 const containersRoutes = require('./routes/containers');
 const minersRoutes = require('./routes/miners');
 const metricsRoutes = require('./routes/metrics');
+const monitoringRoutes = require('./routes/monitoring');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+// ⚠️ NOTE: NE PAS MODIFIER CE PORT - Configuration infrastructure fixe
+// Port 3003 = Hearst SRQ (selon PROJECT_STRUCTURE.md)
+const PORT = process.env.PORT || 3003;
 
 // Middleware
 app.use(helmet());
-app.use(cors({ origin: process.env.CORS_ORIGIN || 'http://localhost:3000', credentials: true }));
+app.use(cors({ origin: '*', credentials: false })); // Allow all origins in development
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -33,9 +37,19 @@ app.use('/api/containers', containersRoutes);
 app.use('/api/miners', minersRoutes);
 app.use('/api/metrics', metricsRoutes);
 
-// Health check
+// Monitoring routes (pour DevMonitor central)
+app.use('/api', monitoringRoutes);
+app.use('/api/monitoring', monitoringRoutes);
+
+// Health check (legacy endpoint)
 app.get('/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+  res.json({ 
+    status: 'ok', 
+    service: 'Strategic Reserve Qatar',
+    port: PORT,
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime()
+  });
 });
 
 // 404 handler
@@ -50,10 +64,17 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
+  // #region agent log
+  fetch('http://127.0.0.1:7246/ingest/eae5f0fe-29ef-4376-8b15-c32e28fe1e52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'srq-server.js:67',message:'SRQ backend started',data:{port:PORT,service:'hearst-srq'},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A'})}).catch(()=>{});
+  // #endregion
   console.log(`🚀 Server running on port ${PORT}`);
   console.log(`📊 Environment: ${process.env.NODE_ENV}`);
   console.log(`🔗 Health check: http://localhost:${PORT}/health`);
+  
+  // Initialize dev users
+  await initDevUsers();
+  console.log(`🔐 Dev mode: Login with admin@srq.qa / SecureSRQ2024!`);
 });
 
 module.exports = app;

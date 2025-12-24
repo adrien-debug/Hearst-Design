@@ -138,7 +138,7 @@ curl -X POST http://localhost:4000/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{
     "email": "admin@hearstmining.com",
-    "password": "Admin123!Hearst"
+    "password": "<REDACTED>"
   }'
 
 # Vue d'ensemble
@@ -424,7 +424,7 @@ tail -f logs/qatar-backend.log
 curl http://localhost:4000/health
 curl -X POST http://localhost:4000/api/auth/login \
   -H "Content-Type: application/json" \
-  -d '{"email":"admin@hearstmining.com","password":"Admin123!Hearst"}'
+  -d '{"email":"admin@hearstmining.com","password":"<REDACTED>"}'
 ```
 
 ---

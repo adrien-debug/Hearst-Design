@@ -24,10 +24,27 @@ const PORT = process.env.PORT || 4000;
 // MIDDLEWARE
 // ============================================
 
-app.use(helmet());
-app.use(cors({ 
-  origin: process.env.CORS_ORIGIN || ['http://localhost:4100', 'http://localhost:3000'], 
-  credentials: true 
+// Helmet avec CSP personnalisée pour permettre les scripts inline en dev
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'"], // Permettre scripts inline pour la page de login
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      imgSrc: ["'self'", "data:", "https:"],
+      connectSrc: ["'self'", "http://localhost:*"],
+    },
+  },
+}));
+// CORS (éviter '*' en prod)
+const corsOriginEnv = process.env.CORS_ORIGIN;
+const corsOrigins = corsOriginEnv
+  ? corsOriginEnv.split(',').map(o => o.trim()).filter(Boolean)
+  : '*';
+
+app.use(cors({
+  origin: corsOrigins === '*' ? '*' : corsOrigins,
+  credentials: true
 }));
 app.use(morgan('dev'));
 app.use(express.json());
@@ -36,7 +53,10 @@ app.use(express.urlencoded({ extended: true }));
 // Rate limiting
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 200 // limit each IP to 200 requests per windowMs
+  max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS || '1000', 10), // limit each IP to N requests (augmenté pour dev)
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many requests, please try again later.' }
 });
 app.use('/api/', limiter);
 
@@ -60,7 +80,17 @@ app.use('/api/qatar', createProxyMiddleware({
   pathRewrite: {
     '^/api/qatar': '/api'
   },
+  // #region agent log
+  onProxyReq: (proxyReq, req, res) => {
+    const target = process.env.QATAR_API_URL || 'http://localhost:3001';
+    fetch('http://127.0.0.1:7246/ingest/eae5f0fe-29ef-4376-8b15-c32e28fe1e52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'server.js:76',message:'Qatar proxy request',data:{path:req.path,method:req.method,target:target},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A,B'})}).catch(()=>{});
+  },
+  // #endregion
   onError: (err, req, res) => {
+    // #region agent log
+    const target = process.env.QATAR_API_URL || 'http://localhost:3001';
+    fetch('http://127.0.0.1:7246/ingest/eae5f0fe-29ef-4376-8b15-c32e28fe1e52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'server.js:82',message:'Qatar proxy error',data:{error:err.message,code:err.code,target:target,path:req.path},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A,B,E'})}).catch(()=>{});
+    // #endregion
     console.error('❌ Qatar proxy error:', err.message);
     res.status(502).json({ 
       error: 'Qatar API unavailable',
@@ -76,7 +106,17 @@ app.use('/api/aquahash', createProxyMiddleware({
   pathRewrite: {
     '^/api/aquahash': '/api'
   },
+  // #region agent log
+  onProxyReq: (proxyReq, req, res) => {
+    const target = process.env.AQUAHASH_API_URL || 'http://localhost:3002';
+    fetch('http://127.0.0.1:7246/ingest/eae5f0fe-29ef-4376-8b15-c32e28fe1e52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'server.js:92',message:'Aquahash proxy request',data:{path:req.path,method:req.method,target:target},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A,B'})}).catch(()=>{});
+  },
+  // #endregion
   onError: (err, req, res) => {
+    // #region agent log
+    const target = process.env.AQUAHASH_API_URL || 'http://localhost:3002';
+    fetch('http://127.0.0.1:7246/ingest/eae5f0fe-29ef-4376-8b15-c32e28fe1e52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'server.js:98',message:'Aquahash proxy error',data:{error:err.message,code:err.code,target:target,path:req.path},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A,B,E'})}).catch(()=>{});
+    // #endregion
     console.error('❌ Aquahash proxy error:', err.message);
     res.status(502).json({ 
       error: 'Aquahash API unavailable',
@@ -92,7 +132,17 @@ app.use('/api/srq', createProxyMiddleware({
   pathRewrite: {
     '^/api/srq': '/api'
   },
+  // #region agent log
+  onProxyReq: (proxyReq, req, res) => {
+    const target = process.env.SRQ_API_URL || 'http://localhost:3002';
+    fetch('http://127.0.0.1:7246/ingest/eae5f0fe-29ef-4376-8b15-c32e28fe1e52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'server.js:108',message:'SRQ proxy request',data:{path:req.path,method:req.method,target:target},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A,B'})}).catch(()=>{});
+  },
+  // #endregion
   onError: (err, req, res) => {
+    // #region agent log
+    const target = process.env.SRQ_API_URL || 'http://localhost:3002';
+    fetch('http://127.0.0.1:7246/ingest/eae5f0fe-29ef-4376-8b15-c32e28fe1e52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'server.js:114',message:'SRQ proxy error',data:{error:err.message,code:err.code,target:target,path:req.path},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A,B,E'})}).catch(()=>{});
+    // #endregion
     console.error('❌ Strategic Reserve Qatar proxy error:', err.message);
     res.status(502).json({ 
       error: 'Strategic Reserve Qatar API unavailable',
@@ -116,6 +166,16 @@ app.use('/api/texas', createProxyMiddleware({
     });
   }
 }));
+
+// ============================================
+// QUICK LOGIN PAGE
+// ============================================
+
+const path = require('path');
+app.get('/login', (req, res) => {
+  const loginPath = path.join(__dirname, '..', 'quick-login-hearst-control.html');
+  res.sendFile(loginPath);
+});
 
 // ============================================
 // HEALTH CHECK
@@ -166,6 +226,15 @@ app.use((err, req, res, next) => {
 // ============================================
 
 app.listen(PORT, () => {
+  // #region agent log
+  const proxyConfig = {
+    qatar: process.env.QATAR_API_URL || 'http://localhost:3001',
+    srq: process.env.SRQ_API_URL || 'http://localhost:3002',
+    aquahash: process.env.AQUAHASH_API_URL || 'http://localhost:3003',
+    texas: process.env.TEXAS_API_URL || 'http://localhost:3004'
+  };
+  fetch('http://127.0.0.1:7246/ingest/eae5f0fe-29ef-4376-8b15-c32e28fe1e52',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'server.js:197',message:'Backend Central started',data:{port:PORT,proxyConfig:proxyConfig},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B'})}).catch(()=>{});
+  // #endregion
   console.log('');
   console.log('╔══════════════════════════════════════════════════════╗');
   console.log('║                                                      ║');

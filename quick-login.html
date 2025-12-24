@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hearst Control - Quick Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 1400px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .project {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-color: #667eea;
+        }
+
+        .project h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .project-icon {
+            font-size: 1.3em;
+        }
+
+        .accounts {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .account {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #e0e0e0;
+        }
+
+        .account:hover {
+            background: #f0f7ff;
+            border-color: #667eea;
+            transform: translateX(5px);
+        }
+
+        .account-role {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .account-details {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .account-email {
+            font-family: 'Courier New', monospace;
+            color: #333;
+        }
+
+        .account-password {
+            font-family: 'Courier New', monospace;
+            color: #999;
+        }
+
+        .click-hint {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            color: #856404;
+            font-weight: 500;
+            margin-top: 30px;
+        }
+
+        .services {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .services h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .service-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .service-link {
+            background: #667eea;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .service-link:hover {
+            background: #5568d3;
+            transform: scale(1.05);
+        }
+
+        .qatar { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .srq { background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%); }
+        .design { background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏢 Hearst Control - Quick Login</h1>
+        <p class="subtitle">Cliquez sur un compte pour vous connecter automatiquement</p>
+
+        <div class="projects">
+            <!-- QATAR PROJECT -->
+            <div class="project qatar">
+                <h2><span class="project-icon">🇶🇦</span> Qatar Project</h2>
+                <div class="accounts">
+                    <div class="account" onclick="login('qatar', 'admin@hearstmining.com', 'SecureQatar2024!')">
+                        <div class="account-role">👑 Admin Qatar</div>
+                        <div class="account-details">
+                            <div class="account-email">📧 admin@hearstmining.com</div>
+                            <div class="account-password">🔑 SecureQatar2024!</div>
+                        </div>
+                    </div>
+                    <div class="account" onclick="login('qatar', 'manager@hearstmining.com', 'ManagerQatar2024!')">
+                        <div class="account-role">👔 Manager Qatar</div>
+                        <div class="account-details">
+                            <div class="account-email">📧 manager@hearstmining.com</div>
+                            <div class="account-password">🔑 ManagerQatar2024!</div>
+                        </div>
+                    </div>
+                    <div class="account" onclick="login('qatar', 'operator@hearstmining.com', 'OperatorQatar2024!')">
+                        <div class="account-role">⚙️ Opérateur Qatar</div>
+                        <div class="account-details">
+                            <div class="account-email">📧 operator@hearstmining.com</div>
+                            <div class="account-password">🔑 OperatorQatar2024!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SRQ PROJECT -->
+            <div class="project srq">
+                <h2><span class="project-icon">🏛️</span> Strategic Reserve Qatar</h2>
+                <div class="accounts">
+                    <div class="account" onclick="login('srq', 'admin@srq.qa', 'SecureSRQ2024!')">
+                        <div class="account-role">👑 Admin SRQ</div>
+                        <div class="account-details">
+                            <div class="account-email">📧 admin@srq.qa</div>
+                            <div class="account-password">🔑 SecureSRQ2024!</div>
+                        </div>
+                    </div>
+                    <div class="account" onclick="login('srq', 'manager@srq.qa', 'ManagerSRQ2024!')">
+                        <div class="account-role">👔 Manager SRQ</div>
+                        <div class="account-details">
+                            <div class="account-email">📧 manager@srq.qa</div>
+                            <div class="account-password">🔑 ManagerSRQ2024!</div>
+                        </div>
+                    </div>
+                    <div class="account" onclick="login('srq', 'operator@srq.qa', 'OperatorSRQ2024!')">
+                        <div class="account-role">⚙️ Opérateur SRQ</div>
+                        <div class="account-details">
+                            <div class="account-email">📧 operator@srq.qa</div>
+                            <div class="account-password">🔑 OperatorSRQ2024!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DESIGN PROJECT (Coming Soon) -->
+            <div class="project design">
+                <h2><span class="project-icon">🎨</span> Hearst Design</h2>
+                <div class="accounts">
+                    <div class="account" style="opacity: 0.6; cursor: not-allowed;">
+                        <div class="account-role">👑 Admin Design</div>
+                        <div class="account-details">
+                            <div class="account-email">📧 admin@design.hearst.com</div>
+                            <div class="account-password">🔑 À venir...</div>
+                        </div>
+                    </div>
+                    <div class="account" style="opacity: 0.6; cursor: not-allowed;">
+                        <div class="account-role">👔 Manager Design</div>
+                        <div class="account-details">
+                            <div class="account-email">📧 manager@design.hearst.com</div>
+                            <div class="account-password">🔑 À venir...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="click-hint">
+            ⚡ Cliquez sur une carte pour lancer le test automatique de connexion
+        </div>
+
+        <div class="services">
+            <h2>🔗 Liens Directs</h2>
+            <div class="service-links">
+                <a href="http://localhost:4000" target="_blank" class="service-link">Backend Central (4000)</a>
+                <a href="http://localhost:3001" target="_blank" class="service-link">Backend Qatar (3001)</a>
+                <a href="http://localhost:3003" target="_blank" class="service-link">Backend SRQ (3003)</a>
+                <a href="http://localhost:3002" target="_blank" class="service-link">Backend Design (3002)</a>
+                <a href="http://localhost:3000" target="_blank" class="service-link">Frontend Qatar (3000)</a>
+                <a href="http://localhost:3100" target="_blank" class="service-link">Frontend SRQ (3100)</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function login(project, email, password) {
+            const urls = {
+                'qatar': 'http://localhost:3001',
+                'srq': 'http://localhost:3003',
+                'design': 'http://localhost:3002'
+            };
+
+            const frontendUrls = {
+                'qatar': 'http://localhost:3000',
+                'srq': 'http://localhost:3100',
+                'design': 'http://localhost:3200'
+            };
+
+            const apiUrl = urls[project];
+            const frontendUrl = frontendUrls[project];
+
+            try {
+                console.log(`🔄 Tentative de connexion à ${project}...`);
+                console.log(`API: ${apiUrl}/api/auth/login`);
+                console.log(`Email: ${email}`);
+
+                const response = await fetch(`${apiUrl}/api/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.token) {
+                    console.log('✅ Connexion réussie!');
+                    console.log('Token:', data.token);
+                    
+                    // Stocker le token
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    
+                    // Rediriger vers le frontend
+                    alert(`✅ Connexion réussie!\n\nProjet: ${project}\nUtilisateur: ${data.user.email}\nRôle: ${data.user.role}\n\nRedirection vers le dashboard...`);
+                    window.open(frontendUrl, '_blank');
+                } else {
+                    console.error('❌ Erreur de connexion:', data);
+                    alert(`❌ Erreur de connexion:\n${data.message || 'Erreur inconnue'}\n\nVérifiez que le backend est démarré sur ${apiUrl}`);
+                }
+            } catch (error) {
+                console.error('❌ Erreur réseau:', error);
+                alert(`❌ Impossible de se connecter au backend ${project}!\n\nErreur: ${error.message}\n\nVérifiez que le serveur est démarré sur ${apiUrl}`);
+            }
+        }
+    </script>
+</body>
+</html>
+

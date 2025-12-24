@@ -1,0 +1,230 @@
+{
+  "version": "1.0.0",
+  "description": "Configuration de synchronisation automatique entre core/backend-central et projets",
+  "lastUpdate": "2025-12-24",
+  
+  "syncRules": {
+    "core": {
+      "description": "Code commun réutilisable - CRITIQUE pour tous les projets",
+      "path": "core/",
+      "targetProjects": [
+        "hearst-design",
+        "hearst-qatar-new",
+        "hearst-strategic-reserve-qatar"
+      ],
+      "files": [
+        {
+          "source": "core/auth/authService.js",
+          "targets": [
+            "projects/hearst-design/backend/core-modules/auth/authService.js",
+            "projects/hearst-qatar-new/backend/core-modules/auth/authService.js",
+            "projects/hearst-strategic-reserve-qatar/backend/core-modules/auth/authService.js"
+          ],
+          "syncType": "copy",
+          "critical": true,
+          "description": "Service d'authentification multi-tenant"
+        },
+        {
+          "source": "core/middleware/authMiddleware.js",
+          "targets": [
+            "projects/hearst-design/backend/core-modules/middleware/authMiddleware.js",
+            "projects/hearst-qatar-new/backend/core-modules/middleware/authMiddleware.js",
+            "projects/hearst-strategic-reserve-qatar/backend/core-modules/middleware/authMiddleware.js"
+          ],
+          "syncType": "copy",
+          "critical": true,
+          "description": "Middlewares d'authentification"
+        },
+        {
+          "source": "core/database/supabaseClient.js",
+          "targets": [
+            "projects/hearst-design/backend/core-modules/database/supabaseClient.js",
+            "projects/hearst-qatar-new/backend/core-modules/database/supabaseClient.js",
+            "projects/hearst-strategic-reserve-qatar/backend/core-modules/database/supabaseClient.js"
+          ],
+          "syncType": "copy",
+          "critical": true,
+          "description": "Client Supabase universel"
+        },
+        {
+          "source": "core/shared-utils/logger.js",
+          "targets": [
+            "projects/hearst-design/backend/core-modules/shared-utils/logger.js",
+            "projects/hearst-qatar-new/backend/core-modules/shared-utils/logger.js",
+            "projects/hearst-strategic-reserve-qatar/backend/core-modules/shared-utils/logger.js"
+          ],
+          "syncType": "copy",
+          "critical": false,
+          "description": "Système de logging"
+        },
+        {
+          "source": "core/shared-utils/validators.js",
+          "targets": [
+            "projects/hearst-design/backend/core-modules/shared-utils/validators.js",
+            "projects/hearst-qatar-new/backend/core-modules/shared-utils/validators.js",
+            "projects/hearst-strategic-reserve-qatar/backend/core-modules/shared-utils/validators.js"
+          ],
+          "syncType": "copy",
+          "critical": false,
+          "description": "Validateurs réutilisables"
+        }
+      ],
+      "dependencies": {
+        "package.json": {
+          "source": "core/package.json",
+          "syncType": "merge",
+          "description": "Dépendances npm à vérifier dans chaque projet"
+        }
+      }
+    },
+    
+    "backendCentral": {
+      "description": "Backend central - API Gateway + Auth",
+      "path": "backend-central/",
+      "affectsProjects": "all",
+      "files": [
+        {
+          "source": "backend-central/routes/auth.js",
+          "type": "reference",
+          "critical": true,
+          "description": "Routes d'authentification - Tous les projets doivent s'y conformer"
+        },
+        {
+          "source": "backend-central/controllers/authController.js",
+          "type": "reference",
+          "critical": true,
+          "description": "Contrôleur d'auth - Structure à suivre dans les projets"
+        }
+      ]
+    },
+    
+    "projectSpecific": {
+      "hearst-design": {
+        "description": "Projet Hearst Design",
+        "dependencies": ["core", "backend-central"],
+        "supabaseRequired": true,
+        "port": 3002,
+        "criticalFiles": [
+          "backend/server.js",
+          "backend/routes/",
+          "backend/controllers/",
+          "frontend/src/app/"
+        ]
+      },
+      "hearst-strategic-reserve-qatar": {
+        "description": "Projet Strategic Reserve Qatar",
+        "dependencies": ["core", "backend-central"],
+        "supabaseRequired": true,
+        "port": 3003,
+        "criticalFiles": [
+          "backend/server.js",
+          "backend/routes/",
+          "backend/controllers/",
+          "frontend/src/app/"
+        ]
+      },
+      "hearst-qatar-new": {
+        "description": "Projet Qatar Dashboard",
+        "dependencies": ["core", "backend-central"],
+        "supabaseRequired": true,
+        "port": 3001,
+        "criticalFiles": [
+          "backend/server.js",
+          "backend/routes/",
+          "backend/controllers/",
+          "frontend/src/"
+        ]
+      }
+    }
+  },
+  
+  "changeDetection": {
+    "watchPaths": [
+      "core/",
+      "backend-central/",
+      "database/central-schema.sql"
+    ],
+    "ignorePatterns": [
+      "node_modules/",
+      "*.log",
+      ".env",
+      "*.md"
+    ],
+    "notifications": {
+      "critical": true,
+      "email": false,
+      "slack": false,
+      "terminal": true
+    }
+  },
+  
+  "versionControl": {
+    "changelogPath": "SYNC_CHANGELOG.md",
+    "versionFile": "VERSION.json",
+    "autoIncrement": true,
+    "semanticVersioning": true
+  },
+  
+  "automationRules": [
+    {
+      "rule": "CORE_CHANGE",
+      "description": "Si modification dans core/, OBLIGATOIRE de synchroniser tous les projets",
+      "action": "sync-core-to-projects.sh",
+      "blocking": true,
+      "requiresApproval": true
+    },
+    {
+      "rule": "AUTH_CHANGE",
+      "description": "Si modification dans auth*, vérification de sécurité OBLIGATOIRE",
+      "action": "verify-auth-security.sh",
+      "blocking": true,
+      "requiresApproval": true
+    },
+    {
+      "rule": "SCHEMA_CHANGE",
+      "description": "Si modification dans schema SQL, mise à jour de tous les projets",
+      "action": "sync-schemas.sh",
+      "blocking": true,
+      "requiresApproval": true
+    },
+    {
+      "rule": "DEPENDENCY_UPDATE",
+      "description": "Si modification dans package.json (core), vérifier tous les projets",
+      "action": "check-dependencies.sh",
+      "blocking": false,
+      "requiresApproval": false
+    }
+  ],
+  
+  "hooks": {
+    "preCommit": [
+      "check-sync-status",
+      "verify-no-secrets",
+      "lint-check"
+    ],
+    "postCommit": [
+      "update-changelog",
+      "increment-version"
+    ],
+    "prePush": [
+      "verify-sync-complete",
+      "run-tests"
+    ]
+  },
+  
+  "notificationTemplates": {
+    "CORE_MODIFIED": {
+      "severity": "CRITICAL",
+      "message": "⚠️ ATTENTION: Modification détectée dans core/\n\nFichier: {file}\nAction requise: Synchronisation OBLIGATOIRE vers tous les projets\n\nCommande: ./scripts/sync-core-to-projects.sh"
+    },
+    "AUTH_MODIFIED": {
+      "severity": "CRITICAL",
+      "message": "🔐 SÉCURITÉ: Modification d'authentification détectée\n\nFichier: {file}\nAction requise: Revue de sécurité + Synchronisation\n\nCommande: ./scripts/verify-auth-security.sh"
+    },
+    "BACKEND_CENTRAL_MODIFIED": {
+      "severity": "HIGH",
+      "message": "📡 Backend Central modifié\n\nFichier: {file}\nAction: Vérifier impact sur tous les projets\n\nCommande: ./scripts/verify-backend-impact.sh"
+    }
+  }
+}
+

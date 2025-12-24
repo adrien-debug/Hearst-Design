@@ -18,6 +18,9 @@ echo ""
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 
+# Logs (assurer l'existence du dossier)
+mkdir -p "$ROOT_DIR/logs"
+
 # Couleurs
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
@@ -56,57 +59,107 @@ echo ""
 sleep 3
 
 # ============================================
-# 2. Démarrer Projet Qatar
+# 2. Démarrer Frontend Central
 # ============================================
 
-echo -e "${BLUE}🇶🇦 Starting Qatar Project...${NC}"
+echo -e "${BLUE}🏢 Starting Hearst Control Frontend...${NC}"
 
-if [ -d "$ROOT_DIR/projects/hearst-qatar-new" ]; then
-    cd "$ROOT_DIR/projects/hearst-qatar-new"
+if [ -d "$ROOT_DIR/frontend-central" ]; then
+    cd "$ROOT_DIR/frontend-central"
     
-    # Backend Qatar (port 3001)
+    if [ ! -d "node_modules" ]; then
+        echo "📦 Installing dependencies..."
+        npm install
+    fi
+    
+    echo "🚀 Starting frontend on port 3100..."
+    nohup npm run dev > ../logs/frontend-central.log 2>&1 &
+    FRONTEND_CENTRAL_PID=$!
+    echo "$FRONTEND_CENTRAL_PID" > ../logs/frontend-central.pid
+    echo -e "${GREEN}✅ Frontend Central started (PID: $FRONTEND_CENTRAL_PID)${NC}"
+else
+    echo -e "${YELLOW}  ⚠️  Frontend Central not found${NC}"
+fi
+
+echo ""
+sleep 2
+
+# ============================================
+# 3. Démarrer Projet Strategic Reserve Qatar
+# ============================================
+
+echo -e "${BLUE}🏦 Starting Strategic Reserve Qatar Project...${NC}"
+
+if [ -d "$ROOT_DIR/projects/hearst-strategic-reserve-qatar" ]; then
+    cd "$ROOT_DIR/projects/hearst-strategic-reserve-qatar"
+    
+    # Backend SRQ (port 3003)
     if [ -d "backend" ]; then
         cd backend
         if [ ! -d "node_modules" ]; then
             npm install
         fi
-        nohup npm start > ../../logs/qatar-backend.log 2>&1 &
-        QATAR_BACKEND_PID=$!
-        echo "$QATAR_BACKEND_PID" > ../../logs/qatar-backend.pid
-        echo -e "${GREEN}  ✅ Qatar Backend started (PID: $QATAR_BACKEND_PID)${NC}"
+        nohup npm start > ../../logs/srq-backend.log 2>&1 &
+        SRQ_BACKEND_PID=$!
+        echo "$SRQ_BACKEND_PID" > ../../logs/srq-backend.pid
+        echo -e "${GREEN}  ✅ SRQ Backend started (PID: $SRQ_BACKEND_PID)${NC}"
         cd ..
     fi
     
-    # Frontend Qatar (port 3000)
+    # Frontend SRQ (port 3003)
     if [ -d "frontend" ]; then
         cd frontend
         if [ ! -d "node_modules" ]; then
             npm install
         fi
-        nohup npm run dev > ../../logs/qatar-frontend.log 2>&1 &
-        QATAR_FRONTEND_PID=$!
-        echo "$QATAR_FRONTEND_PID" > ../../logs/qatar-frontend.pid
-        echo -e "${GREEN}  ✅ Qatar Frontend started (PID: $QATAR_FRONTEND_PID)${NC}"
+        nohup npm run dev > ../../logs/srq-frontend.log 2>&1 &
+        SRQ_FRONTEND_PID=$!
+        echo "$SRQ_FRONTEND_PID" > ../../logs/srq-frontend.pid
+        echo -e "${GREEN}  ✅ SRQ Frontend started (PID: $SRQ_FRONTEND_PID)${NC}"
         cd ..
     fi
 else
-    echo -e "${YELLOW}  ⚠️  Qatar project not found${NC}"
+    echo -e "${YELLOW}  ⚠️  SRQ project not found${NC}"
 fi
 
 echo ""
 
 # ============================================
-# 3. Démarrer Projet Aquahash (si existe)
+# 4. Démarrer Projet Design
 # ============================================
 
-echo -e "${BLUE}🌊 Checking Aquahash Project...${NC}"
+echo -e "${BLUE}🎨 Starting Design Project...${NC}"
 
-if [ -d "$ROOT_DIR/projects/hearst-aquahash" ]; then
-    echo "Starting Aquahash Project..."
-    # À implémenter quand le projet Aquahash sera créé
-    echo -e "${YELLOW}  ⚠️  Aquahash project found but not configured yet${NC}"
+if [ -d "$ROOT_DIR/projects/hearst-design" ]; then
+    cd "$ROOT_DIR/projects/hearst-design"
+    
+    # Backend Design (port 3002)
+    if [ -d "backend" ]; then
+        cd backend
+        if [ ! -d "node_modules" ]; then
+            npm install
+        fi
+        nohup npm start > ../../logs/design-backend.log 2>&1 &
+        DESIGN_BACKEND_PID=$!
+        echo "$DESIGN_BACKEND_PID" > ../../logs/design-backend.pid
+        echo -e "${GREEN}  ✅ Design Backend started (PID: $DESIGN_BACKEND_PID)${NC}"
+        cd ..
+    fi
+    
+    # Frontend Design (port 3002)
+    if [ -d "frontend" ]; then
+        cd frontend
+        if [ ! -d "node_modules" ]; then
+            npm install
+        fi
+        nohup npm run dev > ../../logs/design-frontend.log 2>&1 &
+        DESIGN_FRONTEND_PID=$!
+        echo "$DESIGN_FRONTEND_PID" > ../../logs/design-frontend.pid
+        echo -e "${GREEN}  ✅ Design Frontend started (PID: $DESIGN_FRONTEND_PID)${NC}"
+        cd ..
+    fi
 else
-    echo -e "${YELLOW}  ⚠️  Aquahash project not found (planned)${NC}"
+    echo -e "${YELLOW}  ⚠️  Design project not found${NC}"
 fi
 
 echo ""
@@ -123,15 +176,25 @@ echo "╚═══════════════════════�
 echo ""
 echo "🌐 Access URLs:"
 echo ""
-echo "   Central Backend:   http://localhost:4000"
-echo "   Central Dashboard: http://localhost:4100 (to implement)"
+echo "   🏢 Hearst Control Central:"
+echo "      Backend:    http://localhost:4000"
+echo "      Frontend:   http://localhost:3100"
 echo ""
-echo "   Qatar Backend:     http://localhost:3001"
-echo "   Qatar Frontend:    http://localhost:3000"
+echo "   🏦 Strategic Reserve Qatar (SRQ):"
+echo "      Frontend:   http://localhost:3003"
+echo "      Backend:    http://localhost:3003 (internal)"
+echo ""
+echo "   🎨 Hearst Design:"
+echo "      Frontend:   http://localhost:3002"
+echo "      Backend:    http://localhost:3002 (internal)"
 echo ""
 echo "📊 Logs:"
-echo "   Central: tail -f logs/backend-central.log"
-echo "   Qatar:   tail -f logs/qatar-backend.log"
+echo "   Central Backend:   tail -f logs/backend-central.log"
+echo "   Central Frontend:  tail -f logs/frontend-central.log"
+echo "   SRQ Backend:       tail -f logs/srq-backend.log"
+echo "   SRQ Frontend:      tail -f logs/srq-frontend.log"
+echo "   Design Backend:    tail -f logs/design-backend.log"
+echo "   Design Frontend:   tail -f logs/design-frontend.log"
 echo ""
 echo "🛑 To stop all services: ./scripts/stop-all.sh"
 echo ""

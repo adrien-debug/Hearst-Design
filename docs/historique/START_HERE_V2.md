@@ -85,7 +85,7 @@ curl http://localhost:4000/health
 # Login
 curl -X POST http://localhost:4000/api/auth/login \
   -H "Content-Type: application/json" \
-  -d '{"email":"admin@hearstmining.com","password":"Admin123!Hearst"}'
+  -d '{"email":"admin@hearstmining.com","password":"<REDACTED>"}'
 ```
 
 ---
@@ -94,7 +94,7 @@ curl -X POST http://localhost:4000/api/auth/login \
 
 ```
 Email    : admin@hearstmining.com
-Password : Admin123!Hearst
+Password : <REDACTED>
 ```
 
 ---

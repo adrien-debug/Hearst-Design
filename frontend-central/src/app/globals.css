@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  :root {
+    /* Hearst Colors */
+    --hearst-green: #8AFD81;
+    --hearst-green-dark: #5ae052;
+    --hearst-black: #050506;
+    --hearst-black-light: #0a0b0d;
+    
+    /* Shadows */
+    --shadow-glow-green: 0 0 60px rgba(138, 253, 129, 0.4);
+    --shadow-glow-green-sm: 0 0 30px rgba(138, 253, 129, 0.2);
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    @apply bg-hearst-black text-white antialiased;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+
+  /* Scrollbar custom */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-white/5;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-white/20 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-white/30;
+  }
+}
+
+@layer components {
+  /* Background Grid Pattern */
+  .bg-grid-pattern {
+    background-image: radial-gradient(circle at 1px 1px, rgba(138, 253, 129, 0.03) 1px, transparent 0);
+    background-size: 40px 40px;
+  }
+
+  /* Glow Effect */
+  .glow-effect {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 400px;
+    background: rgba(138, 253, 129, 0.05);
+    border-radius: 9999px;
+    filter: blur(150px);
+    pointer-events: none;
+  }
+
+  /* Card base */
+  .card-base {
+    @apply rounded-3xl bg-white/[0.02] border border-white/5 transition-all duration-300;
+  }
+
+  .card-base:hover {
+    @apply bg-white/[0.05] border-hearst-green/30;
+  }
+
+  /* Button base */
+  .btn-base {
+    @apply px-6 py-3 rounded-xl text-sm font-medium transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply btn-base bg-hearst-green text-hearst-black hover:bg-hearst-green-dark;
+  }
+
+  .btn-secondary {
+    @apply btn-base bg-white/5 text-white/50 hover:text-white hover:bg-white/10 border border-white/5;
+  }
+
+  /* Input base */
+  .input-base {
+    @apply w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/40 focus:outline-none focus:border-hearst-green/50 transition-colors;
+  }
+
+  /* Status indicator */
+  .status-dot {
+    @apply w-2 h-2 rounded-full animate-pulse;
+  }
+
+  .status-dot.active {
+    @apply bg-status-active;
+  }
+
+  .status-dot.offline {
+    @apply bg-status-offline;
+  }
+
+  .status-dot.maintenance {
+    @apply bg-status-maintenance;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .glass-effect {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+

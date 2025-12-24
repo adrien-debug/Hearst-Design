@@ -236,7 +236,7 @@ npm run dev
 
 ```bash
 Email    : admin@hearstmining.com
-Password : Admin123!Hearst
+Password : <REDACTED>
 ```
 
 ---
@@ -252,7 +252,7 @@ curl -X POST http://localhost:3002/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{
     "email": "admin@hearstmining.com",
-    "password": "Admin123!Hearst"
+    "password": "<REDACTED>"
   }'
 
 # Via API Gateway

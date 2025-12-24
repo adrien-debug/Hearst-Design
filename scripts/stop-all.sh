@@ -69,19 +69,16 @@ cd "$LOGS_DIR"
 # Backend Central
 stop_service "Backend Central" "backend-central.pid"
 
-# Qatar Backend
-stop_service "Qatar Backend" "qatar-backend.pid"
+# Frontend Central
+stop_service "Frontend Central" "frontend-central.pid"
 
-# Qatar Frontend
-stop_service "Qatar Frontend" "qatar-frontend.pid"
+# Strategic Reserve Qatar
+stop_service "SRQ Backend" "srq-backend.pid"
+stop_service "SRQ Frontend" "srq-frontend.pid"
 
-# Aquahash (si existe)
-stop_service "Aquahash Backend" "aquahash-backend.pid"
-stop_service "Aquahash Frontend" "aquahash-frontend.pid"
-
-# Texas (si existe)
-stop_service "Texas Backend" "texas-backend.pid"
-stop_service "Texas Frontend" "texas-frontend.pid"
+# Design Project
+stop_service "Design Backend" "design-backend.pid"
+stop_service "Design Frontend" "design-frontend.pid"
 
 # ============================================
 # Nettoyage final
@@ -91,12 +88,10 @@ echo ""
 echo -e "${GREEN}Cleaning up remaining Node processes...${NC}"
 
 # Tuer tous les processus Node sur les ports connus
-lsof -ti:4000 | xargs kill -9 2>/dev/null || true
-lsof -ti:4100 | xargs kill -9 2>/dev/null || true
-lsof -ti:3000 | xargs kill -9 2>/dev/null || true
-lsof -ti:3001 | xargs kill -9 2>/dev/null || true
-lsof -ti:3002 | xargs kill -9 2>/dev/null || true
-lsof -ti:3003 | xargs kill -9 2>/dev/null || true
+lsof -ti:4000 | xargs kill -9 2>/dev/null || true   # Backend Central
+lsof -ti:3100 | xargs kill -9 2>/dev/null || true   # Frontend Central
+lsof -ti:3003 | xargs kill -9 2>/dev/null || true   # SRQ (Frontend + Backend)
+lsof -ti:3002 | xargs kill -9 2>/dev/null || true   # Design (Frontend + Backend)
 
 echo ""
 echo "╔══════════════════════════════════════════════════════╗"

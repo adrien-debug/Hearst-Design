@@ -159,7 +159,7 @@ CREATE TRIGGER update_miners_updated_at BEFORE UPDATE ON miners
 
 -- ============================================
 -- INITIAL DATA
--- Default admin user (password: Admin123!Hearst)
+-- Default admin user (password: <REDACTED>)
 -- ============================================
 INSERT INTO users (email, password_hash, name, role) VALUES
 ('admin@hearstmining.com', '$2a$10$rFKwEzYhQ6xqVz.iyKV8YOxfXRp.KNJKZy9QsT8H4ggO5YPQXvPea', 'Admin User', 'admin')
@@ -234,6 +234,6 @@ BEGIN
     RAISE NOTICE '';
     RAISE NOTICE '🔑 Default Admin Login:';
     RAISE NOTICE '   Email: admin@hearstmining.com';
-    RAISE NOTICE '   Password: Admin123!Hearst';
+    RAISE NOTICE '   Password: <REDACTED>';
 END $$;
 
